@@ -123,7 +123,7 @@
 						$("#CertificationNum").attr("readonly",true);
 					}else{	
 						randomKey = data;
-						alert(data);
+						alert("테스트를 쉽게 하기 위한 인증번호 보여주기(findid.jsp:126)\n"+data);
 						$("#CertificationNum").attr("readonly",false);
 					}
 				},

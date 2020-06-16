@@ -2,7 +2,7 @@ package home.model.service;
 
 import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.getConnetion;
+import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
@@ -17,7 +17,7 @@ import home.model.vo.Review;
 public class HomeService {
 
 	public int getListCount() {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		int listCount = new HomeDao().getListCount(conn);
 		
@@ -28,7 +28,7 @@ public class HomeService {
 	}
 	
 	public int getListCount2(String country, String home, String period) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		int listCount = new HomeDao().getListCount2(conn, country, home, period);
 		
@@ -39,7 +39,7 @@ public class HomeService {
 	
 
 	public int getRListCount() {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		int listCount = new HomeDao().getRListCount(conn);
 		
@@ -49,7 +49,7 @@ public class HomeService {
 	}
 
 	public ArrayList<Home> selectList(int currentPage, int limit) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		ArrayList list = new HomeDao().selectList(conn, currentPage, limit);
 		
@@ -60,7 +60,7 @@ public class HomeService {
 	}
 	
 	public ArrayList<Img> selectImgList(int currentPage, int limit) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		ArrayList list = null;
 		
@@ -74,7 +74,7 @@ public class HomeService {
 	}
 
 	public ArrayList<Home> selectList2(int currentPage, int limit, String country, String home, String period) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		ArrayList list = new HomeDao().selectList2(conn, currentPage, limit, country, home, period);
 		
@@ -84,7 +84,7 @@ public class HomeService {
 	}
 	
 	public ArrayList<Img> selectImgList2(int currentPage, int limit, String country, String home, String period) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		ArrayList list = null;
 		
@@ -98,7 +98,7 @@ public class HomeService {
 	}
 
 	public Home selectHome(int hNo2) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		Home home = new HomeDao().selectHome(conn, hNo2);
 		
 		System.out.println("service: " + home);
@@ -109,7 +109,7 @@ public class HomeService {
 	}
 
 	public int insertHome(Home h, ArrayList<Img> fileList) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		HomeDao hDao = new HomeDao();
 		
@@ -130,7 +130,7 @@ public class HomeService {
 	}
 
 	public ArrayList<Img> selectImgList(int hNo2) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		ArrayList list = null;
 		
@@ -144,7 +144,7 @@ public class HomeService {
 	}
 
 	public ArrayList<Review> insertReply(Review r) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		HomeDao hDao = new HomeDao();
 		
@@ -164,7 +164,7 @@ public class HomeService {
 	}
 
 	public ArrayList<Review> selectReplyList(int hNo2) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		ArrayList<Review> rlist = new HomeDao().selectReplyList(conn, hNo2);
 		
@@ -174,7 +174,7 @@ public class HomeService {
 	}
 
 	public int reservationHome(Reservation reservation) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		HomeDao hDao = new HomeDao();
 		
@@ -192,7 +192,7 @@ public class HomeService {
 	}
 
 	public int reservationCheck(Reservation reservation) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		int result = new HomeDao().reservationCheck(conn, reservation);
 		
@@ -202,7 +202,7 @@ public class HomeService {
 	}
 
 	public int updateHome(Home h, ArrayList<Img> fileList) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		HomeDao hDao = new HomeDao();
 		
@@ -223,7 +223,7 @@ public class HomeService {
 	}
 
 	public int deleteHome(int hNo) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		int result = new HomeDao().deleteMember(conn, hNo);
 		
@@ -239,7 +239,7 @@ public class HomeService {
 	}
 
 	public int reportHome(int hNo) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		HomeDao hDao = new HomeDao();
 		
@@ -257,7 +257,7 @@ public class HomeService {
 	}
 
 	public int reportReview(int reviewNo) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		HomeDao hDao = new HomeDao();
 		
