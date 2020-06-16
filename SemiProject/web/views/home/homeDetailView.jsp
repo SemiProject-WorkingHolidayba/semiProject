@@ -400,8 +400,8 @@
 						for(var key in data){
 							var $span = $("<span>");
 							var $writerTd = $("<span>").text(data[key].userName).css("font-weight","bold").css("padding-right","3%");
-							var $scoreTd = $("<img>").attr("src","<%=request.getContextPath()%>/images/score.png").css("width","1.5%").css("height","1.5%");
 							var $dateTd = $("<span>").text(data[key].writeDate).css("font-size","0.8em").css("padding-bottom","5%").css("padding-right","1.3%");
+							var $scoreTd = .text("   " + data[key].score + "점");
 							var $reportTd = $("<img>").attr("src","<%=request.getContextPath()%>/images/siren.png").css("width","1.5%").css("height","1.5%");
 							var $contentTd = $("<div>").text(data[key].content);
 							var $brTd = $("<br>");
@@ -410,16 +410,14 @@
 							
 							$span.append($writerTd);
 							$span.append($dateTd);
-							
+							$span.append($reportTd);
+
 							for(i=0; i < score; i++){
 								console.log(score);
 								console.log(i);
-								$span.append($scoreTd);
-							}
-							
-							$span.append($reportTd);
-							$span.append($brTd);
-							$span.append($brTd);
+								$span.append($("<img>").attr("src","<%=request.getContextPath()%>/images/score.png"));
+							};
+							$span.append($scoreTd);
 							$span.append($contentTd);
 							$span.append($brTd);
 							
