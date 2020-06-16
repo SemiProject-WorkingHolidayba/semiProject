@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-   String msg = "";
-   msg=(String)request.getAttribute("erorrMsg");
+	String msg = "";
+	msg=(String)request.getAttribute("erorrMsg");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -46,6 +47,7 @@
  .menup{
      float: left;
      width: 33%;
+      cursor:pointer;
  }
  #ero_msg{
      float: left; 
@@ -63,70 +65,73 @@
      font-size: 25px; 
      border: none; 
      background-color:rgb(202, 202, 202);
+     cursor:pointer;
  }
 
 </style>
 </head>
 <body>
-   <div id="warp">
-      <img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png" onclick="location.href='main.jsp'">
-      <br><br>   
-      <form  method="post" action="<%=request.getContextPath()%>/login.me" onsubmit="return loginf()">
-      <div class="center_div">
-            <label style="float: left; font-size: 18px; font-weight: 900;">아이디</label>
+	<div id="warp">
+		<img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png" onclick="location.href='main.jsp'">
+		<br><br>	
+		<form  method="post" action="<%=request.getContextPath()%>/login.me" onsubmit="return loginf()">
+		<div class="center_div">
+           
             <br>                    
             <input type="text" name="userId" id="userId" class="log" placeholder=" 아이디를 입력해주세요."> <br>    
                         
         </div>
-      <br>
-      <div class="center_div">
-          <label style="float: left; font-size: 18px; font-weight: 900;">비밀번호</label>
-          <br>   
-          <input type="password" name="userPw" id="userPw" class="log"  placeholder=" 비밀번호를 입력해주세요.">
-          <p id="ero_msg">
-          <%if(msg!=null){%>
-             아이디/비밀번호가 일치하지 않습니다.
-          <%}else{ %>
-             &nbsp;
-          <%} %>
-           </p>              
-      </div>
-      <br clear="both">
-       
-      <input id="log_btn" type="submit" value="로그인">
-      
-      </form>
-      
-      <br>
-      <br>
-      <br>
-      
-      <div class="center_div" style="border-top:1px solid rgb(202,202,202); padding: 10px; ">         
-         <div class="menup">아이디 찾기</div>
-         <div class="menup" style="border-left: 1.5px solid rgb(202, 202, 202); border-right: 1.5px solid rgb(202, 202, 202);">비밀번호 찾기</div>
-         <div class="menup" onclick="location.href='join.html'">회원가입</div>
-      </div>
-      
-   </div>
+		
+		<div class="center_div">
+		    
+		    <br>   
+		    <input type="password" name="userPw" id="userPw" class="log"  placeholder=" 비밀번호를 입력해주세요.">
+		    <p id="ero_msg">
+		    <%if(msg!=null){%>
+		    	아이디/비밀번호가 일치하지 않습니다.
+		    <%}else{ %>
+		    	&nbsp;
+		    <%} %>
+		     </p>              
+		</div>
+		<br clear="both">
+		 
+		<input id="log_btn" type="submit" value="로그인">
+		
+		</form>
+		
+		<br>
+		<br>
+		<br>
+		
+		<div class="center_div" style="border-top:1px solid rgb(202,202,202); padding: 10px; ">			
+			<div class="menup" onclick="location.href='findid.jsp'">아이디 찾기</div>
+			<div class="menup" style="border-left: 1.5px solid rgb(202, 202, 202); border-right: 1.5px solid rgb(202, 202, 202); onclick="location.href='findpw.jsp'" ">비밀번호 찾기</div>
+			<div class="menup" onclick="location.href='join.jsp'">회원가입</div>
+		</div>
+		
+	</div>
 
-   <script>
-      
-      function loginf(){
-         var userId =$('#userId').val();
-         
-         if($('#userId').val().trim().length == 0){
-            alert("아이디를 입력해 주세요");
-            return false;
-         }
-         if($('#userPw').val().trim().length == 0){
-            alert("비밀번호를 입력해 주세요");
-            return false;
-         }
-         return true;
-      }
-      
-   </script>
-   
-   
+	<script>
+		
+		function loginf(){
+			var userId =$('#userId').val();
+			
+			if($('#userId').val().trim().length == 0){
+				alert("아이디를 입력해 주세요");
+				return false;
+			}
+			if($('#userPw').val().trim().length == 0){
+				alert("비밀번호를 입력해 주세요");
+				return false;
+			}
+			return true;
+		}
+		
+		
+		
+	</script>
+	
+	
 </body>
 </html>
