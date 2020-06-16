@@ -9,7 +9,7 @@ import java.sql.Connection;
 public class MemberService {
 
 	public Member loginMember(Member member) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		Member loginUser = new MemberDao().loginMember(conn, member);
 		
@@ -18,7 +18,7 @@ public class MemberService {
 	}
 
 	public String findUserId(String userName, String email) {
-		Connection conn = getConnetion();
+		Connection conn = getConnection();
 		
 		String userId = new MemberDao().findUserId(conn,userName,email);
 			
