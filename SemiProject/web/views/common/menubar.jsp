@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="member.model.vo.*"%>
+    
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
-%>
+%>    
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -19,16 +21,16 @@
 <!-- Bootstrap CSS -->
 <link rel="icon" href="../../favicon.ico">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link href="<%=request.getContextPath()%>/carousel.css" rel="stylesheet">
+<link href="../carousel/carousel.css" rel="stylesheet">
 <!-- Bootstrap Javascript -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script> -->
 
-<script src="<%=request.getContextPath()%>/assets/js/ie-emulation-modes-warning.js"></script>
+<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 <style>
    header{
-      width: 100%;
+      width: 1400px;
       font-family: 'Noto Sans KR', sans-serif;
       color: black;
       text-align: center;
@@ -97,7 +99,7 @@
       position: absolute;
       opacity: 1;
       display: block;
-      margin-top: 4%;
+      margin-top: 4.5%;
       height: 3em;
       text-align: center;
       background: #ADD4D9;
@@ -175,8 +177,20 @@
         </ul>
     </div>
     <ul class="login_register" >
-        <li><a href="#" onclick = "login();">로그인</a></li>
-        <li><a href="#" onclick = "join();">회원가입</a></li>
+    	<%if(loginUser == null){ %>
+        <li><a href="<%=request.getContextPath() %>/views/member/login.jsp">로그인</a></li>
+        <li><a href="<%=request.getContextPath() %>/views/member/join.jsp">회원가입</a></li>
+        <%} else{ %>
+        	<%if(loginUser.getGrade() == 2){ %>
+	        <li><a href="<%=request.getContextPath() %>/views/member/test2.jsp">마이페이지</a></li>
+        	<%} else if(loginUser.getGrade() == 3){ %>
+        		<li><a href="<%=request.getContextPath() %>/views/member/test2.jsp">마이페이지</a></li>
+        	<%} else{ %>
+        	<li><a href="<%=request.getContextPath()%>/wselectallmember.me">회원관리</a></li>
+	        <li><a href="<%=request.getContextPath()%>/sessionclear.me">로그아웃</a></li>
+	        <%} %>
+        <%} %>
+       
     </ul>
     </div>
 </header>
@@ -184,11 +198,6 @@
 	function goHome(){
 		location.href = "<%=request.getContextPath()%>/list.ho";
 	}
-	
-	function login(){
-		location.href = "<%=request.getContextPath()%>/views/member/login.jsp";
-	}
-	
 </script>
 </body>
 </html>
