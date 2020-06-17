@@ -112,7 +112,7 @@
 					<th>번호</th>
 					<th >게시자</th>
 					<th style="width: 120px">카테고리</th>
-					<th style="width: 120px">글번호</th>	
+					<th style="width: 120px">글 확인</th>	
 					<th style="width: 230px">처리</th>
 					<th>신고자</th>
 					
