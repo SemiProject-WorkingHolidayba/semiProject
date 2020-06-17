@@ -1,5 +1,6 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, member.model.vo.*, home.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, member.model.vo.*, home.model.vo.Pagination"%>
 
 <%
 	ArrayList<Report> rplist = (ArrayList<Report>)request.getAttribute("rplist");
@@ -121,7 +122,7 @@
 				<%
 				 for(int i=0;i<rplist.size();i++){
 					 String categoryname = "";
-					 switch(((Report)rplist.get(i)).getCategoryno()){
+					 switch(((member.model.vo.Report)rplist.get(i)).getCategoryno()){
 					 case 1: categoryname= "자유게시판"; break;
 					 case 2: categoryname= "질문게시판"; break;
 					 case 3: categoryname= "벼룩시장"; break;

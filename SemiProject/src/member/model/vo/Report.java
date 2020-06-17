@@ -22,6 +22,17 @@ public class Report {
 	}
 
 
+	
+
+
+
+	public Report(int userno, int boardno) {
+		super();
+		this.uploaduserno = userno;
+		this.boardno = boardno;
+	}
+
+
 
 	public Report(int reportno, int categoryno, String uploaduser, int boardno, String process, String reportuser) {
 		this.reportno = reportno;
