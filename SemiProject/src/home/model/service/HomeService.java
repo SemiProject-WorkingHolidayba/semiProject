@@ -13,6 +13,7 @@ import home.model.vo.Home;
 import home.model.vo.Img;
 import home.model.vo.Reservation;
 import home.model.vo.Review;
+import home.model.vo.myHome;
 
 public class HomeService {
 
@@ -308,7 +309,57 @@ public class HomeService {
 		return result;
 	}
 
+	public ArrayList<myHome> mdeletehome(int reservationNo2) {
+		Connection conn = getConnection();
+		
+		ArrayList homelist = new HomeDao().mdeletehome(conn,reservationNo2);
+		
+		
+		close(conn);
+		
+		return homelist;
+
+	}
+
+	public myHome mselectHome(int houseNo2, int userNo2) {
+		Connection conn = getConnection();
+		
+		myHome home = new HomeDao().mselectHome(conn, houseNo2, userNo2);
+		
+		close(conn);
+		
+		return home;
+			
+	}
+
+	public int mgetListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new HomeDao().getListCount(conn);
+		
+		
+		close(conn);
+		
+		return listCount;
 	
+	
+	
+	
+	}
+
+	public ArrayList mselectList(int currentPage, int limit) {
+		Connection conn = getConnection();
+		
+		ArrayList list = new HomeDao().selectList(conn, currentPage, limit);
+		
+		close(conn);
+		
+		return list;
+		
+	
+	
+	
+	}
 
 
 
