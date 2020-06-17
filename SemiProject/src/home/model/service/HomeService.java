@@ -101,8 +101,6 @@ public class HomeService {
 		Connection conn = getConnection();
 		Home home = new HomeDao().selectHome(conn, hNo2);
 		
-		System.out.println("service: " + home);
-		
 		close(conn);
 		
 		return home;
@@ -225,7 +223,7 @@ public class HomeService {
 	public int deleteHome(int hNo) {
 		Connection conn = getConnection();
 		
-		int result = new HomeDao().deleteMember(conn, hNo);
+		int result = new HomeDao().deleteHome(conn, hNo);
 		
 		if(result > 0) {
 			commit(conn);
@@ -274,6 +272,43 @@ public class HomeService {
 		return result;
 	}
 
+	public int updateHome(Home h) {
+		Connection conn = getConnection();
+		
+		HomeDao hDao = new HomeDao();
+		
+		int result = hDao.updateHome(conn, h);
+		int result3 = hDao.updateHomeEtc(conn,h);
+		
+		if(result > 0 && result3 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+			result = 0;
+		}
+				
+		close(conn);
+		
+		return result;
+	}
+
+	public int deleteReview(int rNo) {
+		Connection conn = getConnection();
+		
+		int result = new HomeDao().deleteReview(conn, rNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	
 
 
 

@@ -232,11 +232,11 @@
                     <tr>
                         <td><b>나라</b></td>
                         <td>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="1"><span>호주</span></label>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="2"><span>일본</span></label>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="3"><span>캐나다</span></label>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="4"><span>뉴질랜드</span></label>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="5"><span>독일</span></label>
+                            <label class="country_option"><input type="checkbox"" name = "country" value="N1"><span>호주</span></label>
+                            <label class="country_option"><input type="checkbox"" name = "country" value="N2"><span>일본</span></label>
+                            <label class="country_option"><input type="checkbox"" name = "country" value="N3"><span>캐나다</span></label>
+                            <label class="country_option"><input type="checkbox"" name = "country" value="N4"><span>뉴질랜드</span></label>
+                            <label class="country_option"><input type="checkbox"" name = "country" value="N5"><span>독일</span></label>
                         </td>
                     </tr>
                     <tr> 
@@ -263,8 +263,6 @@
                         <td colspan="2"><button class = "search" type = "submit">검색</button></td>
                     </tr>
                 </table>
-                
-                <p class = "alert">카테고리를 선택해주세요.</p>
             </form>
 
             <div id="home" class="home">
@@ -336,7 +334,6 @@
 					
 					<% if(loginUser != null) {%>
 						location.href = "<%=request.getContextPath()%>/detail.ho?hNo=" + hNo;
-						alert(hNo);
 					<%} else{%>
 						alert("로그인 해야만 상세보기가 가능합니다.");
 					<%}%>

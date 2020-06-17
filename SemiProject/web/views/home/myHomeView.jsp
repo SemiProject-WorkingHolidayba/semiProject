@@ -9,11 +9,11 @@
 	String[] checkedCountry = new String[5];
 	
 	switch(country){
-		case "australia": checkedCountry[0] = "checked"; break;
-		case "japan": checkedCountry[1] = "checked"; break;
-		case "canada": checkedCountry[2] = "checked"; break;
-		case "newzealand": checkedCountry[3] = "checked"; break;
-		case "germany": checkedCountry[4] = "checked"; break;
+		case "호주": checkedCountry[0] = "checked"; break;
+		case "일본": checkedCountry[1] = "checked"; break;
+		case "캐나다": checkedCountry[2] = "checked"; break;
+		case "뉴질랜드": checkedCountry[3] = "checked"; break;
+		case "독일": checkedCountry[4] = "checked"; break;
 	}
 	
 	String type = home.getType();
@@ -249,11 +249,11 @@
                     <td><b>나라</b></td>
                     
                     <td>
-                        <label class="country_option"><input type="radio" name = "country" value="australia" <%=checkedCountry[0]%>><span>호주</span></label>
-                        <label class="country_option"><input type="radio" name = "country" value="japan" <%=checkedCountry[1]%>><span>일본</span></label>
-                        <label class="country_option"><input type="radio" name = "country" value="canada" <%=checkedCountry[2]%>><span>캐나다</span></label>
-                        <label class="country_option"><input type="radio" name = "country" value="newzealand" <%=checkedCountry[3]%>><span>뉴질랜드</span></label>
-                        <label class="country_option"><input type="radio" name = "country" value="germany" <%=checkedCountry[4]%>><span>독일</span></label>
+                        <label class="country_option"><input type="radio" name = "country" value="호주" <%=checkedCountry[0]%>><span>호주</span></label>
+                        <label class="country_option"><input type="radio" name = "country" value="일본" <%=checkedCountry[1]%>><span>일본</span></label>
+                        <label class="country_option"><input type="radio" name = "country" value="캐나다" <%=checkedCountry[2]%>><span>캐나다</span></label>
+                        <label class="country_option"><input type="radio" name = "country" value="뉴질랜드" <%=checkedCountry[3]%>><span>뉴질랜드</span></label>
+                        <label class="country_option"><input type="radio" name = "country" value="독일" <%=checkedCountry[4]%>><span>독일</span></label>
                     </td>
                 </tr>
                 <tr> 

@@ -13,6 +13,19 @@
 	String bathroom = home.getBathroom();
 	String pet = home.getPet();
 	
+	int minP;
+	int maxP;
+	
+	switch(period){
+		case "3monthless" : minP = 1; maxP = 3; break;
+		case "3months" : minP = 3; maxP = 6;break;
+		case "6months" : minP = 6; maxP = 9;break;
+		case "9monts" : minP = 9; maxP = 12;break;
+		case "1year" : minP = 12; break;
+	}
+	
+	
+	
 	ArrayList<Img> flist = (ArrayList<Img>)request.getAttribute("flist");
 	ArrayList<Review> rlist = (ArrayList<Review>)request.getAttribute("rlist");
 	
@@ -146,10 +159,104 @@
 	      
 	      #modifyBtn{background:rgb(113, 177, 197); border:none; color:white;}
 	      #deleteBtn{background:rgb(113, 177, 197); border:none; color:white;}
+	      
+	    .clickable {cursor: pointer;}
+		.hover {text-decoration: underline;}
+		.odd{ background: #FFC;}
+		.even{ background: #FF9;}
+		
+		#myImg {
+
+		    cursor: pointer;
+		    transition: 0.3s;
+		}
+		
+		#myImg:hover {opacity: 0.7;}
+		
+		/* The Modal (background) */
+		.modal {
+		    display: none; /* Hidden by default */
+		    position: fixed; /* Stay in place */
+		    z-index: 1; /* Sit on top */
+		    padding-top: 100px; /* Location of the box */
+		    left: 0;
+		    top: 0;
+		    width: 100%; /* Full width */
+		    height: 100%; /* Full height */
+		    overflow: auto; /* Enable scroll if needed */
+		    background-color: rgb(0,0,0); /* Fallback color */
+		    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+		}
+		
+		/* Modal Content (Image) */
+		.modal-content {
+		    margin: auto;
+		    display: block;
+		    width: 80%;
+		    max-width: 700px;
+		}
+		
+		/* Caption of Modal Image (Image Text) - Same Width as the Image */
+		#caption {
+		    margin: auto;
+		    display: block;
+		    width: 80%;
+		    max-width: 700px;
+		    text-align: center;
+		    color: #ccc;
+		    padding: 10px 0;
+		    height: 150px;
+		}
+		
+		/* Add Animation - Zoom in the Modal */
+		.modal-content, #caption {
+		    -webkit-animation-name: zoom;
+		    -webkit-animation-duration: 0.6s;
+		    animation-name: zoom;
+		    animation-duration: 0.6s;
+		}
+		
+		@-webkit-keyframes zoom {
+		    from {-webkit-transform:scale(0)}
+		    to {-webkit-transform:scale(1)}
+		}
+		
+		@keyframes zoom {
+		    from {transform:scale(0)}
+		    to {transform:scale(1)}
+		}
+		
+		/* The Close Button */
+		.close {
+		    position: absolute;
+		    top: 15px;
+		    right: 35px;
+		    color: white;
+		    font-size: 40px;
+		    font-weight: bold;
+		    transition: 0.3s;
+		}
+		
+		.close:hover,
+		.close:focus {
+		    color: white;
+		    text-decoration: none;
+		    cursor: pointer;
+		}
+		
+		/* 100% Image Width on Smaller Screens */
+		@media only screen and (max-width: 700px){
+		    .modal-content {
+		        width: 100%;
+		    }
+		}
+
     </style>
   </head>
   <body>
     <%@ include file = "../common/menubar.jsp" %>
+   
+
     <div id ="contents">
 		<div id = "photo">
 	      <% if(flist.isEmpty()){ System.out.println("아무것도없음");%>
@@ -157,10 +264,24 @@
 			<%} else{%>
 				<%for(int i = 0; i < flist.size(); i++) { 
 					Img a = flist.get(i);%>
-				        <div class = "item<%=i%>"><img src = "<%=request.getContextPath() %>/home_uploadFiles/<%=a.getSaveImg()%>"></div>
+				        <div class = "item<%=i%>"><img id="myImg" src = "<%=request.getContextPath() %>/home_uploadFiles/<%=a.getSaveImg()%>"></div>
 				<%} %>
 			<%} %>
 		</div>
+				
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+		
+		  <!-- The Close Button -->
+		  <span class="close" onclick="document.getElementById('myModal').style.display='none'">X</span>
+		
+		  <!-- Modal Content (The Image) -->
+		  <img class="modal-content" id="img01">
+		
+		  <!-- Modal Caption (Image Text) -->
+		  <div id="caption"></div>
+		</div>
+				
 
       <div id = "detail_content">
         <div id = "top" >
@@ -298,25 +419,28 @@
 
            	</tr>
           </table>
-          <div name = "review" id = "review">
+          <div name = "review" id = "review" class = "review paginated">
           	<% if(rlist.isEmpty()){ %>
 			<%} else{%>
-					<%for(int i=0; i<rlist.size(); i++) { int score = rlist.get(i).getScore();%>	
-						<span style = "padding-right:1.3%; font-weight:bold"><%=rlist.get(i).getUserName() %></span>
-						<span style = "padding-right:1.3%; font-size:0.8em"><%=rlist.get(i).getWriteDate() %></span>
-						<img style = "width:1.5%; height:1.5%;" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
-						<br>				
-						<span style = "padding-right:1.3%; font-size:0.9em">
-							<%for(int j = 0 ; j < score; j++){ %>
-								<img src = "<%=request.getContextPath()%>/images/score.png" style = "width:1.5%; height 1.5%">					
-							<%} %>
-							&nbsp;&nbsp;<%=rlist.get(i).getScore()%>점
-						</span>
-			            <div style = " width :70%"><%=rlist.get(i).getContent() %></div>
-			            <br>
-					<%}%>
+				<%for(int i=0; i<rlist.size(); i++) { int score = rlist.get(i).getScore(); int rWriter = rlist.get(i).getUserNo();%>	
+					<span class = "writerName" style = "padding-right:1.3%; font-weight:bold"><%=rlist.get(i).getUserName() %></span>
+					<span style = "padding-right:1.3%; font-size:0.8em"><%=rlist.get(i).getWriteDate() %></span>
+					<img style = "width:1.5%; height:1.5%; margin-right:3%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
+					<%if(rWriter == loginUser.getUserNo()) {%>
+					<img style = "width:1.5%; height:1.5%; margin-right:0.5%;" src = "<%=request.getContextPath()%>/images/update.png" onclick = "location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
+					<img id = "delete" style = "width:1.5%; height:1.5%;" src = "<%=request.getContextPath()%>/images/delete.png" onclick = "location.href = '<%=request.getContextPath()%>/deleteReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
+					<%} %>
+					<br>
+					<%for(int j = 0 ; j < score; j++){ %>
+						<img src = "<%=request.getContextPath()%>/images/score.png" style = "width:1.5%; height:1.5%">					
+					<%} %>
+					&nbsp;&nbsp;<%=rlist.get(i).getScore()%>점
+					<br>
+		            <div style = " width :70%"><%=rlist.get(i).getContent() %></div>
+		            <br>
 				<%}%>
-        </div>
+			<%}%>
+       	</div>
       </div>
     </div>
 
@@ -346,7 +470,7 @@
             var num = parseInt(stat,10);
             num++;
 
-            if(num>30){
+            if(num>20){
               alert('더이상 늘릴수 없습니다.');
               num=5;
             }
@@ -378,57 +502,182 @@
         });
       });
       
+      $(function(){
+    	  var modal = document.getElementById('myModal');
+
+    	// Get the image and insert it inside the modal - use its "alt" text as a caption
+    	var img = document.getElementById('myImg');
+    	var modalImg = document.getElementById("img01");
+    	var captionText = document.getElementById("caption");
+    	img.onclick = function(){
+    	    modal.style.display = "block";
+    	    modalImg.src = this.src;
+    	    modalImg.alt = this.alt;
+    	    captionText.innerHTML = this.alt;
+    	}
+
+    	// Get the <span> element that closes the modal
+    	var span = document.getElementsByClassName("close")[0];
+
+    	// When the user clicks on <span> (x), close the modal
+    	span.onclick = function() {
+    	  modal.style.display = "none";
+    	}
+      })
+      
       </script>
 		
 	<script>
    	  $(function(){
- 			$("#registerReview").click(function(){  
-				var userNo = <%=loginUser.getUserNo()%>;
-				var hNo = <%=home.gethNo()%>;
-				var content = $("#reviewContent").val();
-				var score = $('.on').length;
-		
-				$.ajax({
-					url:"<%=request.getContextPath()%>/insertReview.ho",
-					type:"post",
-					data:{userNo:userNo, hNo:hNo, content:content, score:score},
-					success:function(data){
-						$replyTable = $("#review");
-						$replyTable.html("");	
-						
-						// 새로 받아온 갱신 된 댓글리스트들을 for문을 통해 다시 table에 추가
-						for(var key in data){
-							var $span = $("<span>");
-							var $writerTd = $("<span>").text(data[key].userName).css("font-weight","bold").css("padding-right","3%");
-							var $dateTd = $("<span>").text(data[key].writeDate).css("font-size","0.8em").css("padding-bottom","5%").css("padding-right","1.3%");
-							var $reportTd = $("<img>").attr("src","<%=request.getContextPath()%>/images/siren.png").css("width","1.5%").css("height","1.5%");					
-							var $contentTd = $("<div>").text(data[key].content);
-							var $brTd = $("<br>");
-							
-							
-							var score = data[key].score;
-							
-							$span.append($writerTd);
-							$span.append($dateTd);
-							$span.append($reportTd);
+		$("#registerReview").click(function(){  
+			var userNo = <%=loginUser.getUserNo()%>;
+			var hNo = <%=home.gethNo()%>;
+			var content = $("#reviewContent").val();
+			var score = $('.on').length;
+	
+			$.ajax({
+				url:"<%=request.getContextPath()%>/insertReview.ho",
+				type:"post",
+				data:{userNo:userNo, hNo:hNo, content:content, score:score},
+				success:function(data){
+					$replyTable = $("#review");
+					$replyTable.html("");	
+					
+					// 새로 받아온 갱신 된 댓글리스트들을 for문을 통해 다시 table에 추가
+					for(var key in data){
+						var $span = $("<span>");
+						var $writerTd = $("<span>").text(data[key].userName).css("font-weight","bold").css("padding-right","3%");
+						var $dateTd = $("<span>").text(data[key].writeDate).css("font-size","0.8em").css("padding-bottom","5%").css("padding-right","1.3%");
+						var $reportTd = $("<img>").attr("src","<%=request.getContextPath()%>/images/siren.png").css("width","1.5%").css("height","1.5%").css("margin-right","3%");					
+						var $contentTd = $("<div>").text(data[key].content);
 
-							for(i=0; i < score; i++){
-								$span.append($("<img>").attr("src","<%=request.getContextPath()%>/images/score.png"));
-							};
-							$span.append($contentTd);
-							$span.append($brTd);
-							
-							$replyTable.append($span);
+						var score = data[key].score;
+						
+						$span.append($writerTd);
+						$span.append($dateTd);
+						$span.append($reportTd);
+						
+						if(userNo == data[key].userNo){
+							$span.append($("<img>").attr("src","<%=request.getContextPath()%>/images/update.png").css("width","1.5%").css("height","1.5%").css("margin-right","0.5%"));
+							$span.append($("<img>").attr("src","<%=request.getContextPath()%>/images/delete.png").css("width","1.5%").css("height","1.5%"));
 						}
-						// 댓글 작성 부분 기존 입력값 삭제
-						$("#reviewContent").val("");
-					},
-					error:function(request,status,error){
-		               	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		            }
-				});
- 			});
-   	  	});
+						$span.append("<br>");
+			
+						for(i=0; i < score; i++){
+							$span.append($("<img>").attr("src","<%=request.getContextPath()%>/images/score.png").css("width","1.5%").css("height","1.5%"));
+						};
+						$span.append("&nbsp;&nbsp;"+data[key].score+"점");
+						$span.append("<br>");
+						$span.append($contentTd);
+						$span.append("<br>");
+						
+						$replyTable.append($span);
+						
+						page();
+					}
+					// 댓글 작성 부분 기존 입력값 삭제
+					$("#reviewContent").val("");
+				},
+				error:function(request,status,error){
+	               	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	            }
+			});
+		});
+  	});
+   	  
+   	function page(){ 
+
+   		 $('div.paginated').each(function() {
+   		  var pagesu = 10;  //페이지 번호 갯수
+   		  var currentPage = 0;
+   		  var numPerPage = 10;  //목록의 수
+   		  var $div = $(this);    
+   		  
+   		  //length로 원래 리스트의 전체길이구함
+   		  var numRows = <%=rlist.size()%>;
+
+   		  console.log(numRows);
+   		  //Math.ceil를 이용하여 반올림
+   		  var numPages = Math.ceil(numRows / numPerPage);
+   		  //리스트가 없으면 종료
+   		  if (numPages==0) return;
+   		  //pager라는 클래스의 div엘리먼트 작성
+   		  var $pager = $('<td align="center" id="remo" colspan="10"><div class="pager"></div></td>');
+   		  
+   		  var nowp = currentPage;
+   		  var endp = nowp+10;
+   		  
+   		  //페이지를 클릭하면 다시 셋팅
+   		  $div.bind('repaginate', function() {
+   		  //기본적으로 모두 감춘다, 현재페이지+1 곱하기 현재페이지까지 보여준다
+   		  
+   		   $div.find('span').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+   		   $("#remo").html("");
+   		   
+   		   if (numPages > 1) {     // 한페이지 이상이면
+   		    if (currentPage < 5 && numPages-currentPage >= 5) {   // 현재 5p 이하이면
+   		     nowp = 0;     // 1부터 
+   		     endp = pagesu;    // 10까지
+   		    }else{
+   		     nowp = currentPage -5;  // 6넘어가면 2부터 찍고
+   		     endp = nowp+pagesu;   // 10까지
+   		     pi = 1;
+   		    }
+   		    
+   		    if (numPages < endp) {   // 10페이지가 안되면
+   		     endp = numPages;   // 마지막페이지를 갯수 만큼
+   		     nowp = numPages-pagesu;  // 시작페이지를   갯수 -10
+   		    }
+   		    if (nowp < 1) {     // 시작이 음수 or 0 이면
+   		     nowp = 0;     // 1페이지부터 시작
+   		    }
+   		   }else{       // 한페이지 이하이면
+   		    nowp = 0;      // 한번만 페이징 생성
+   		    endp = numPages;
+   		   }
+   		   // [처음]
+   		   $('<br /><span class="page-number" cursor: "pointer">[처음]</span>').bind('click', {newPage: page},function(event) {
+   		          currentPage = 0;   
+   		          $div.trigger('repaginate');  
+   		          $($(".page-number")[2]).addClass('active').siblings().removeClass('active');
+   		      }).appendTo($pager).addClass('clickable');
+   		    // [이전]
+   		      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[이전]&nbsp;</span>').bind('click', {newPage: page},function(event) {
+   		          if(currentPage == 0) return; 
+   		          currentPage = currentPage-1;
+   		    $div.trigger('repaginate'); 
+   		    $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
+   		   }).appendTo($pager).addClass('clickable');
+   		    // [1,2,3,4,5,6,7,8]
+   		   for (var page = nowp ; page < endp; page++) {
+   		    $('<span class="page-number" cursor: "pointer" style="margin-left: 8px;"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
+   		     currentPage = event.data['newPage'];
+   		     $div.trigger('repaginate');
+   		     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
+   		     }).appendTo($pager).addClass('clickable');
+   		   } 
+   		    // [다음]
+   		      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[다음]&nbsp;</span>').bind('click', {newPage: page},function(event) {
+   		    if(currentPage == numPages-1) return;
+   		        currentPage = currentPage+1;
+   		    $div.trigger('repaginate'); 
+   		     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
+   		   }).appendTo($pager).addClass('clickable');
+   		    // [끝]
+   		   $('<span class="page-number" cursor: "pointer">&nbsp;[끝]</span>').bind('click', {newPage: page},function(event) {
+   		           currentPage = numPages-1;
+   		           $div.trigger('repaginate');
+   		           $($(".page-number")[endp-nowp+1]).addClass('active').siblings().removeClass('active');
+   		   }).appendTo($pager).addClass('clickable');
+   		     
+   		     $($(".page-number")[2]).addClass('active');
+   			reSortColors($div);
+   		  });
+   		   $pager.insertAfter($div).find('span.page-number:first').next().next().addClass('active');   
+   		   $pager.appendTo($div);
+   		   $div.trigger('repaginate');
+   		 });
+   		}
     </script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
