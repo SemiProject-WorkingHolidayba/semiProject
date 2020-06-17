@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,11 +52,19 @@ public class MemberInsertServlet extends HttpServlet {
 		Member member = new Member(userId,userPw, userName,userBrith,  email, grade, gender);
 		
 		int result = new MemberService().InsertMember(member);
+		
+		RequestDispatcher view = null;
 		if(result > 0) {
 			System.out.println("회원가입 성공");
+			request.setAttribute("userId", userId);
+			view = request.getRequestDispatcher("views/member/succjoin.jsp");
 		}else {
 			System.out.println("회원가입 실패");
+			request.setAttribute("errorMsg", "회원가입실패");
+			view = request.getRequestDispatcher("views/member/join.jsp");
+			
 		}
+		view.forward(request, response);
 	}
 
 	/**

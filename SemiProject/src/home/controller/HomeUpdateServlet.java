@@ -67,7 +67,7 @@ public class HomeUpdateServlet extends HttpServlet {
 		ArrayList<String> originFiles = new ArrayList<>();
 		
 		Enumeration<String> files = multiRequest.getFileNames();
-
+		
 		while(files.hasMoreElements()) {
 			String name = files.nextElement();
 			
@@ -77,17 +77,17 @@ public class HomeUpdateServlet extends HttpServlet {
 			}
 		}
 		
-		
 		Home h = new Home();
 		
 		h.sethNo(hNo);
 		h.setTitle(title);
+		
 		switch(country) {
-			case "australia" : h.setCountryNo(1); break;
-			case "japan" : h.setCountryNo(2); break;
-			case "canada" : h.setCountryNo(3); break;
-			case "newzealand" : h.setCountryNo(4); break;
-			case "germany" : h.setCountryNo(5); break;
+			case "호주" : h.setCountryNo("N1"); break;
+			case "일본" : h.setCountryNo("N2"); break;
+			case "캐나다" : h.setCountryNo("N3"); break;
+			case "뉴질랜드" : h.setCountryNo("N4"); break;
+			case "독일" : h.setCountryNo("N5"); break;
 			default : break;
 		}
 		
@@ -102,7 +102,7 @@ public class HomeUpdateServlet extends HttpServlet {
 		h.setLivingroom("N");
 		h.setDiningroom("N");
 		h.setBathroom("N");
-		
+				
 		for(int i = 0; i < facilities.length; i++) {
 			switch(facilities[i]) {
 				case "essentialitem" : h.setEssentialitem("Y"); break;
@@ -128,26 +128,34 @@ public class HomeUpdateServlet extends HttpServlet {
 		h.setContent(detail);
 		h.setWriterNo(userNo);
 		
-		ArrayList<Img> fileList = new ArrayList<Img>();
+		int result = 0;
 		
-		for(int i = originFiles.size()-1; i>=0; i--) {
-			Img at = new Img();
-			at.setImgNo(imgNo+i);
-			at.setHouseNo(hNo);
-			at.setImg(originFiles.get(i));
+		System.out.println(originFiles);
+		
+		if(originFiles.size() > 0) {
+			ArrayList<Img> fileList = new ArrayList<Img>();
 			
-			if(i == originFiles.size()-1) {
-				at.setFileLevel(0);
-			} else {
-				at.setFileLevel(1);
+			for(int i = originFiles.size()-1; i>=0; i--) {
+				Img at = new Img();
+				at.setImgNo(imgNo+i);
+				at.setHouseNo(hNo);
+				at.setImg(originFiles.get(i));
+				
+				if(i == originFiles.size()-1) {
+					at.setFileLevel(0);
+				} else {
+					at.setFileLevel(1);
+				}
+				
+				fileList.add(at);
 			}
 			
-			fileList.add(at);
+			result = new HomeService().updateHome(h,fileList);
+			
+		} else {
+			result = new HomeService().updateHome(h);
 		}
-		System.out.println(h);
-		System.out.println(fileList);
 		
-		int result = new HomeService().updateHome(h,fileList);
 		
 		if(result > 0) {
 			response.sendRedirect("list.ho?currentPage=1");

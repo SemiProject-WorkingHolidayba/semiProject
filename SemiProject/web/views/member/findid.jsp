@@ -93,7 +93,7 @@
 		<div class="center_div" style="border-top:1px solid rgb(202,202,202); padding: 10px; width:470px;">			
 				<div class="menup" onclick="location.href='findid.jsp'">아이디 찾기</div>
 				<div class="menup" style="border-left: 1.5px solid rgb(202, 202, 202); border-right: 1.5px solid rgb(202, 202, 202);" onclick="location.href='findpw.jsp'" >비밀번호 찾기</div>
-				<div class="menup" onclick="location.href='join.html'">회원가입</div>
+				<div class="menup" onclick="location.href='join.jsp'">회원가입</div>
 		</div>
 	</div>
 	<br><br><br><br><br><br>

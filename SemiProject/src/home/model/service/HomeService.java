@@ -13,6 +13,7 @@ import home.model.vo.Home;
 import home.model.vo.Img;
 import home.model.vo.Reservation;
 import home.model.vo.Review;
+import home.model.vo.myHome;
 
 public class HomeService {
 
@@ -100,8 +101,6 @@ public class HomeService {
 	public Home selectHome(int hNo2) {
 		Connection conn = getConnection();
 		Home home = new HomeDao().selectHome(conn, hNo2);
-		
-		System.out.println("service: " + home);
 		
 		close(conn);
 		
@@ -225,7 +224,7 @@ public class HomeService {
 	public int deleteHome(int hNo) {
 		Connection conn = getConnection();
 		
-		int result = new HomeDao().deleteMember(conn, hNo);
+		int result = new HomeDao().deleteHome(conn, hNo);
 		
 		if(result > 0) {
 			commit(conn);
@@ -274,6 +273,93 @@ public class HomeService {
 		return result;
 	}
 
+	public int updateHome(Home h) {
+		Connection conn = getConnection();
+		
+		HomeDao hDao = new HomeDao();
+		
+		int result = hDao.updateHome(conn, h);
+		int result3 = hDao.updateHomeEtc(conn,h);
+		
+		if(result > 0 && result3 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+			result = 0;
+		}
+				
+		close(conn);
+		
+		return result;
+	}
+
+	public int deleteReview(int rNo) {
+		Connection conn = getConnection();
+		
+		int result = new HomeDao().deleteReview(conn, rNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public ArrayList<myHome> mdeletehome(int reservationNo2) {
+		Connection conn = getConnection();
+		
+		ArrayList homelist = new HomeDao().mdeletehome(conn,reservationNo2);
+		
+		
+		close(conn);
+		
+		return homelist;
+
+	}
+
+	public myHome mselectHome(int houseNo2, int userNo2) {
+		Connection conn = getConnection();
+		
+		myHome home = new HomeDao().mselectHome(conn, houseNo2, userNo2);
+		
+		close(conn);
+		
+		return home;
+			
+	}
+
+	public int mgetListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new HomeDao().getListCount(conn);
+		
+		
+		close(conn);
+		
+		return listCount;
+	
+	
+	
+	
+	}
+
+	public ArrayList mselectList(int currentPage, int limit) {
+		Connection conn = getConnection();
+		
+		ArrayList list = new HomeDao().selectList(conn, currentPage, limit);
+		
+		close(conn);
+		
+		return list;
+		
+	
+	
+	
+	}
 
 
 

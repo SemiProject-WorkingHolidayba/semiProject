@@ -138,6 +138,7 @@
                     <hr />
                   </div>
                 </div>
+                
               </div>
               <div class="item">
                 <img src="images/country/Japan/Sakura.jpg" alt="Second slide">

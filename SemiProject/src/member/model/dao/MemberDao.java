@@ -20,7 +20,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		Member loginUser=null;
 		
-		String query="SELECT * FROM MEMBER WHERE USERID = ? AND USERPW=? AND STATUS = 'N'";
+		String query="SELECT * FROM MEMBER WHERE USERID = ? AND USERPW=? AND STATUS = 'N' AND SANCTION = 'N'";
 		
 		try {
 			pstmt=conn.prepareStatement(query);

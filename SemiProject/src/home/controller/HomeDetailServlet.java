@@ -39,9 +39,7 @@ public class HomeDetailServlet extends HttpServlet {
 		Home home = new HomeService().selectHome(hNo2);
 		ArrayList<Img> flist = new HomeService().selectImgList(hNo2);
 		ArrayList<Review> rlist = new HomeService().selectReplyList(hNo2);
-		
-		System.out.println("집" + home);
-		System.out.println("이미지" + flist);
+
 		if(home != null) {
 			request.setAttribute("home", home);
 			request.setAttribute("flist", flist);

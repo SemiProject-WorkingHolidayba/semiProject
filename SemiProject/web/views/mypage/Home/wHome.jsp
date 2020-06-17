@@ -370,7 +370,7 @@ nav{
           }
       })
       $("#home .content").click(function(){
-			location.href="<%=request.getContextPath()%>/detail.home";
+			location.href="<%=request.getContextPath()%>/detail.ho";
 	});
     })
 
