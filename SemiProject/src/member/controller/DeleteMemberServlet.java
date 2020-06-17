@@ -1,6 +1,7 @@
-package home.controller;
+package member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,20 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import home.model.service.HomeService;
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class HomeReport
+ * Servlet implementation class DeleteMemberServlet
  */
-@WebServlet("/report.ho")
-public class HomeReport extends HttpServlet {
+@WebServlet("/delete.me")
+public class DeleteMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeReport() {
+    public DeleteMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +33,29 @@ public class HomeReport extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hNo = Integer.valueOf(request.getParameter("hNo"));
-
-		int result = new HomeService().reportHome(hNo);
-
-
-		if(result > 0) {
-			response.sendRedirect("detail.ho?hNo="+hNo);
-		} else {
-			System.out.println("게시글 신고 실패");
-		}
+		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		String userId = loginUser.getUserId();
+		System.out.println(userId);
+		int result = new MemberService().deleteMember(userId);
+		
+		PrintWriter out = response.getWriter();
+		
+		 if(result > 0  ) {
+			 
+			 loginUser = new MemberService().loginMember(loginUser);
+			 session.setAttribute("loginUser",loginUser);
+			 
+			 out.print("Y");
+		 }else {
+		
+			 out.print("N");
+		 }
+		
+		 out.flush();
+		 out.close();
 	}
 
 	/**

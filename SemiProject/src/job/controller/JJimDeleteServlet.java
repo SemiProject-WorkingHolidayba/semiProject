@@ -1,6 +1,7 @@
-package home.controller;
+package job.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,19 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import home.model.service.HomeService;
+import job.model.service.JobSearchService;
+import job.model.vo.JobSearch;
 
 /**
- * Servlet implementation class HomeReport
+ * Servlet implementation class JJimDeleteServlet
  */
-@WebServlet("/report.ho")
-public class HomeReport extends HttpServlet {
+@WebServlet("/delete.jjim")
+public class JJimDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeReport() {
+    public JJimDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +32,17 @@ public class HomeReport extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hNo = Integer.valueOf(request.getParameter("hNo"));
-
-		int result = new HomeService().reportHome(hNo);
-
-
-		if(result > 0) {
-			response.sendRedirect("detail.ho?hNo="+hNo);
-		} else {
-			System.out.println("게시글 신고 실패");
-		}
+		String userNo = request.getParameter("userNo");
+		String heartNo = request.getParameter("heartNo");
+		int userNo2 = Integer.valueOf(userNo);
+		int heartNo2 = Integer.valueOf(heartNo);
+		
+		ArrayList<JobSearch> jlist = new JobSearchService().deleteHeart(userNo2,heartNo2);
+		RequestDispatcher view = null;
+		
+			request.setAttribute("jlist",jlist);
+			view = request.getRequestDispatcher("/mypage/Work/JJIM.jsp");
+			view.forward(request, response);
 	}
 
 	/**

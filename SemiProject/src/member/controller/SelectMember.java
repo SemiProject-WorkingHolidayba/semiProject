@@ -1,6 +1,7 @@
-package home.controller;
+package member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,20 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import home.model.service.HomeService;
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class HomeReport
+ * Servlet implementation class SelectMember
  */
-@WebServlet("/report.ho")
-public class HomeReport extends HttpServlet {
+@WebServlet("/select.me")
+public class SelectMember extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeReport() {
+    public SelectMember() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +33,33 @@ public class HomeReport extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hNo = Integer.valueOf(request.getParameter("hNo"));
-
-		int result = new HomeService().reportHome(hNo);
-
-
-		if(result > 0) {
-			response.sendRedirect("detail.ho?hNo="+hNo);
-		} else {
-			System.out.println("게시글 신고 실패");
-		}
+		request.setCharacterEncoding("utf-8");
+		
+		
+		String userId = request.getParameter("userId");
+	
+	
+		String name = new MemberService().selectName(userId);
+	
+		System.out.println(name);
+		
+		
+	
+		PrintWriter out = response.getWriter();
+		 if(name != null) {
+			 out.print(name);
+		 }else {
+		
+			 out.print("수정실패");
+		 }
+		 
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	/**

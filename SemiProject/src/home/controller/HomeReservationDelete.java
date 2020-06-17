@@ -1,6 +1,7 @@
 package home.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,18 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import home.model.service.HomeService;
+import home.model.vo.myHome;
 
 /**
- * Servlet implementation class HomeReport
+ * Servlet implementation class HomeReservationDelete
  */
-@WebServlet("/report.ho")
-public class HomeReport extends HttpServlet {
+@WebServlet("/delete.home")
+public class HomeReservationDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeReport() {
+    public HomeReservationDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,17 +32,17 @@ public class HomeReport extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hNo = Integer.valueOf(request.getParameter("hNo"));
-
-		int result = new HomeService().reportHome(hNo);
-
-
-		if(result > 0) {
-			response.sendRedirect("detail.ho?hNo="+hNo);
-		} else {
-			System.out.println("게시글 신고 실패");
-		}
+		String reservationNo = request.getParameter("reservationNo");
+		int  reservationNo2 = Integer.valueOf(reservationNo);
+		
+		ArrayList<myHome> homelist = new HomeService().mdeletehome(reservationNo2);
+		RequestDispatcher view = null;
+		if(homelist == null) {
+			request.setAttribute("homelist",homelist);
+			view = request.getRequestDispatcher("/mypage/Home/wHome.jsp");
+			view.forward(request, response);
 	}
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

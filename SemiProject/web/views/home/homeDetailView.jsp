@@ -24,8 +24,6 @@
 		case "1year" : minP = 12; break;
 	}
 	
-	
-	
 	ArrayList<Img> flist = (ArrayList<Img>)request.getAttribute("flist");
 	ArrayList<Review> rlist = (ArrayList<Review>)request.getAttribute("rlist");
 	
@@ -285,7 +283,7 @@
 
       <div id = "detail_content">
         <div id = "top" >
-        	<img style = "width:2%; height:2%; margin-top:-1%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "location.href = '<%=request.getContextPath()%>/report.ho?hNo=<%=home.gethNo()%>';">
+        	<img style = "width:2%; height:2%; margin-top:-1%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "reportHome();">
         	<br>
         	<%if(loginUser.getUserNo() == home.getWriterNo()){ %>
         	<button id = "modifyBtn" onclick = "location.href = '<%=request.getContextPath()%>/myHome.ho?hNo=<%=home.gethNo()%>';">수정</button>
@@ -528,6 +526,13 @@
       </script>
 		
 	<script>
+		function reportHome(){
+			result = window.confirm("신고하시겠습니까? ");
+			
+			if(result == true){	
+			 location.href = '<%=request.getContextPath()%>/report.ho?hNo=<%=home.gethNo()%>';
+			}
+		}
    	  $(function(){
 		$("#registerReview").click(function(){  
 			var userNo = <%=loginUser.getUserNo()%>;

@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import home.model.service.HomeService;
+import home.model.vo.myHome;
 
 /**
- * Servlet implementation class HomeReport
+ * Servlet implementation class HomeDetailView
  */
-@WebServlet("/report.ho")
-public class HomeReport extends HttpServlet {
+@WebServlet("/detail.home")
+public class HomeDetailView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeReport() {
+    public HomeDetailView() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +31,30 @@ public class HomeReport extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hNo = Integer.valueOf(request.getParameter("hNo"));
+		
+		// 오류가 생긴다면 heartno를 추가하던지 해야될듯 jsp에
+		String houseNo = request.getParameter("houseNo");
+		int houseNo2 = Integer.valueOf(houseNo);
+		String userNo = request.getParameter("userNo");
+		int userNo2 = Integer.valueOf(userNo);
+	
+		myHome home  = new HomeService().mselectHome(houseNo2, userNo2);
+		
+	
+		if(home != null) {
+			request.setAttribute("home", home);
+			request.getRequestDispatcher("views/Home/민지의.jsp").forward(request, response);
+			
+			
+		}else {
+			request.setAttribute("msg", "게시글이 존재하지 않습니다.!");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 
-		int result = new HomeService().reportHome(hNo);
-
-
-		if(result > 0) {
-			response.sendRedirect("detail.ho?hNo="+hNo);
-		} else {
-			System.out.println("게시글 신고 실패");
+			view.forward(request, response);
 		}
+		
+	
+		
 	}
 
 	/**

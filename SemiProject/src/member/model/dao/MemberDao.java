@@ -14,7 +14,7 @@ import member.model.vo.Member;
 import member.model.vo.Report;
 
 public class MemberDao {
-
+	Member m = new Member();
 	public Member loginMember(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -510,7 +510,181 @@ public class MemberDao {
 				
 		return result2;
 	}
+	public int deleteMember(Connection conn, String userId) {
 
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "DELETE FROM MEMBER WHERE USERID=?";	// STATUS를 N으로 함으로써 삭제가되면 이대로 아니면 DELETE문 써주기
+			
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+		
+		
+		
+	}
+
+	public int updateName(Connection conn, String userName, String userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "UPDATE MEMBER SET USERNAME=? WHERE USERID =?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+		
+		
+		
+	}
+
+	public int updatePwd(Connection conn, String userPw, String userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "UPDATE MEMBER SET USERPW=? WHERE USERID =?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userPw);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+		
+	}
+
+	
+
+	public int updateEmail(Connection conn, String email, String userId) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "UPDATE MEMBER SET EMAIL=? WHERE USERID =?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getEmail());
+			pstmt.setString(2, m.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
+
+	public int pwdCheck(Connection conn, String userPw, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int result = 0;
+		
+		String query = "SELECT COUNT(*) FROM MEMBER WHERE USERPW = ? AND USERID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userPw);
+			pstmt.setString(2, userId);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		
+		
+		return result;
+		
+
+	}
+
+	public int gradeCheck(Connection conn, String userId, String grade) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int result = 0;
+		
+		String query = "SELECT GRADE = ? FROM MEMBER WHERE USERID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, grade);
+			pstmt.setString(2, userId);
+			rs=pstmt.executeQuery();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		
+		
+		return result;
+		
+	}
+
+	public String selectName(Connection conn, String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 }

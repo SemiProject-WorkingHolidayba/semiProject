@@ -169,5 +169,111 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	public int deleteMember(String userId) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().deleteMember(conn,userId);
+		
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
+		
+		
+		
+		
+	}
+
+
+	public int updateName(String userName, String userId) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateName(conn,userName, userId);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+
+
+	public int updatePwd(String userPw, String userId) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updatePwd(conn,userPw,userId);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+
+
+	
+	public int updateEmail(String email, String userId) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateEmail(conn,email,userId);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+
+
+	public int pwdCheck(String userPwd, String userId) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().pwdCheck(conn,userPwd,userId);
+		
+		close(conn);
+		
+		
+		return result;
+	}
+
+
+	public int gradeCheck(String userId, String grade) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().gradeCheck(conn,userId,grade);
+		
+		close(conn);
+		
+		
+		return result;
+		
+	
+	}
+
+	public String selectName( String userId) {
+		Connection conn = null;
+		conn = getConnection();
+				
+		String name = new MemberDao().selectName(conn,userId);
+		
+		close(conn);
+		
+		return name;
+	}
 
 }
