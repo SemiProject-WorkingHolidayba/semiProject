@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String error = (String)request.getAttribute("errorMsg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -182,6 +185,7 @@
 </head>
 <body>
  <div id="warp">
+
 	<img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png" onclick="location.href='<%=request.getContextPath()%>/main.jsp'">
 		<br><br>
  	 <form method="POST" action="<%=request.getContextPath()%>/insert.me" >
@@ -219,7 +223,7 @@
 			<input type="text" name="userName" id="userName" class="log"  placeholder=" 이름를 입력해주세요." >
 			  <br> <br>
 			  
-			<label class="label_style"">생년월일</label><br>
+			<label class="label_style">생년월일</label><br>
 			<div style="height:8px;"></div>
 			<input maring-top:50px" type="text" name="birth" id="birth" class="log"  placeholder=" 생년월일 입력(6자)">
 			
@@ -237,7 +241,7 @@
             <input type="email" name="email" id="email" class="log"  placeholder=" 이메일을 입력해주세요." required>    
             <button type="button" style="outline: 0; margin-left: 5px;" id="CF_Btn">인증번호</button><br>
             <div style="height:8px;"></div>
-            <p class="ero_msg" id="msg_em">dfsdfgsdfg
+            <p class="ero_msg" id="msg_em">
             <div style="height:11px;"></div>
             <div id="certification" style="">
 				<input type="text" name="CF_Num"  class="log" id="CF_Num" placeholder="인증번호를 입력해주세요">
@@ -266,8 +270,11 @@
  	 </form>
  	<script>
  	$(function(){
- 		
- 		var emailsend;
+ 		var error = "<%=error%>";
+ 		if(error == "회원가입실패"){
+ 			alert("회원가입 실패");
+ 		}
+  		var emailsend;
  		
 
  	 	/* 아이디 정규 표현식 밎 중복 검사 */ 	 	
@@ -378,6 +385,9 @@
  	 			$("#certification").css("display","none");
  	 			$("#email").attr("readonly",true);
  	 			$("#CF_Btn").attr("disabled","disabled")
+ 	 		 }else{
+ 	 			 alert("인증번호가 맞지않습니다.");
+ 	 			$("#CF_Num").test();
  	 		 }
  	 	 })
  	 	 
@@ -394,6 +404,15 @@
   	 		
   	 		if(!NregExp.test($(this.val()))){
   	 			alert("이름을 정확히 입력해 주세요");
+  	 		}
+  	 		
+  	 	})
+  	 	$("#birth").change(function(){
+  	 		var NregExp=/([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))$/
+
+  	 		
+  	 		if(!NregExp.test($(this.val()))){
+  	 			alert("생년월일을 정확히 입력해 주세요");
   	 		}
   	 		
   	 	})

@@ -182,13 +182,14 @@
         <li><a href="<%=request.getContextPath() %>/views/member/join.jsp">회원가입</a></li>
         <%} else{ %>
         	<%if(loginUser.getGrade() == 2){ %>
-	        <li><a href="<%=request.getContextPath() %>/views/member/test2.jsp">마이페이지</a></li>
+	        <li><a href="<%=request.getContextPath() %>/views/member/#.jsp">마이페이지</a></li>
         	<%} else if(loginUser.getGrade() == 3){ %>
-        		<li><a href="<%=request.getContextPath() %>/views/member/test2.jsp">마이페이지</a></li>
+        		<li><a href="<%=request.getContextPath() %>/views/member/#.jsp">마이페이지</a></li>
         	<%} else{ %>
         	<li><a href="<%=request.getContextPath()%>/wselectallmember.me">회원관리</a></li>
+        	 <%} %>
 	        <li><a href="<%=request.getContextPath()%>/sessionclear.me">로그아웃</a></li>
-	        <%} %>
+	       
         <%} %>
        
     </ul>
