@@ -183,8 +183,8 @@
 			<div id="selectbar" style="height: 30px"></div>
 			
 			<script>
-				function setSanction(trId){
-					var trId = $("#"+trId);
+				function setSanction(trId1){
+					var trId = $("#"+trId1);
 					var td = trId.children();
 					var no = td.eq(0).text();
 					var userno = td.eq(1).text();
@@ -224,8 +224,8 @@
 					}
 				}
 				
-				function NsetSanction(trId){
-					var trId = $("#"+trId);
+				function NsetSanction(trId1){
+					var trId = $("#"+trId1);
 					var td = trId.children();
 					var no = td.eq(0).text();
 					var userno = td.eq(1).text();
@@ -246,14 +246,14 @@
 							data:{userNo:userno},
 							success:function(data){
 								if(data == "Y"){
+										
 										td.eq(1).css("color","black");
 										td.eq(2).css("color","black");
 										td.eq(3).css("color","black");
 										td.eq(4).css("color","black");
 										td.eq(5).css("color","black");
 										td.eq(6).css("color","black");
-										     
-										td.eq(7).html("<button type='button' >제재하기</button>").css("color","black");
+										td.eq(7).html("<button type='button'>제재하기</button>").css("color","black");
 										td.eq(8).text("");
 								}
 							},
