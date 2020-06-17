@@ -3,7 +3,6 @@ package home.model.dao;
 import static common.JDBCTemplate.close;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +10,9 @@ import java.util.ArrayList;
 
 import home.model.vo.Home;
 import home.model.vo.Img;
+import home.model.vo.Report;
 import home.model.vo.Reservation;
 import home.model.vo.Review;
-import oracle.security.o3logon.b;
 
 public class HomeDao {
 
@@ -1036,9 +1035,8 @@ public class HomeDao {
 		
 		int result = 0;
 		
-		
 		String query = "UPDATE HOME SET REPORT = HOME.REPORT + 1 WHERE HOUSENO = ?";
-		String query2 = "SELECT * FROM HOME WHERE REPORT >= 5";
+		String query2 = "SELECT HOUSENO FROM HOME WHERE REPORT >= 5";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1049,6 +1047,13 @@ public class HomeDao {
 			
 			pstmt2 = conn.prepareStatement(query2);
 			rs = pstmt2.executeQuery();
+			
+			Report report = new Report(rs.getInt("houseno"),
+										rs.getInt("userno"));
+			
+			if(rs.getInt(1) == hNo) {
+				insertHomeReport(conn, report);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1056,6 +1061,30 @@ public class HomeDao {
 			close(pstmt);
 		}
 		
+		
+		return result;
+	}
+
+	public int insertHomeReport(Connection conn, Report report) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = "INSERT INTO REPORT VALUES(SEQ_REPORT.NEXTVAL,?,DEFAULT,?,?)";
+		
+		try {
+//				pstmt = conn.prepareStatement(query);
+//				pstmt.setInt(1, report.getBoardNo());
+//				pstmt.setInt(2, at.getFileLevel());
+//				pstmt.setString(3, report.getUserNo());
+//				
+				result += pstmt.executeUpdate();
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		
 		return result;
 	}
