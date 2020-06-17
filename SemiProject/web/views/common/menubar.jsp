@@ -164,7 +164,7 @@
           <li class="active"><a href="#">소개</a></li>
           <li><a href="#">안전정보</a></li>
           <li><a href="#" onclick = "goHome();">집 예약</a></li>
-          <li><a href="#">구직 정보</a></li>
+          <li><a href="#" onclick="jobBoard();">구직 정보</a></li>
           <li><a  onclick ="goCommunity();">커뮤니티</a>
             <ul id="nara">
               <li><a href="http://www.naver.com">뉴질랜드</a></li>
@@ -202,6 +202,10 @@
 	function goCommunity(){
 		location.href = "<%=request.getContextPath()%>/list.bo";
 	}
+  	function jobBoard(){
+  		location.href="<%=request.getContextPath()%>/jobList.bo";
+  	}
+  </script>
 </script>
 </body>
 </html>

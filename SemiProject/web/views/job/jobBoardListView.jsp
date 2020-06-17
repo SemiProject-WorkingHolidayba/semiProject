@@ -113,9 +113,9 @@
       height: auto;
     }
 
-    .jobLogo {
+    #jobLogo {
       margin-bottom: 5%;
-      width: 300px;
+      width: 100%;
       height: 275px !important;
     }
 
@@ -143,8 +143,8 @@
       border-bottom:0.7px solid gray;
       border-top:0.7px  solid gray;
       box-shadow:3px 3px 3px lightgray;
-      width:300px;
-      height:354px;
+      width:29%;
+      height:400px;
     }
     
      #registBtn{
@@ -268,10 +268,9 @@
         			<div class='jobPost'>
           				<td>
           					<input type="hidden" id='jobNo' value="<%=((Job)list.get(i)).getJobNo() %>">
-          					<%=((Job)list.get(i)).getJobNo() %>
-            				<img src="<%=request.getContextPath() %>/job_uploadFiles/<%=j.getChangeName() %>" class='jobLogo' style="width:300px !important; height:250px !important;">
+            				<img src="<%=request.getContextPath() %>/job_uploadFiles/<%=j.getChangeName() %>" id='jobLogo'>
             				<p><%=((Job)list.get(i)).getCoName() %><br>
-             			 		<%=((Job)list.get(i)).getTitle() %>
+             			 		<%=((Job)list.get(i)).getTitle() %><br>
            						<img class='like' src='<%=request.getContextPath() %>/images/jobImg/heart-icon_white.png' align='right'>
          					</p>
           				</td>
@@ -290,13 +289,9 @@
 
 	<script>
 	$(function(){
-		$(".jpost td").mouseenter(function(){
-			$(this).parent().css({"background":"darkgray", "cursor":"pointer"});
-		}).mouseout(function(){
-			$(this).parent().css({"background":"black"});
-		}).click(function(){
-			var jno = $('#jobNo').val();
-
+		$(".jpost td").click(function(){
+			var jno = $(this).children($('input')).val();
+			alert(jno);
 			location.href="<%=request.getContextPath()%>/jobDetail.bo?jobNo="+jno;
 		});
 	})

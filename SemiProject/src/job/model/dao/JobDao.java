@@ -134,7 +134,7 @@ public class JobDao {
 		return list;
 	}
 
-	public Job selecJobList(Connection conn, int jno2) {
+	public Job selectJobList(Connection conn, int jno2) {
 		PreparedStatement pstmt=null;
 		ResultSet rset = null;
 		Job j = null;

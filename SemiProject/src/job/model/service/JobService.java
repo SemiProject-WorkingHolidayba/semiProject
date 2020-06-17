@@ -46,7 +46,7 @@ public class JobService {
 	public Job selectJobList(int jno2) {
 		Connection conn=getConnection();
 		
-		Job j=new JobDao().selecJobList(conn, jno2);
+		Job j=new JobDao().selectJobList(conn, jno2);
 		
 		close(conn);
 		

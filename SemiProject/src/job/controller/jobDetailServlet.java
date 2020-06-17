@@ -34,25 +34,16 @@ public class jobDetailServlet extends HttpServlet {
 		int jno2 = Integer.valueOf(jno);
 		System.out.println("jno2 : " +jno2);
 		
-		// 조회수 증가를 위한 update 작업		
-//		int result = new JobService().updateCount(bid2);
-//		
-//		if(result>0) {	// 조회수가 증가 했다면
-			Job j = new JobService().selectJobList(jno2);
-//			
-//	//		System.out.println("내가 누른 게시글 정보 : " + board);
-//			
-			if(j != null) {
-				request.setAttribute("job", j);
-				request.getRequestDispatcher("views/job/jobDetailView.jsp").forward(request, response);
-			}else {
-				request.setAttribute("msg", "게시글 상세 조회 실패!");
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			}
-//		}else {			// 조회수가 증가하지 않았다면
-//			request.setAttribute("msg", "게시글 조회수 증가 실패!");
-//			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-//		}
+		Job j = new JobService().selectJobList(jno2);
+			
+		if(j != null) {
+			request.setAttribute("job", j);
+			request.getRequestDispatcher("views/job/jobDetailView.jsp").forward(request, response);
+		}else {
+			request.setAttribute("msg", "게시글 상세 조회 실패!");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+
 		
 //	}
 	}
