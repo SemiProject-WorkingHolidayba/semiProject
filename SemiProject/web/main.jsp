@@ -27,6 +27,9 @@
 
     <!-- Custom styles for this template -->
     <style>
+	    body{
+	    	width: auto;
+	    }
          #nation {
             border: 0.5px solid rgb(176, 171, 171);
             border-top-left-radius: 0.5em;
@@ -113,8 +116,14 @@
 
         .container a{
             color: black;
-        }
-        
+
+            }
+	.item{
+		width: 960px;
+		height: 530px;
+		text-align: center;
+	}
+
     </style>
   </head>
   <body>
@@ -129,7 +138,7 @@
               <li data-target="#myCarousel" data-slide-to="3"></li>
               <li data-target="#myCarousel" data-slide-to="4"></li>
             </ol>
-            <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner" role="listbox" >
               <div class="item active">
                 <img src="images/country/Australia/OpheraHouse.jpg" alt="First slide">
                 <div class="container">
@@ -191,7 +200,8 @@
               <span class="sr-only">Next</span>
             </a>
           </div><!-- /.carousel -->
-          
+          <br>
+          <br>
           <div class="z2">
             <div id='nationSelect' align='center' style="margin-bottom: 50px;">
               <ul id='nation'>
@@ -260,11 +270,7 @@
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
+               
                 </ul>
             </div>
             <div id="area1" class="safe_information">
@@ -275,18 +281,18 @@
                 <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                 <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                 <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
+               
               </ul>
             </div>
           </div>
     </div>
-
+	<br>
+	<br>
+	<br>
+	<br>
     <div id = "footer">
       <p class="pull-right"><a href="#">Back to top</a></p>
+      <hr>
       <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
     </div>
     

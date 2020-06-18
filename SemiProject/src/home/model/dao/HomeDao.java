@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import home.model.vo.Home;
 import home.model.vo.HomeReservator;
 import home.model.vo.Img;
-import home.model.vo.Report;
+import member.model.vo.Report;
 import home.model.vo.Reservation;
 import home.model.vo.Review;
 import home.model.vo.myHome;

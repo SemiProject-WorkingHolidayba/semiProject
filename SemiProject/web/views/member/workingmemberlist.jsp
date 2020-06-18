@@ -58,6 +58,9 @@
      	height: 45px;
      	
      }
+    #table-div{
+    	width: 980px;
+    }
     #memberTb{
     	width: 980px;
     	
@@ -106,6 +109,7 @@
 		<div id="content">
 			<p style="text-align: left;" class="font_style">워홀러 회원
 			<div id="selectbar" style="height: 30px"></div>
+			<div id="table-div">
 			<table id="memberTb" border="1">
 				<tr>
 					<th style="width: 53px ">번호</th>
@@ -181,7 +185,7 @@
 				<button onclick="location.href='<%=request.getContextPath()%>/wselectallmember.me?currentPage=<%=maxPage%>'">>></button>
 			</div> 
 			<div id="selectbar" style="height: 30px"></div>
-			
+			</div>
 			<script>
 				function setSanction(trId1){
 					var trId = $("#"+trId1);

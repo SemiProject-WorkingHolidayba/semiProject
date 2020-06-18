@@ -1,5 +1,6 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, member.model.vo.*, home.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, member.model.vo.*, home.model.vo.Pagination"%>
 
 <%
 	ArrayList<Report> rplist = (ArrayList<Report>)request.getAttribute("rplist");
@@ -58,6 +59,9 @@
      	height: 45px;
      	
      }
+    #table-div{
+    	width: 980px;
+    }
     #memberTb{
     	width: 980px;
     	
@@ -106,60 +110,70 @@
 		<div id="content">
 			<p style="text-align: left;" class="font_style">신고 내역
 			<div id="selectbar" style="height: 30px"></div>
+			<div id="table-div">
 			<table id="memberTb" border="1">
 				<tr>
 				
 					<th>번호</th>
 					<th >게시자</th>
 					<th style="width: 120px">카테고리</th>
-					<th style="width: 120px">글번호</th>	
+					<th style="width: 120px">글 확인</th>	
 					<th style="width: 230px">처리</th>
 					<th>신고자</th>
 					
 							
 				</tr>
-				<%
-				 for(int i=0;i<rplist.size();i++){
-					 String categoryname = "";
-					 switch(((Report)rplist.get(i)).getCategoryno()){
-					 case 1: categoryname= "자유게시판"; break;
-					 case 2: categoryname= "질문게시판"; break;
-					 case 3: categoryname= "벼룩시장"; break;
-					 case 4: categoryname= "댓글"; break;
-					 case 5: categoryname= "구직글"; break;
-					 case 6: categoryname= "구직리뷰"; break;
-					 case 7: categoryname= "집 게시글"; break;
-					 case 8: categoryname= "집 리뷰"; break;
-					 
-					 default: break;
-					 }
-					 
-					 String process = ((Report)rplist.get(i)).getProcess();
-				%>
-				<tr id="rp_tb_tr<%=i%>">
-				<td><%=i+1%></td>
-				<td><%=((Report)rplist.get(i)).getUploaduser() %></td>
-				<td><%=categoryname %></td>
-				<td><button>글 확인</button></td>
-				 <td><%if(process==null){%>
-				 
-				 		<button onclick="setSanction('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getUploaduserno()%>','<%=((Report)rplist.get(i)).getReportno()%>');">사용자 정지</button>
-				 		<button  onclick="deleteBoard('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>','<%=((Report)rplist.get(i)).getReportno()%>');">게시글 삭제</button>
-				 	<%}else if(process.equals("UR")){ %>
-				 		<span style="color:red; font-weight: 800; margin:0 7px;">사용자 정지</span>
-				 		<button>게시글 삭제</button>
-				 	<%}else if(process.equals("BR")){ %>
-				 		<button>사용자 정지</button>
-				 		<span style="color:red; font-weight: 800; margin:0 7px;">게시글 삭제</span>
-				 		
-				 	<%}else{ %>
-				 		<span style="color:red; font-weight: 800; margin:0 7px;">사용자 정지</span>
-				 		<span style="color:red; font-weight: 800; margin:0 7px;">게시글 삭제</span>
-				 	<%} %>
-				 </td>
-				
-				<td><%=((Report)rplist.get(i)).getReportuser() %></td>
-				</tr>
+				<%if(!rplist.isEmpty()){ %>
+					<%
+					 for(int i=0;i<rplist.size();i++){
+						 String categoryname = "";
+						 switch(((member.model.vo.Report)rplist.get(i)).getCategoryno()){
+						 case 1: categoryname= "자유게시판"; break;
+						 case 2: categoryname= "질문게시판"; break;
+						 case 3: categoryname= "벼룩시장"; break;
+						 case 4: categoryname= "댓글"; break;
+						 case 5: categoryname= "구직글"; break;
+						 case 6: categoryname= "구직리뷰"; break;
+						 case 7: categoryname= "집 게시글"; break;
+						 case 8: categoryname= "집 리뷰"; break;
+						 
+						 default: break;
+						 }
+						 
+						 String process = ((Report)rplist.get(i)).getProcess();
+					%>
+					<tr id="rp_tb_tr<%=i%>">
+					<td><%=i+1%></td>
+					<td><%=((Report)rplist.get(i)).getUploaduser() %></td>
+					<td><%=categoryname %></td>
+					<td><button>글 확인</button></td>
+					 <td><%if(process==null){%>
+					 							 		
+						 		<button onclick="setSanction('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getUploaduserno()%>','<%=((Report)rplist.get(i)).getReportno()%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>');">사용자 정지</button>
+					 		
+						 		<button onclick="deleteBoard('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>','<%=((Report)rplist.get(i)).getReportno()%>');">게시글 삭제</button>
+					 		
+					 	<%}else if(process.equals("UR")){ %>
+					 			
+					 			<span style="color:red; font-weight: 800; margin:0 7px;">사용자 정지</span>					 			
+					 			<span style="color:red; font-weight: 800; margin:0 7px;">게시글 삭제</span>
+					 		
+					 	<%}else if(process.equals("BR")){ %>
+					 		
+					 			<button onclick="setSanction('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getUploaduserno()%>','<%=((Report)rplist.get(i)).getReportno()%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>');">사용자 정지</button>
+					 						 		
+					 			<span style="color:red; font-weight: 800; margin:0 7px;">게시글 삭제</span>
+					 		
+					 	<%}%>
+					 </td>
+					
+					<td><%=((Report)rplist.get(i)).getReportuser() %></td>
+					</tr>
+					<%} %>
+				<%} else{ %>
+					<tr>
+						<td colspan="9">조회결과 없음</td>
+					</tr>
 				<%} %>
 			</table>
 			
@@ -179,24 +193,36 @@
 			
 		</div>
 	</div>
+	</div>
 	<script>
-		function setSanction(trId,uploaduserno,reportno){
+	
+		 function setSanction(trId,uploaduserno,reportno,categoryno,boardno){
 			var trId = $("#"+trId);
 			var td = trId.children();
 			
 			var userId = td.eq(1).text();
+			var process=td.eq(4).text();
 			
 			
-			var resu = confirm(userId+"회원을 정지시키겠습니까?");
-			alert("원래 회원 정지를 시키면 자동으로 게시글이 삭제되야하는데 게시글 삭제하면 리폿테잉블에는 내역이 남아있어서 널포인트 뜸");
-			if(resu == true){
-				 $.ajax({
+			var resu = confirm(userId+"회원이 정지되고 게시물이 삭제됩니다.");
+		
+		 	if(resu == true){
+		 		
+				  $.ajax({
 					url:"<%=request.getContextPath()%>/reportsetsanction.me",
 					type:"post",
-					data:{reportNo:reportno, userNo:uploaduserno},
+					data:{reportNo:reportno, 
+						  userNo:uploaduserno,
+						  categoryNo:categoryno,
+						  boardNo:boardno,						
+					},
 					success:function(data){
 						if(data == "Y"){
+							
 							alert("제재완료");
+							td.eq(4).html("<span style='color:red; font-weight: 800; margin:0 7px;''>사용자 정지</span><span style='color:red; font-weight: 800; margin:0 7px;''>게시글 삭제</span>");
+							
+							
 						}else{
 							alert("실패");
 						}
@@ -217,28 +243,33 @@
 			
 			
 			var resu = confirm(userId+"회원의 글을 삭제하겠습니까?");
-			alert("게시글을 삭제하려면 데이터베이스를 수정해야하거나 게시글 삭제시 리폿테이블의 내역을 삭제해야함. 그러면 게시글 삭제시 회원 제재를 하기위해 뵤여주는 내역을 못함");
-			<%-- if(resu == true){
+			if(resu == true){
 				 $.ajax({
-					url:"<%=request.getContextPath()%>/deletereportboard.me",
-					type:"post",
-					data:{categoryNo:categoryno,
-						  boardNo:boardno,
-						  reportNo:reportno},
-					success:function(data){
-						if(data == "Y"){
-							alert("삭제완료");
-						}else{
-							alert("실패");
-						}
-					},
-					error:function(request,status,error){
-	 	                   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	 	           		}
-				})  --%>
+						url:"<%=request.getContextPath()%>/deletereportboard.me",
+						type:"post",
+						data:{categoryNo:categoryno,
+							  boardNo:boardno,
+							  reportNo:reportno},
+						success:function(data){
+							if(data == "Y"){
+								alert("삭제완료");
+								td.eq(4).html("<button>사용자 정지</button><span style='color:red; font-weight: 800; margin:0 7px;''>게시글 삭제</span>");
+							}else{
+								alert("실패");
+							}
+						},
+						error:function(request,status,error){
+		 	                   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		 	           		}
+					})  
+					
 			}
 		}
 		
+		
 	</script>
+
+		
+	
 </body>
 </html>

@@ -30,7 +30,7 @@
 <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 <style>
    header{
-      width: 100%;
+      width: auto;
       font-family: 'Noto Sans KR', sans-serif;
       color: black;
       text-align: center;
@@ -92,7 +92,8 @@
   }
 
   .nav li > ul {
-      display: none;      
+      display: none;  
+          
   }
 
   .nav li:hover ul {
@@ -105,6 +106,8 @@
       text-align: center;
       background: #ADD4D9;
       right: 0;
+      z-index: 1000;
+      
   }
 
   .nav li:hover > ul > li {
@@ -115,6 +118,7 @@
       display: block;
       margin-right: 10%;
       height: 3em;
+      
   }
 
   .nav li:hover > ul > li > a{
@@ -122,6 +126,7 @@
       margin: 0;
       line-height: 3em;
       display: block;
+      
   }
 
   .login_register{
@@ -132,7 +137,7 @@
       top: 2%;
       right: 4%;
   }
-
+	
   .login_register li{
       float: left;
       position: relative;
@@ -157,6 +162,9 @@
 <body>
 <header>
     <div class="container2">
+      <div class="logo">
+        <a class="navbar-brand" href="main.jsp"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
+      </div>
       <div class="menu">
         <div class="logo">
         	<a class="navbar-brand" href="#"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
