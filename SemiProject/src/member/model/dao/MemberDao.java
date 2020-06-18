@@ -603,8 +603,8 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, m.getEmail());
-			pstmt.setString(2, m.getUserId());
+			pstmt.setString(1, email);
+			pstmt.setString(2, userId);
 			
 			result = pstmt.executeUpdate();
 			

@@ -10,10 +10,10 @@ import job.model.dao.JobSearchDao;
 import job.model.vo.JobSearch;
 public class JobSearchService {
 
-	public int getListCount() {
+	public int getListCount(int userNo) {
 		Connection conn = getConnection();
 		
-		int listCount = new JobSearchDao().getListCount(conn);
+		int listCount = new JobSearchDao().getListCount(conn,userNo);
 		
 		
 		close(conn);
@@ -23,10 +23,10 @@ public class JobSearchService {
 		
 	}
 
-	public ArrayList selectList(int currentPage, int limit) {
+	public ArrayList selectList(int currentPage, int limit, int userNo) {
 		Connection conn = getConnection();
 		
-		ArrayList list = new JobSearchDao().selectList(conn, currentPage, limit);
+		ArrayList list = new JobSearchDao().selectList(conn, currentPage, limit,userNo);
 		
 		close(conn);
 		
@@ -46,21 +46,21 @@ public class JobSearchService {
 		
 	}
 
-	public ArrayList deleteHeart(int userNo, int heartNo) {
+	public int deleteHeart(int userNo, int heartNo2) {
 		Connection conn = getConnection();
 		
-		ArrayList list = new JobSearchDao().deleteHeart(conn,userNo, heartNo);
+		int result = new JobSearchDao().deleteHeart(conn,userNo, heartNo2);
 		
 		
 		close(conn);
 		
-		return list;
+		return result;
 	}
 
-	public int getAListCount() {
+	public int getAListCount(int userNo) {
 		Connection conn = getConnection();
 		
-		int AlistCount = new JobSearchDao().getAListCount(conn);
+		int AlistCount = new JobSearchDao().getAListCount(conn,userNo);
 		
 		
 		close(conn);
@@ -70,12 +70,12 @@ public class JobSearchService {
 
 	}
 
-	public ArrayList selectListA(int currentPage, int limit) {
+	public ArrayList selectListA(int currentPage, int limit, int userNo) {
 
 		
 		Connection conn = getConnection();
 		
-		ArrayList list = new JobSearchDao().selectListA(conn, currentPage, limit);
+		ArrayList list = new JobSearchDao().selectListA(conn, currentPage, limit, userNo);
 		
 		close(conn);
 		
@@ -94,15 +94,15 @@ public class JobSearchService {
 		return jsearch;
 	}
 
-	public ArrayList<JobSearch> deleteA(int jobApplyNo2) {
+	public int deleteA(int jobApplyNo2, int userNo) {
 		Connection conn = getConnection();
 		
-		ArrayList list = new JobSearchDao().deleteA(conn,jobApplyNo2);
+		int result = new JobSearchDao().deleteA(conn,jobApplyNo2, userNo);
 		
 		
 		close(conn);
 		
-		return list;
+		return result;
 	}
 
 	public int getJaListCount() {

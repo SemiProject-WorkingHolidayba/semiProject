@@ -40,17 +40,15 @@ public class UpdateMemberPwdServlet extends HttpServlet {
 		String userPw = request.getParameter("userPw");
 		String userId = loginUser.getUserId();
 		System.out.println(userPw);
-
+		System.out.println(userId);
 		int resultPwd = new MemberService().updatePwd(userPw,userId);
-		
-		
 		System.out.println(resultPwd);
+		
 		PrintWriter out = response.getWriter();
 		
-		 if(resultPwd > 0  ) {
+		 if(resultPwd > 0) {
 			 loginUser = new MemberService().loginMember(loginUser);
 			 session.setAttribute("loginUser",loginUser);
-//			 session.setAttribute("userName", userName);
 			 out.print("Y");
 		 }else {
 		

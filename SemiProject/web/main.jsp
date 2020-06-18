@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -14,16 +13,16 @@
     <title>Delivery Management System</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="images/favicon.ico">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link href="<%=request.getContextPath()%>/carousel.css" rel="stylesheet">
+    <link href="carousel.css" rel="stylesheet">
     <!-- Bootstrap Javascript -->
     
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
 
-    <script src="<%=request.getContextPath()%>/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- Custom styles for this template -->
     <style>
@@ -67,7 +66,6 @@
         .nav>li>a {
             color: black;
         }
-        
 
         .container{
             padding: 1%;
@@ -116,6 +114,7 @@
 
         .container a{
             color: black;
+<<<<<<< HEAD
 
             }
 	.item{
@@ -124,6 +123,10 @@
 		text-align: center;
 	}
 
+=======
+        }
+
+>>>>>>> refs/remotes/origin/kimsung
     </style>
   </head>
   <body>
@@ -148,7 +151,6 @@
                     <hr />
                   </div>
                 </div>
-                
               </div>
               <div class="item">
                 <img src="images/country/Japan/Sakura.jpg" alt="Second slide">
@@ -265,7 +267,7 @@
             <div id="area1" class="notice">
                 <h3 class = "title">공지사항<small><a href="http://www.naver.com" class = "more">+더보기</a></small></h3>
                 <ul class="infor">
-                  <li><a href="http://www.naver.com">하이하이</a></li>
+                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
@@ -295,15 +297,14 @@
       <hr>
       <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
     </div>
-    
-    <script>
-    	$('.carousel').carousel({ interval: 2000 });
-    </script>
+      <script>
+          $('.carousel').carousel({ interval: 2000 });
+        </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/docs.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="<%=request.getContextPath()%>/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     <!-- <script src="vendor/holder.js"></script> -->
   </body>
 </html>

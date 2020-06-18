@@ -1,4 +1,4 @@
-package community.controller;
+package common.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,23 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.http.HttpSession;
-
+import common.model.service.NletterListService;
 import community.model.service.CommunityService;
-import community.model.vo.*;
-import member.model.vo.Member;
+import job.model.vo.Pagination;
 
 /**
- * Servlet implementation class CommunityListServlet
+ * Servlet implementation class ListCommon
  */
-@WebServlet("/list.c")
-public class CommunityListServlet extends HttpServlet {
+@WebServlet("/list.common")
+public class ListCommonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommunityListServlet() {
+    public ListCommonServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,14 +33,9 @@ public class CommunityListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		int userNo = loginUser.getUserNo();
+	NletterListService nletter = new NletterListService();
 		
-		
-		CommunityService community = new CommunityService();
-		
-		int listCount = CommunityService.getListCount(userNo);
+		int listCount = NletterListService.getListCount();
 		
 		int currentPage;	// 현재 페이지를 표시 할 변수
 		int limit;			// 한 페이지에 게시글이 몇 개가 보여질 것인지
@@ -92,21 +85,23 @@ public class CommunityListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		cPagination pn = new cPagination(currentPage, listCount, limit, maxPage, startPage, endPage);
+		Pagination pn = new Pagination(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		// 1_2. 화면에 뿌려줄 워홀러 내가 쓴 글 테이블 리스트 조회하기
-		ArrayList list = CommunityService.selectList(currentPage, limit, userNo);	
-//		System.out.println(listCount);
-//		System.out.println(list);
+		ArrayList list = CommunityService.selectList(currentPage, limit);	
+		
 		RequestDispatcher view = null;
 		if(list != null) {
+			view = request.getRequestDispatcher("views/mypage/Letter/wLetter.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("pn", pn);
-			 view = request.getRequestDispatcher("views/mypage/Letter/wLetter.jsp"); 
-		}else {
-			view =request.getRequestDispatcher("views/common/errorPage.jsp");
 		}
 		view.forward(request, response);
+		
+		
+		
+		
+		
 	}
 
 	/**

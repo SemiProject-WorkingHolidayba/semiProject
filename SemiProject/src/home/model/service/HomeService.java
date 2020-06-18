@@ -309,10 +309,10 @@ public class HomeService {
 		return result;
 	}
 
-	public ArrayList<myHome> mdeletehome(int reservationNo2) {
+	public ArrayList mdeletehome(int userNo) {
 		Connection conn = getConnection();
 		
-		ArrayList homelist = new HomeDao().mdeletehome(conn,reservationNo2);
+		ArrayList homelist = new HomeDao().mdeletehome(conn,userNo);
 		
 		
 		close(conn);
@@ -332,10 +332,10 @@ public class HomeService {
 			
 	}
 
-	public int mgetListCount() {
+	public int mgetListCount(int userNo) {
 		Connection conn = getConnection();
 		
-		int listCount = new HomeDao().getListCount(conn);
+		int listCount = new HomeDao().mgetListCount(conn,userNo);
 		
 		
 		close(conn);
@@ -347,10 +347,10 @@ public class HomeService {
 	
 	}
 
-	public ArrayList mselectList(int currentPage, int limit) {
+	public ArrayList mselectList(int currentPage, int limit,int userNo) {
 		Connection conn = getConnection();
 		
-		ArrayList list = new HomeDao().selectList(conn, currentPage, limit);
+		ArrayList list = new HomeDao().mselectList(conn, currentPage, limit,userNo);
 		
 		close(conn);
 		
@@ -359,6 +359,21 @@ public class HomeService {
 	
 	
 	
+	}
+
+	public ArrayList searchReservation(int userNo2) {
+
+		
+		Connection conn = getConnection();
+		
+		ArrayList list = new HomeDao().searchReservation(conn, userNo2);
+		
+		close(conn);
+		
+		return list;
+		
+		
+
 	}
 
 

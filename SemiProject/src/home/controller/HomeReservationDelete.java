@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import home.model.service.HomeService;
 import home.model.vo.myHome;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class HomeReservationDelete
@@ -32,16 +34,24 @@ public class HomeReservationDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String reservationNo = request.getParameter("reservationNo");
-		int  reservationNo2 = Integer.valueOf(reservationNo);
+		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		ArrayList<myHome> homelist = new HomeService().mdeletehome(reservationNo2);
+		
+		int userNo = loginUser.getUserNo();
+		
+		ArrayList hrlist = new HomeService().mdeletehome(userNo);
+		
 		RequestDispatcher view = null;
-		if(homelist == null) {
-			request.setAttribute("homelist",homelist);
+		if(hrlist != null) {
+			request.setAttribute("hrlist",hrlist);
 			view = request.getRequestDispatcher("/mypage/Home/wHome.jsp");
-			view.forward(request, response);
-	}
+		}else {
+			view = request.getRequestDispatcher("/views/common/errorpage");
+		
+		}
+		view.forward(request, response);
 		}
 
 	/**

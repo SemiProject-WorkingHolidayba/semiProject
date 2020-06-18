@@ -41,7 +41,19 @@ public class JobSearch implements Serializable{
 
 
 
-	
+
+	public JobSearch(int jobNo, String period, Date dueDate, Date workTime, String title, int userNo, String country,int heartNo) {
+		super();
+		this.jobNo = jobNo;
+		this.period = period;
+		this.dueDate = dueDate;
+		this.workTime = workTime;
+		this.title = title;
+		this.userNo = userNo;
+		this.country = country;
+		this.heartNo = heartNo;
+	}
+
 
 
 	public JobSearch(int jobNo, String job, String period, String logoImg, int recruitment, String gender, String age,
@@ -70,6 +82,43 @@ public class JobSearch implements Serializable{
 		this.changeName = changeName;
 		this.country = country;
 		this.heartNo = heartNo;
+		this.jobApplyNo = jobApplyNo;
+		this.jobApplyDate = jobApplyDate;
+		this.typeNo = typeNo;
+		this.filePath = filePath;
+		this.coName = coName;
+	}
+
+
+
+
+
+
+	public JobSearch(int jobNo, String job, String period, String logoImg, int recruitment, String gender, String age,
+			String address, String pay, Date dueDate, Date workTime, String workDay, String title, String content,
+			int jobReport, Date writeDate, String countryNo, int userNo, String changeName, String country,
+			int jobApplyNo, Date jobApplyDate, String typeNo, String filePath, String coName) {
+		super();
+		this.jobNo = jobNo;
+		this.job = job;
+		this.period = period;
+		this.logoImg = logoImg;
+		this.recruitment = recruitment;
+		this.gender = gender;
+		this.age = age;
+		this.address = address;
+		this.pay = pay;
+		this.dueDate = dueDate;
+		this.workTime = workTime;
+		this.workDay = workDay;
+		this.title = title;
+		this.content = content;
+		this.jobReport = jobReport;
+		this.writeDate = writeDate;
+		this.countryNo = countryNo;
+		this.userNo = userNo;
+		this.changeName = changeName;
+		this.country = country;
 		this.jobApplyNo = jobApplyNo;
 		this.jobApplyDate = jobApplyDate;
 		this.typeNo = typeNo;

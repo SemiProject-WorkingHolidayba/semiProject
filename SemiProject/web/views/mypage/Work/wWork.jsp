@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="job.model.vo.*, java.util.ArrayList"%>
 <%
-	Pagination pn = (Pagination)session.getAttribute("pn");
-	ArrayList list = (ArrayList)session.getAttribute("list");
+	Pagination pn = (Pagination)request.getAttribute("pn");
+	ArrayList list = (ArrayList)request.getAttribute("list");
 	
 	int listCount = pn.getListCount();
 	int currentPage = pn.getCurrentPage();
@@ -186,18 +186,18 @@ nav{
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
 
         </li>
-        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Home/wHome.jsp" target="_self">집 예약 내역</a>
+        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/search.ho" target="_self">집 예약 내역</a>
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/wWork.jsp" target="_self">구직 신청
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.aj" target="_self">구직 신청
             내역</a>
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Letter/wLetter.jsp" target="_self">내가 쓴 글</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.c" target="_self">내가 쓴 글</a>
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/JJIM.jsp" target="_self">찜 목록</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.job" target="_self">찜 목록</a>
 
 
         </li>
@@ -209,7 +209,7 @@ nav{
 
 
   <div id="wrap" class=" area " style="position:absolute; margin-left: 5%;" ; align="center">
-
+	
     <h1 style="font-weight: 900;">구직 신청 내역</h1>
 
     <form style="margin-top: 100px; margin-left: 250px;  ">
@@ -234,6 +234,7 @@ nav{
                 	</tr>
                 	<%}else{ %>
                 	<%for(int i=0; i<list.size(); i++){ %>
+                	<label id="jan" style="visibility:hidden;"><%=((JobSearch)list.get(i)).getJobApplyNo() %></label>
 			          <tr>			            
 						<td><%=((JobSearch)list.get(i)).getJobNo() %></td>
 			            <td><%=((JobSearch)list.get(i)).getTitle() %></td>
@@ -251,20 +252,20 @@ nav{
 			<!-- 맨 처음으로(<<) -->
 			<button onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=1'"> << </button>
 			<!-- 이전 페이지로(<) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=<%=currentPage-1 %>'"> < </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=<%=currentPage-1 %>'"> < </button>
 			<!-- 10개의 페이지 목록 -->
 			<% for(int p = startPage ; p <= endPage ; p ++) {%>
 				<%if(p == currentPage) {%>
 					<button disabled><%=p %></button>
 				<%}else{ %>
-					<button onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=<%=p %>'"><%=p %></button>
+					<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=<%=p %>'"><%=p %></button>
 				<%} %>
 			<% } %>
 			
 			<!-- 다음 페이지로(>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=<%=currentPage+1 %>'"> > </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=<%=currentPage+1 %>'"> > </button>
 			<!-- 맨 끝으로(>>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=<%=maxPage %>'"> >> </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.aj?currentPage=<%=maxPage %>'"> >> </button>
 		</div>
     </form>
 
@@ -285,8 +286,9 @@ $(function(){
 })
 	function clickme(){
 		var bool = confirm("신청을 취소하시겠습니까?");
+		var jobApplyNo = $("#jan").text();
 		if(bool){
-			location.href="<%=request.getContextPath()%>/delete.job";
+			location.href="<%=request.getContextPath()%>/delete.job?jobApplyNo="+ jobApplyNo;
 		}
 	}
 </script>

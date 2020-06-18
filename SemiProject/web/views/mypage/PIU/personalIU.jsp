@@ -2,12 +2,10 @@
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
  <% 
 	Member member = (Member)session.getAttribute("loginUser");
-
-	String userId = member.getUserId();
     String userName = member.getUserName();
   	String userPw = member.getUserPw();
 	
-    String email = member.getEmail() != null ? member.getEmail() : "";
+    String email = member.getEmail() ;
  %>    
 <!DOCTYPE html>
 <html lang="en">
@@ -260,9 +258,8 @@
 ================================================== -->
 
 <body>
-<%-- <%=userId %>
-<%=userName %>
-<%=userPw %> --%>
+
+
  <%@ include file="/views/common/menubar.jsp" %>
 
 
@@ -276,18 +273,18 @@
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
 
         </li>
-        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Home/wHome.jsp" target="_self">집 예약 내역</a>
+        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/search.ho" target="_self">집 예약 내역</a>
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/wWork.jsp" target="_self">구직 신청
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.aj" target="_self">구직 신청
             내역</a>
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Letter/wLetter.jsp" target="_self">내가 쓴 글</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.c" target="_self">내가 쓴 글</a>
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/JJIM.jsp" target="_self">찜 목록</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.job" target="_self">찜 목록</a>
 
 
         </li>
@@ -503,7 +500,7 @@
               <tr>
                 <td>
                      <div style="height:10px;"></div>
-                  <input type="email" name="email" id="email" class="log"  placeholder=" 이메일을 입력해주세요." required>    
+                  <input type="email" name="userEmail" id="email" class="log"  placeholder=" 이메일을 입력해주세요." required>    
                   <button type="button" style="outline: 0; margin-left: 5px;" id="CF_Btn">인증번호</button><br>
                   <div style="height:8px;"></div>
                   <p class="ero_msg" id="msg_em">
@@ -517,7 +514,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">수정</button>
+          <button type="button" class="btn btn-primary" id="eChange">수정</button>
           <button style="margin-right: 35%;" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         </div>
 
@@ -526,8 +523,8 @@
     </div>
 
   </div>
- 
-  <%-- <script>
+  
+ <script>
   $(function(){    
 	  $("#pwdChange").click(function(){ 
 	  		
@@ -537,7 +534,7 @@
 	 		var userP2 = $("#userPwd2");
 	 		if(currentPwd.val().trim().length == 0){
 	 			alert("현재비밀번호를 입력해주세요")
-	 		}else if(currentPwd.val() != userPw) { 	 			
+	 		}else if(currentPwd.val() != "<%=loginUser.getUserPw()%>") { 	 			
 	 			alert("현재 비밀번호가 일치하지 않습니다!");
 	 		}
 	 		else if(userP.val().trim().length == 0){
@@ -553,13 +550,12 @@
 	 		     $.ajax({
 			            url:"<%=request.getContextPath()%>/updatePwd.me",
 			            type:"post",
-			            data:{userPw:userP.val()},
+			            data:{userPw:userP2.val()},
 			            success:function(data){
 			              if(data=="Y"){
-			            	  alert("비밀번호가 변경되었습니다.");
-			               location.reload();
-			            
-			            	}else{
+							location.href="<%=request.getContextPath()%>/views/common/alert.jsp";
+			              
+			              }else{
 			            		alert("수정이 실패하였습니다.");
 			            	}
 			               
@@ -576,7 +572,7 @@
 	       
 	})
   	
-</script> --%>
+</script> 
 
 <script>
 
@@ -671,50 +667,13 @@
  </script>
  	
 
- </script>
+
 
  <script>
 	
  $(function(){    
 
-	 $("#UpdateE").click(function(){ 
-          
-             var NregExp=/^[가-힣]{2,6}$/;
-             var userName = $("#myModalName input[name='userName']");
-               
-                if(!NregExp.test(userName.val())){
-                   alert("이름을 정확히 입력해 주세요");
-                   userName.focus();
-                   }else{
-                 
-            
-          $.ajax({
-            url:"<%=request.getContextPath()%>/updateName.me",
-            type:"post",
-            data:{userName:userName.val()},
-            success:function(data){
-              if(data=="Y"){
-            	  alert("이름이 변경되었습니다.");
-               location.reload();
-            
-            	}else{
-            		alert("수정이 실패하였습니다.");
-            	}
-               
-               
-            },
-            error:function(request,status,error){
-                      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                  }
-         }); 
-       }
-                
-	 })
        
-})
-      
-
-        
         /* 이메일 정규 표현식 밎 이메일 인증 */
          $("#CF_Btn").click(function(){
            var email = $("#email");
@@ -758,20 +717,36 @@
             }
          })
          
-         $("#userType").mouseover(function(){
-             $("#typeEx").css("visibility","unset");
-         })
-         $("#userType").mouseout(function(){
-            $("#typeEx").css("visibility","hidden");
-         })
-     
          
  
-  </script>
-<script>
+	 $("#eChange").click(function(){ 
+           
+		 var email = $("#email");
+               
+          $.ajax({
+            url:"<%=request.getContextPath()%>/updateEmail.me",
+            type:"post",
+            data:{email:email.val()},
+            success:function(data){
+              if(data=="Y"){
+            	  alert("이메일이 변경되었습니다.");
+               location.reload();
+            
+            	}else{
+            		alert("수정이 실패하였습니다.");
+            	}
+               
+               
+            },
+            error:function(request,status,error){
+                      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                  }
+         }); 
+       })
+                
+	 })
+  </script> 
 
-
-</script>
 
   <!-- Marketing messaging and featurettes ================================================= -->
   <!-- Wrap the rest of the page in another container to center all the content. -->

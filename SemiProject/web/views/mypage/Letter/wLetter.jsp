@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList, job.model.vo.Pagination"%>
+    pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList"%>
  <%
-	Pagination pn = (Pagination)request.getAttribute("pn");
+	cPagination pn = (cPagination)request.getAttribute("pn");
 	ArrayList list = (ArrayList)request.getAttribute("list");
 	
 	int listCount = pn.getListCount();
@@ -184,18 +184,18 @@
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
 
         </li>
-        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Home/wHome.jsp" target="_self">집 예약 내역</a>
+        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/search.ho" target="_self">집 예약 내역</a>
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/wWork.jsp" target="_self">구직 신청
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.aj" target="_self">구직 신청
             내역</a>
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Letter/wLetter.jsp" target="_self">내가 쓴 글</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.c?currentPage=1" target="_self">내가 쓴 글</a>
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/JJIM.jsp" target="_self">찜 목록</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.job" target="_self">찜 목록</a>
 
 
         </li>
@@ -247,20 +247,20 @@
 			<!-- 맨 처음으로(<<) -->
 			<button onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=1'"> << </button>
 			<!-- 이전 페이지로(<) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=<%=currentPage-1 %>'"> < </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=<%=currentPage-1 %>'"> < </button>
 			<!-- 10개의 페이지 목록 -->
 			<% for(int p = startPage ; p <= endPage ; p ++) {%>
 				<%if(p == currentPage) {%>
 					<button disabled><%=p %></button>
 				<%}else{ %>
-					<button onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=<%=p %>'"><%=p %></button>
+					<button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=<%=p %>'"><%=p %></button>
 				<%} %>
 			<% } %>
 			
 			<!-- 다음 페이지로(>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=<%=currentPage+1 %>'"> > </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=<%=currentPage+1 %>'"> > </button>
 			<!-- 맨 끝으로(>>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=<%=maxPage %>'"> >> </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.c?currentPage=<%=maxPage %>'"> >> </button>
 		</div>
     </form>
 
