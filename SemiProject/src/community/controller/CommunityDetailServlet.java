@@ -1,7 +1,6 @@
-package home.controller;
+package community.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,23 +8,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import home.model.service.HomeService;
-import home.model.vo.myHome;
-import member.model.vo.Member;
+import community.model.service.CommunityService;
+import community.model.vo.Community;
+
+
 
 /**
- * Servlet implementation class HomeReservationDelete
+ * Servlet implementation class CommunityDetailServlet
  */
-@WebServlet("/delete.home")
-public class HomeReservationDelete extends HttpServlet {
+@WebServlet("/detail.ca")
+public class CommunityDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeReservationDelete() {
+    public CommunityDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,25 +33,23 @@ public class HomeReservationDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		
-		int userNo = loginUser.getUserNo();
-		
-		ArrayList hrlist = new HomeService().mdeletehome(userNo);
-		
-		RequestDispatcher view = null;
-		if(hrlist != null) {
-			request.setAttribute("hrlist",hrlist);
-			view = request.getRequestDispatcher("/mypage/Home/wHome.jsp");
-		}else {
-			view = request.getRequestDispatcher("/views/common/errorpage");
-		
-		}
-		view.forward(request, response);
-		}
+					String communityNo = request.getParameter("communityNo");
+					int communityNo2 = Integer.valueOf(communityNo);
+					String categoryNo = request.getParameter("categoryNo");
+					int categoryNo2 = Integer.valueOf(categoryNo);
+				
+					Community community = new CommunityService().selectCommunity(communityNo2, categoryNo2);
+					
+					
+					if(community != null) {
+						request.setAttribute("community", community);
+						request.getRequestDispatcher("views/Community/민환이의.jsp").forward(request, response);
+						// 글 상세 페이지로 전환
+					}
+						
+					
+					
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

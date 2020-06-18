@@ -1,4 +1,4 @@
-package home.controller;
+package common.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,23 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import home.model.service.HomeService;
-import home.model.vo.Pagination;
-import member.model.vo.Member;
+import common.model.service.NletterListService;
+import community.model.service.CommunityService;
+import job.model.vo.Pagination;
 
 /**
- * Servlet implementation class HomeReservationList
+ * Servlet implementation class ListCommon
  */
-@WebServlet("/list.home")
-public class HomeReservationList extends HttpServlet {
+@WebServlet("/list.common")
+public class ListCommonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeReservationList() {
+    public ListCommonServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,12 +33,9 @@ public class HomeReservationList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HomeService hService = new HomeService();
-		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		int userNo = loginUser.getUserNo();
-		int listCount = hService.mgetListCount(userNo);
+	NletterListService nletter = new NletterListService();
+		
+		int listCount = NletterListService.getListCount();
 		
 		int currentPage;	// 현재 페이지를 표시 할 변수
 		int limit;			// 한 페이지에 게시글이 몇 개가 보여질 것인지
@@ -55,8 +51,7 @@ public class HomeReservationList extends HttpServlet {
 			currentPage = Integer.valueOf(request.getParameter("currentPage"));
 			// 현재페이지와 전체 게시글 수로 여러가지 연산 처리를 하기 위해서 int형으로 받아준다.
 		}
-		System.out.println("asdfasdf"+currentPage);
-		System.out.println("listCount"+listCount);
+		
 		// limit
 		limit = 10;
 		
@@ -92,19 +87,17 @@ public class HomeReservationList extends HttpServlet {
 		
 		Pagination pn = new Pagination(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		// 1_2. 화면에 뿌려줄 집 예약자 테이블 리스트 조회하기
-		ArrayList list = hService.mselectList(currentPage, limit,userNo);	
+		// 1_2. 화면에 뿌려줄 워홀러 내가 쓴 글 테이블 리스트 조회하기
+		ArrayList list = CommunityService.selectList(currentPage, limit);	
 		
 		RequestDispatcher view = null;
 		if(list != null) {
+			view = request.getRequestDispatcher("views/mypage/Letter/wLetter.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("pn", pn);
-			view = request.getRequestDispatcher("views/mypage/Home/nHome.jsp");
-		}else {
-			view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			request.setAttribute("msg", "게시글 조회 실패!!");
 		}
 		view.forward(request, response);
+		
 		
 		
 		

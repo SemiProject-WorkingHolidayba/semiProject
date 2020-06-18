@@ -1140,24 +1140,23 @@ public class HomeDao {
 		return result;
 	}
 
-	public ArrayList mdeletehome(Connection conn, int reservationNo2) {
+	public ArrayList mdeletehome(Connection conn, int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		ArrayList homelist = new ArrayList();
 		
 		
-		String query = "DELETE FROM (SELECT * FROM HOMERESERVATION HR JOIN HOME H ON (HR.HOUSENO = H.HOUSENO) AND (H.USERNO = HR.USERNO)" + 
-						"WHERE RESERVATIONNO = ? )";
+		String query = "DELETE FROM HOMERESERVATION WHERE USERNO=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1,reservationNo2);
+			pstmt.setInt(1,userNo);
 		
 			
 			rs = pstmt.executeQuery();
 			myHome h = null;
-			
+			if(rs.next()) {
 				 h = new myHome(rs.getInt("userNo"),
 											rs.getInt("houseNo"),
 											rs.getString("type"),
@@ -1178,7 +1177,7 @@ public class HomeDao {
 											rs.getInt("reservationNo"));
 				 homelist.add(h);
 			
-			
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -1237,16 +1236,18 @@ public class HomeDao {
 			return myhome;
 	}
 
-	public int mgetListCount(Connection conn) {
+	public int mgetListCount(Connection conn,int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT COUNT(*) FROM HRESERVATIONLIST ";
+		String query = "SELECT COUNT(*) FROM HRESERVATIONLIST WHERE H1=?";
 		
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
 			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				result = rs.getInt(1);
 			}
@@ -1261,7 +1262,7 @@ public class HomeDao {
 		return result;
 	}
 
-	public ArrayList mselectList(Connection conn, int currentPage, int limit) {
+	public ArrayList mselectList(Connection conn, int currentPage, int limit,int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -1271,13 +1272,15 @@ public class HomeDao {
 		int endRow = currentPage * limit;
 		
 		
-		String query = "SELECT * FROM (SELECT H.* FROM HRESERVATIONLIST H) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM (SELECT HR.* FROM HRESERVATIONLIST HR          " + 
+				"                        WHERE RNUM BETWEEN ? AND ?" + 
+				"                        AND H1=?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1,startRow);
 			pstmt.setInt(2, endRow);
-			
+			pstmt.setInt(3, userNo);
 			rs = pstmt.executeQuery();
 			HomeReservator home = null;
 			while(rs.next()){
@@ -1285,8 +1288,8 @@ public class HomeDao {
 						    rs.getInt("reservationNo"),
 						 	rs.getString("title"),
 							rs.getString("type"),
-							rs.getString("period"),
 							rs.getString("userName"),
+							rs.getString("period"),
 							rs.getString("email"));
 
 				list.add(home);
@@ -1301,6 +1304,67 @@ public class HomeDao {
 		
 		return list;
 		
+	}
+
+	public ArrayList searchReservation(Connection conn, int userNo2) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList homelist = new ArrayList();
+		
+		
+		String query = " SELECT ROWNUM RNUM, USERNO,HOUSENO,TYPE,PERIOD,TITLE,FEE,ADDRESS,ESSENTIALITEM,WIFI,TELEVISION,HEATER,AIRCONDITIONAL,\r\n" + 
+				"       LIVINGROOM,BATHROOM,PET,USERNAME,EMAIL,RESERVATIONNO\r\n" + 
+				"      FROM HOME H \r\n" + 
+				"      JOIN HOMERESERVATION HR ON (HR.HOUSENO = H.HOUSENO) \r\n" + 
+				"      JOIN HOMEETC HC ON (HC.HOUSENO = H.HOUSENO)\r\n" + 
+				"      JOIN MEMBER M ON (HR.USERNO = M.USERNO)\r\n" + 
+				"      WHERE USERNO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1,userNo2);
+		
+			
+			rs = pstmt.executeQuery();
+			myHome h = null;
+				if(rs.next()) {
+				 h = new myHome(rs.getInt("userNo"),
+											rs.getInt("houseNo"),
+											rs.getString("type"),
+											rs.getString("period"),
+											rs.getString("title"),
+											rs.getString("fee"),	
+											rs.getString("address"),
+											rs.getString("essentialItem"),
+											rs.getString("wifi"),
+											rs.getString("television"),
+											rs.getString("heater"),
+											rs.getString("airConditional"),
+											rs.getString("livingroom"),
+											rs.getString("bathroom"),
+											rs.getString("pet"),
+											rs.getString("userName"),
+											rs.getString("email"),
+											rs.getInt("reservationNo"));
+				 homelist.add(h);
+			
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return homelist;
+	
+	
+	
+	
+	
+	
 	}
 
 }

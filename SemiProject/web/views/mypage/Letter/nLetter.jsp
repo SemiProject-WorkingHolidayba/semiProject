@@ -186,10 +186,10 @@
             target="_self">개인정보수정</a>
 
         </li>
-        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Home/nHome.jsp"
+        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.home"
             target="_self">집 예약자 내역</a>
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/nWork.jsp" target="_self">구직 신청자
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.ja" target="_self">구직 신청자
             내역</a>
 
 
@@ -246,20 +246,20 @@
 			<!-- 맨 처음으로(<<) -->
 			<button onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=1'"> << </button>
 			<!-- 이전 페이지로(<) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=currentPage-1 %>'"> < </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=currentPage-1 %>'"> < </button>
 			<!-- 10개의 페이지 목록 -->
 			<% for(int p = startPage ; p <= endPage ; p ++) {%>
 				<%if(p == currentPage) {%>
 					<button disabled><%=p %></button>
 				<%}else{ %>
-					<button onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=p %>'"><%=p %></button>
+					<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=p %>'"><%=p %></button>
 				<%} %>
 			<% } %>
 			
 			<!-- 다음 페이지로(>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=currentPage+1 %>'"> > </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=currentPage+1 %>'"> > </button>
 			<!-- 맨 끝으로(>>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=maxPage %>'"> >> </button>
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=maxPage %>'"> >> </button>
 		</div>
       
       

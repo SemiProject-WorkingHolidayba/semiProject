@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import job.model.service.JobSearchService;
 import job.model.vo.JobSearch;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class JobApplicationDeleteServlet
@@ -32,17 +34,25 @@ public class JobApplicationDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("여기");
+		JobSearchService jService = new JobSearchService();
+		HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		
 		String jobApplyNo = request.getParameter("jobApplyNo");
 	
 		int jobApplyNo2 = Integer.valueOf(jobApplyNo);
-		
-		ArrayList<JobSearch> Alist = new JobSearchService().deleteA(jobApplyNo2);
+		System.out.println(jobApplyNo);
+		int result = new JobSearchService().deleteA(jobApplyNo2,userNo);
+		System.out.println(result);
 		RequestDispatcher view = null;
-		
-			request.setAttribute("Alist",Alist);
-			view = request.getRequestDispatcher("/mypage/Work/wWork.jsp");
-			view.forward(request, response);
-		
+		if(result >0) {
+			view = request.getRequestDispatcher("/list.aj");
+		}else {
+			view = request.getRequestDispatcher("/views/common/errorPage.jsp");
+		}
+		view.forward(request,response);
 	}
 
 	/**

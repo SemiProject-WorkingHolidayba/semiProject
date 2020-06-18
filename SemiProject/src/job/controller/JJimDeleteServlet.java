@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import job.model.service.JobSearchService;
 import job.model.vo.JobSearch;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class JJimDeleteServlet
@@ -32,17 +34,26 @@ public class JJimDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userNo = request.getParameter("userNo");
+		HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
 		String heartNo = request.getParameter("heartNo");
-		int userNo2 = Integer.valueOf(userNo);
+	
 		int heartNo2 = Integer.valueOf(heartNo);
 		
-		ArrayList<JobSearch> jlist = new JobSearchService().deleteHeart(userNo2,heartNo2);
+		int result = new JobSearchService().deleteHeart(userNo,heartNo2);
+		System.out.println(result);
 		RequestDispatcher view = null;
+		if(result >0) {
 		
-			request.setAttribute("jlist",jlist);
-			view = request.getRequestDispatcher("/mypage/Work/JJIM.jsp");
-			view.forward(request, response);
+			view = request.getRequestDispatcher("/list.job");
+			
+		}else {
+			view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			request.setAttribute("msg", "게시글 조회 실패!!");
+		}
+		view.forward(request, response);
+		
 	}
 
 	/**

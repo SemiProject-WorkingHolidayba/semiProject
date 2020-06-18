@@ -1,25 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="home.model.vo.Home, java.util.ArrayList"%>
+    pageEncoding="UTF-8" import="home.model.vo.myHome, java.util.ArrayList"%>
 <%
-Home home = (Home)request.getAttribute("home");
-/* ArrayList list = (ArrayList)request.getAttribute("list");
-String type = ((Home)list.get(0)).getType();
-String period =((Home)list.get(0)).getPeriod();
-String title = ((Home)list.get(0)).getTitle();
-String fee = ((Home)list.get(0)).getFee();
-String address = ((Home)list.get(0)).getAddress();
-String essentialItem = ((Home)list.get(0)).getEssentialItem();
-String wifi = ((Home)list.get(0)).getWifi();
-String television = ((Home)list.get(0)).getTelevision();
-String heater =((Home)list.get(0)).getHeater();
-String airConditional = ((Home)list.get(0)).getAirConditional();
-String livingroom = ((Home)list.get(0)).getLivingroom();
-String bathroom = ((Home)list.get(0)).getBathroom();
-String pet = ((Home)list.get(0)).getPet();
-String userName = ((Home)list.get(0)).getUserName();
-String email =((Home)list.get(0)).getEmail(); */
 
-String type = home.getType();
+myHome home = (myHome)request.getAttribute("home");
+ ArrayList hrlist = (ArrayList)request.getAttribute("hrlist");
+
+
+/* String type = home.getType();
 String period =home.getPeriod();
 String title = home.getTitle();
 String fee = home.getFee();
@@ -33,7 +20,7 @@ String livingroom = home.getLivingroom();
 String bathroom = home.getBathroom();
 String pet = home.getPet();
 String userName = home.getUserName();
-String email =home.getEmail();
+String email =home.getEmail(); */
 %>    
     
     
@@ -188,6 +175,8 @@ nav{
 
  
 	<%@ include file="/views/common/menubar.jsp" %>
+	
+	
 
 
  <div style="position:static;">
@@ -200,18 +189,18 @@ nav{
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
 
         </li>
-        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/" target="_self">집 예약 내역</a>
+        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/search.ho" target="_self">집 예약 내역</a>
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/wWork.jsp" target="_self">구직 신청
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.aj" target="_self">구직 신청
             내역</a>
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Letter/wLetter.jsp" target="_self">내가 쓴 글</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.c" target="_self">내가 쓴 글</a>
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/JJIM.jsp" target="_self">찜 목록</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.job" target="_self">찜 목록</a>
 
 
         </li>
@@ -228,11 +217,11 @@ nav{
    
       <form style="margin-top: 100px; margin-left: 280px; " >
 
+        <%if(hrlist.isEmpty()){ %> 
         <table align="center" id="home">
-        <%if(home == null){ %>
          <tr>
             <td class="mainChoice">글 제목</td>
-            <td class="content1" rowspan="10" >X 예약 내역이 없습니다.<br> 좋은 집들이 많으니 어서 예약하세요!!</td>
+            <td class="content1" rowspan="10" >&nbsp;&nbsp;X 예약 내역이 없습니다.<br>&nbsp; 좋은 집들이 많으니 어서 예약하세요!!</td>
           </tr>
           <tr>
             <td class="mainChoice">집 종류</td>
@@ -261,83 +250,86 @@ nav{
           <tr>
             <td class="mainChoice">애완동물</td>
           </tr>
-          <%}else{ %>
+          </table>
+          <br><br>
+          
+           <%}else{ %> 
+           <table align="center" id="home">
           <tr>
             <td class="mainChoice">글 제목</td>
-            <td class="content"><%=title %></td>
+            <td class="content">&nbsp;&nbsp;<%=((myHome)hrlist.get(0)).getTitle() %></td>
           </tr>
           <tr>
             <td class="mainChoice">집 종류</td>
-            <td class="content"><%=type %></td>
+            <td class="content">&nbsp;&nbsp;<%=((myHome)hrlist.get(0)).getType() %></td>
           </tr>
           <tr>
             <td class="mainChoice">입주 기간</td>
-            <td class="content"><%=period %></td>
+            <td class="content">&nbsp;&nbsp;<%=((myHome)hrlist.get(0)).getPeriod() %></td>
           </tr>
           <tr>
             <td class="mainChoice">월세</td>
-            <td class="content"><%=fee %></td>
+            <td class="content">&nbsp;&nbsp;<%=((myHome)hrlist.get(0)).getFee() %></td>
           </tr>
           <tr>
             <td class="mainChoice">건물주 이름</td>
-            <td class="content"><%=userName %></td>
+            <td class="content">&nbsp;&nbsp;<%=((myHome)hrlist.get(0)).getUserName() %></td>
           </tr>
           <tr>
             <td class="mainChoice">건물주 이메일</td>
-            <td class="content"><%=email %></td>
+            <td class="content">&nbsp;&nbsp;<%=((myHome)hrlist.get(0)).getEmail() %></td>
           </tr>
           <tr>
             <td class="mainChoice">건물 주소</td>
-            <td class="content"><%=address %></td>
+            <td class="content">&nbsp;&nbsp;<%=((myHome)hrlist.get(0)).getAddress() %></td>
           </tr>
           <tr>
             <td class="mainChoice">편의 시설</td>
             <td class="content">
             
-            <%if(essentialItem.charAt(0)=='Y'){ %>
-            	essentialItem = "수건, 침대, 식탁  ";
+            <%if(((myHome)hrlist.get(0)).getEssentialItem().charAt(0)=='Y'){ %>
+            	&nbsp;&nbsp;수건 침대 식탁 
             <%}else{ %>
-            	essentialItem = "";
+            	" "
             <%} %>
             
-            <%if(wifi.charAt(0)=='Y'){ %>
-            	wifi = "wifi ";
+            <%if(((myHome)hrlist.get(0)).getWifi().charAt(0)=='Y'){ %>
+            &nbsp;wifi 
             <%}else{ %>
-            	wifi = "";
+            	 " "
             <%} %>
 
-            <%if(television.charAt(0)=='Y'){ %>
-            	television = "TV ";
+            <%if(((myHome)hrlist.get(0)).getTelevision().charAt(0)=='Y'){ %>
+            &nbsp;TV 
             <%}else{ %>
-            	television = "";
+            	 " "
+            <%} %>
+            <%if(((myHome)hrlist.get(0)).getHeater().charAt(0)=='Y'){ %>
+            &nbsp;난방 
+            <%}else{ %>
+             " "
             <%} %>
             
-            <%if(heater.charAt(0)=='Y'){ %>
-            	heater = "난방 ";
+             <%if(((myHome)hrlist.get(0)).getAirConditional().charAt(0)=='Y'){ %>
+            &nbsp;공기청정기 
             <%}else{ %>
-            	heater = "";
-            <%} %>
-            
-             <%if(airConditional.charAt(0)=='Y'){ %>
-            	airConditional = "공기청정기 ";
-            <%}else{ %>
-            	airConditional = "";
+            	" "
             <%} %>
             </td>
           </tr>
           <tr>
             <td class="mainChoice">공용 공간</td>
             <td class="content">
-             <%if(livingroom.charAt(0)=='Y'){ %>
-            	livingroom = "거실 ";
+             <%if(((myHome)hrlist.get(0)).getLivingroom().charAt(0)=='Y'){ %>
+            &nbsp;&nbsp;	거실 
             <%}else{ %>
-            	livingroom = "";
+            	 " "
             <%} %>
             
-             <%if(bathroom.charAt(0)=='Y'){ %>
-            	bathroom = "화장실 ";
+             <%if(((myHome)hrlist.get(0)).getBathroom().charAt(0)=='Y'){ %>
+            	화장실 
             <%}else{ %>
-            	bathroom = "";
+            	 " "
             <%} %>
             
             </td>
@@ -345,20 +337,20 @@ nav{
           <tr>
             <td class="mainChoice">애완동물</td>
             <td class="content">
-             <%if(pet.charAt(0)=='Y'){ %>
-            	pet = "O";
+             <%if(((myHome)hrlist.get(0)).getPet().charAt(0)=='Y'){ %>
+           &nbsp;&nbsp; 	O
             <%}else{ %>
-            	pet = "--";
+            &nbsp;&nbsp;	"--"
             <%} %>
             </td>
           </tr>
-          
-          <%} %>
-        </table>
+        </table><br><br>
+           <button id="homeless" style="width:150px; height:35px; margin-left: 83%;" >예약 취소</button>
+           <%} %> 
       </form>
       <br><br>
       
-      <button id="homeless" style="width:150px; height:35px; margin-left: 83%;" >예약 취소</button>
+     
     </div>
 
     <script>
@@ -369,8 +361,9 @@ nav{
         	  location.href="<%=request.getContextPath()%>/delete.home";
           }
       })
+      
       $("#home .content").click(function(){
-			location.href="<%=request.getContextPath()%>/detail.ho";
+			location.href="<%=request.getContextPath()%>/detail.home";
 	});
     })
 
