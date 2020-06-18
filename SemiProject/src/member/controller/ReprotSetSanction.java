@@ -33,23 +33,28 @@ public class ReprotSetSanction extends HttpServlet {
 		
 		int reportNo = Integer.valueOf(request.getParameter("reportNo"));
 		int userNo = Integer.valueOf(request.getParameter("userNo"));
-		
+		int categoryNo = Integer.valueOf(request.getParameter("categoryNo"));
+		int boardNo = Integer.valueOf(request.getParameter("boardNo"));
 		
 		 PrintWriter out = response.getWriter();
 		
 		
 			
 		 int result1 = new MemberService().SetSanction(userNo); 
+		 int result = new MemberService().ReportDeleteBoard(categoryNo,boardNo);
 		 if(result1 > 0 ) {
-			 int reuslt2 = new MemberService().SetProcess(reportNo,"BR");
-			 if(reuslt2 > 0) {
-		 
-				 out.print("Y");
-		 
-			 }
-			 } else { 
-				 out.print("N");
-			 }
+			 int reuslt2 = new MemberService().SetProcess(reportNo,"UR");
+			 if(result>0) {
+				 if(reuslt2 > 0) {		 
+					 out.print("Y");		 
+				 }
+			 }else { 
+					out.print("N");
+				}
+			 
+		} else { 
+			out.print("N");
+		}
 			 
 		
 	}

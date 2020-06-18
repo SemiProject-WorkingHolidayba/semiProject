@@ -162,7 +162,7 @@
 <header>
     <div class="container2">
       <div class="logo">
-        <a class="navbar-brand" href="#"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
+        <a class="navbar-brand" href="main.jsp"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
       </div>
       <div class="menu">
         <ul class="nav">
@@ -170,7 +170,7 @@
           <li><a href="#">안전정보</a></li>
           <li><a href="#" onclick = "goHome();">집 예약</a></li>
           <li><a href="#">구직 정보</a></li>
-          <li><a href="#">커뮤니티</a>
+          <li><a  onclick ="goCommunity();">커뮤니티</a>
             <ul id="nara">
               <li><a href="http://www.naver.com">뉴질랜드</a></li>
               <li><a href="http://www.naver.com">독일</a></li>
@@ -203,6 +203,9 @@
 <script>
 	function goHome(){
 		location.href = "<%=request.getContextPath()%>/list.ho";
+	}
+	function goCommunity(){
+		location.href = "<%=request.getContextPath()%>/list.bo";
 	}
 </script>
 </body>

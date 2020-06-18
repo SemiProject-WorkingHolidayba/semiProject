@@ -166,22 +166,22 @@ public class TestDao {
 		case 1: 
 		case 2:
 		case 3:
-			query = "DELETE FROM COMMUNITY WHERE COMMUNITYNO = ?";
+			query = "UPDATE COMMUNITY SET STATUS = 'Y' WHERE COMMUNITYNO = ?";
 			break;
 		case 4:
-			query = "DELETE FROM COMMENTS WHERE COMMENTNO = ?";
+			query = "UPDATE COMMENTS SET STATUS = 'Y' WHERE COMMENTNO = ?";
 			break;
 		case 5:
-			query = "DELETE FROM JOBSEARCH WHERE JOBNO = ?";
+			query = "UPDATE JOBSEARCH SET STATUS = 'Y' WHERE JOBNO = ?";
 			break;
 		case 6:
-			query = "DELETE FROM JOBREVIEW WHERE REVIEWNO = ?";
+			query = "UPDATE JOBREVIEW SET STATUS = 'Y' WHERE REVIEWNO = ?";
 			break;
 		case 7:
-			query = "DELETE FROM HOME WHERE HOUSENO = ?";
+			query = "UPDATE HOME SET WHERE STATUS = 'Y' HOUSENO = ?";
 			break;
 		case 8:
-			query = "DELETE FROM HOMEREVIEW WHERE REVIEWNO=?";
+			query = "UPDATE HOMEREVIEW SET STATUS = 'Y' WHERE REVIEWNO=?";
 			break;
 		default:
 			break;

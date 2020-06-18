@@ -1247,6 +1247,7 @@ public class HomeDao {
 							rs.getString("fee"),	
 							rs.getString("address"),
 							rs.getString("essentialItem"),
+
 							rs.getString("wifi"),
 							rs.getString("television"),
 							rs.getString("heater"),

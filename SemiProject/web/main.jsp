@@ -122,11 +122,7 @@
 		height: 530px;
 		text-align: center;
 	}
-	.item img{
-		width: 960px;
-		height: 530px;
-	}
-	
+
     </style>
   </head>
   <body>
@@ -141,7 +137,7 @@
               <li data-target="#myCarousel" data-slide-to="3"></li>
               <li data-target="#myCarousel" data-slide-to="4"></li>
             </ol>
-            <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner" role="listbox" >
               <div class="item active">
                 <img src="images/country/Australia/OpheraHouse.jpg" alt="First slide">
                 <div class="container">
