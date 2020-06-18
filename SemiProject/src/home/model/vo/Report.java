@@ -18,6 +18,14 @@ public class Report {
 	}
 	
 	
+	
+	
+
+	public Report(int boardNo, String categoryNo, int userNo) {
+		this.boardNo = boardNo;
+		this.categoryNo = categoryNo;
+		this.userNo = userNo;
+	}
 
 	public Report(int boardNo, int userNo) {
 		this.boardNo = boardNo;

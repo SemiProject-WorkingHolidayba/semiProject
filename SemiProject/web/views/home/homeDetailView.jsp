@@ -263,24 +263,22 @@
 				<%for(int i = 0; i < flist.size(); i++) { 
 					Img a = flist.get(i);%>
 				        <div class = "item<%=i%>"><img id="myImg" src = "<%=request.getContextPath() %>/home_uploadFiles/<%=a.getSaveImg()%>"></div>
+				        <!-- The Modal -->
+						<div id="myModal" class="modal">
+						
+						  <!-- The Close Button -->
+						  <span class="close" onclick="document.getElementById('myModal').style.display='none'">X</span>
+						
+						  <!-- Modal Content (The Image) -->
+						  <img class="modal-content" id="img01">
+						
+						  <!-- Modal Caption (Image Text) -->
+						  <div id="caption"></div>
+						</div>
 				<%} %>
 			<%} %>
 		</div>
 				
-		<!-- The Modal -->
-		<div id="myModal" class="modal">
-		
-		  <!-- The Close Button -->
-		  <span class="close" onclick="document.getElementById('myModal').style.display='none'">X</span>
-		
-		  <!-- Modal Content (The Image) -->
-		  <img class="modal-content" id="img01">
-		
-		  <!-- Modal Caption (Image Text) -->
-		  <div id="caption"></div>
-		</div>
-				
-
       <div id = "detail_content">
         <div id = "top" >
         	<img style = "width:2%; height:2%; margin-top:-1%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "reportHome();">
@@ -423,7 +421,7 @@
 				<%for(int i=0; i<rlist.size(); i++) { int score = rlist.get(i).getScore(); int rWriter = rlist.get(i).getUserNo();%>	
 					<span class = "writerName" style = "padding-right:1.3%; font-weight:bold"><%=rlist.get(i).getUserName() %></span>
 					<span style = "padding-right:1.3%; font-size:0.8em"><%=rlist.get(i).getWriteDate() %></span>
-					<img style = "width:1.5%; height:1.5%; margin-right:3%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
+					<img style = "width:1.5%; height:1.5%; margin-right:3%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "reportReview(<%=rlist.get(i).getReviewNo()%>);">
 					<%if(rWriter == loginUser.getUserNo()) {%>
 					<img style = "width:1.5%; height:1.5%; margin-right:0.5%;" src = "<%=request.getContextPath()%>/images/update.png" onclick = "location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
 					<img id = "delete" style = "width:1.5%; height:1.5%;" src = "<%=request.getContextPath()%>/images/delete.png" onclick = "location.href = '<%=request.getContextPath()%>/deleteReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
@@ -501,26 +499,29 @@
       });
       
       $(function(){
-    	  var modal = document.getElementById('myModal');
+    	  $("#myImg").click(function(){
+    		  var modal = document.getElementById('myModal');
 
-    	// Get the image and insert it inside the modal - use its "alt" text as a caption
-    	var img = document.getElementById('myImg');
-    	var modalImg = document.getElementById("img01");
-    	var captionText = document.getElementById("caption");
-    	img.onclick = function(){
-    	    modal.style.display = "block";
-    	    modalImg.src = this.src;
-    	    modalImg.alt = this.alt;
-    	    captionText.innerHTML = this.alt;
-    	}
+    	    	// Get the image and insert it inside the modal - use its "alt" text as a caption
+    	    	var img = document.getElementById('myImg');
+    	    	var modalImg = document.getElementById("img01");
+    	    	var captionText = document.getElementById("caption");
+    	    	img.onclick = function(){
+    	    	    modal.style.display = "block";
+    	    	    modalImg.src = this.src;
+    	    	    modalImg.alt = this.alt;
+    	    	    captionText.innerHTML = this.alt;
+    	    	}
 
-    	// Get the <span> element that closes the modal
-    	var span = document.getElementsByClassName("close")[0];
+    	    	// Get the <span> element that closes the modal
+    	    	var span = document.getElementsByClassName("close")[0];
 
-    	// When the user clicks on <span> (x), close the modal
-    	span.onclick = function() {
-    	  modal.style.display = "none";
-    	}
+    	    	// When the user clicks on <span> (x), close the modal
+    	    	span.onclick = function() {
+    	    	  modal.style.display = "none";
+    	    	}
+    	  });
+    	  
       })
       
       </script>
@@ -531,6 +532,14 @@
 			
 			if(result == true){	
 			 location.href = '<%=request.getContextPath()%>/report.ho?hNo=<%=home.gethNo()%>';
+			}
+		}
+		
+		function reportReview(rNo){
+			result = window.confirm("신고하시겠습니까? ");
+			
+			if(result == true){	
+			 location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo='+rNo;
 			}
 		}
    	  $(function(){
@@ -590,99 +599,7 @@
 		});
   	});
    	  
-   	function page(){ 
 
-   		 $('div.paginated').each(function() {
-   		  var pagesu = 10;  //페이지 번호 갯수
-   		  var currentPage = 0;
-   		  var numPerPage = 10;  //목록의 수
-   		  var $div = $(this);    
-   		  
-   		  //length로 원래 리스트의 전체길이구함
-   		  var numRows = <%=rlist.size()%>;
-
-   		  console.log(numRows);
-   		  //Math.ceil를 이용하여 반올림
-   		  var numPages = Math.ceil(numRows / numPerPage);
-   		  //리스트가 없으면 종료
-   		  if (numPages==0) return;
-   		  //pager라는 클래스의 div엘리먼트 작성
-   		  var $pager = $('<td align="center" id="remo" colspan="10"><div class="pager"></div></td>');
-   		  
-   		  var nowp = currentPage;
-   		  var endp = nowp+10;
-   		  
-   		  //페이지를 클릭하면 다시 셋팅
-   		  $div.bind('repaginate', function() {
-   		  //기본적으로 모두 감춘다, 현재페이지+1 곱하기 현재페이지까지 보여준다
-   		  
-   		   $div.find('span').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
-   		   $("#remo").html("");
-   		   
-   		   if (numPages > 1) {     // 한페이지 이상이면
-   		    if (currentPage < 5 && numPages-currentPage >= 5) {   // 현재 5p 이하이면
-   		     nowp = 0;     // 1부터 
-   		     endp = pagesu;    // 10까지
-   		    }else{
-   		     nowp = currentPage -5;  // 6넘어가면 2부터 찍고
-   		     endp = nowp+pagesu;   // 10까지
-   		     pi = 1;
-   		    }
-   		    
-   		    if (numPages < endp) {   // 10페이지가 안되면
-   		     endp = numPages;   // 마지막페이지를 갯수 만큼
-   		     nowp = numPages-pagesu;  // 시작페이지를   갯수 -10
-   		    }
-   		    if (nowp < 1) {     // 시작이 음수 or 0 이면
-   		     nowp = 0;     // 1페이지부터 시작
-   		    }
-   		   }else{       // 한페이지 이하이면
-   		    nowp = 0;      // 한번만 페이징 생성
-   		    endp = numPages;
-   		   }
-   		   // [처음]
-   		   $('<br /><span class="page-number" cursor: "pointer">[처음]</span>').bind('click', {newPage: page},function(event) {
-   		          currentPage = 0;   
-   		          $div.trigger('repaginate');  
-   		          $($(".page-number")[2]).addClass('active').siblings().removeClass('active');
-   		      }).appendTo($pager).addClass('clickable');
-   		    // [이전]
-   		      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[이전]&nbsp;</span>').bind('click', {newPage: page},function(event) {
-   		          if(currentPage == 0) return; 
-   		          currentPage = currentPage-1;
-   		    $div.trigger('repaginate'); 
-   		    $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
-   		   }).appendTo($pager).addClass('clickable');
-   		    // [1,2,3,4,5,6,7,8]
-   		   for (var page = nowp ; page < endp; page++) {
-   		    $('<span class="page-number" cursor: "pointer" style="margin-left: 8px;"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
-   		     currentPage = event.data['newPage'];
-   		     $div.trigger('repaginate');
-   		     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
-   		     }).appendTo($pager).addClass('clickable');
-   		   } 
-   		    // [다음]
-   		      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[다음]&nbsp;</span>').bind('click', {newPage: page},function(event) {
-   		    if(currentPage == numPages-1) return;
-   		        currentPage = currentPage+1;
-   		    $div.trigger('repaginate'); 
-   		     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
-   		   }).appendTo($pager).addClass('clickable');
-   		    // [끝]
-   		   $('<span class="page-number" cursor: "pointer">&nbsp;[끝]</span>').bind('click', {newPage: page},function(event) {
-   		           currentPage = numPages-1;
-   		           $div.trigger('repaginate');
-   		           $($(".page-number")[endp-nowp+1]).addClass('active').siblings().removeClass('active');
-   		   }).appendTo($pager).addClass('clickable');
-   		     
-   		     $($(".page-number")[2]).addClass('active');
-   			reSortColors($div);
-   		  });
-   		   $pager.insertAfter($div).find('span.page-number:first').next().next().addClass('active');   
-   		   $pager.appendTo($div);
-   		   $div.trigger('repaginate');
-   		 });
-   		}
     </script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

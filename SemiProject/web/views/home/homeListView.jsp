@@ -311,7 +311,7 @@
 						<button onclick = "location.href ='<%=request.getContextPath()%>/list.ho?currentPage=<%=p%>'"><%=p%></button>
 					<%} %>
 				<%} %>
-			
+			                
 				<button onclick = "location.href ='<%=request.getContextPath()%>/list.ho?currentPage=<%=currentPage+1%>'"> > </button>
 				<button onclick = "location.href ='<%=request.getContextPath()%>/list.ho?currentPage=<%=maxPage%>'"> >> </button>
             </div>

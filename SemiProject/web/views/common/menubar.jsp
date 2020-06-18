@@ -30,7 +30,7 @@
 <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 <style>
    header{
-      width: 1400px;
+      width: 100%;
       font-family: 'Noto Sans KR', sans-serif;
       color: black;
       text-align: center;
@@ -45,13 +45,15 @@
   .menu {
       background:rgb(113, 177, 197);
       text-align: center;
-      margin: 0 auto;
+      padding:0;
+      margin:0;
   }
 
   .navbar-brand{
       width: 12.9%; 
       height: 20%; 
       padding: 0px;
+      margin:0
   }
 
   .navbar-brand img{ 
@@ -60,7 +62,6 @@
   }
 
   .nav {
-      margin: 0;
       padding: 0;
       list-style-type: none;  
       text-align: center;
@@ -99,7 +100,7 @@
       position: absolute;
       opacity: 1;
       display: block;
-      margin-top: 4.5%;
+      margin-top: 4%;
       height: 3em;
       text-align: center;
       background: #ADD4D9;
@@ -156,12 +157,11 @@
 <body>
 <header>
     <div class="container2">
-      <div class="logo">
-        <a class="navbar-brand" href="#"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
-      </div>
       <div class="menu">
+        <div class="logo">
+        	<a class="navbar-brand" href="#"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
+      	</div>
         <ul class="nav">
-          <li class="active"><a href="#">소개</a></li>
           <li><a href="#">안전정보</a></li>
           <li><a href="#" onclick = "goHome();">집 예약</a></li>
           <li><a href="#">구직 정보</a></li>
