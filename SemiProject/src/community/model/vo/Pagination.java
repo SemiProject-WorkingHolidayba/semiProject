@@ -1,6 +1,6 @@
 package community.model.vo;
 
-public class cPagination {
+public class Pagination {
 	// 페이지 처리를 위한 변수값들을 저장할 객체를 찍어낼 클래스
 	private int currentPage;
 	private int listCount;
@@ -9,11 +9,11 @@ public class cPagination {
 	private int startPage;
 	private int endPage;
 	
-	public cPagination() {
+	public Pagination() {
 		super();
 	}
 	
-	public cPagination(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
+	public Pagination(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
 		super();
 		this.currentPage = currentPage;
 		this.listCount = listCount;

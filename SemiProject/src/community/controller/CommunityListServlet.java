@@ -91,7 +91,7 @@ public class CommunityListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		cPagination pn = new cPagination(currentPage, listCount, limit, maxPage, startPage, endPage);
+		Pagination pn = new Pagination(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		// 1_2. 화면에 뿌려줄 워홀러 내가 쓴 글 테이블 리스트 조회하기
 		ArrayList list = CommunityService.selectList(currentPage, limit, userNo);	

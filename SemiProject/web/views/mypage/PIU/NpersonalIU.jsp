@@ -281,7 +281,7 @@
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Letter/nLetter.jsp" target="_self">내가 쓴 글</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.common" target="_self">내가 쓴 글</a>
 
 
        

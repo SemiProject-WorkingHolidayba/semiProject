@@ -3,32 +3,71 @@ package common.model.vo;
 import java.sql.Date;
 
 public class NletterList {
-	private int letterNo;
-	private int typeNo;
+	private int jobNo;
+	private int houseNo;
+	private int communityNo;
+	private String typeNo;
 	private String typeName;
-	private int title;
+	private String title;
 	private Date writeDate;
 	public NletterList() {
 		super();
 	}
-	public NletterList(int letterNo, int typeNo, String typeName, int title, Date writeDate) {
+	
+	
+	
+	public NletterList(int jobNo, String typeName, String title, Date writeDate) {
 		super();
-		this.letterNo = letterNo;
+		this.jobNo = jobNo;
+		this.typeName = typeName;
+		this.title = title;
+		this.writeDate = writeDate;
+	}
+
+
+
+	public NletterList(int jobNo, String typeNo, String typeName, String title, Date writeDate) {
+		super();
+		this.jobNo = jobNo;
 		this.typeNo = typeNo;
 		this.typeName = typeName;
 		this.title = title;
 		this.writeDate = writeDate;
 	}
-	public int getLetterNo() {
-		return letterNo;
+
+	public NletterList(int jobNo, int houseNo, int communityNo, String typeNo, String typeName, String title,
+			Date writeDate) {
+		super();
+		this.jobNo = jobNo;
+		this.houseNo = houseNo;
+		this.communityNo = communityNo;
+		this.typeNo = typeNo;
+		this.typeName = typeName;
+		this.title = title;
+		this.writeDate = writeDate;
 	}
-	public void setLetterNo(int letterNo) {
-		this.letterNo = letterNo;
+	public int getJobNo() {
+		return jobNo;
 	}
-	public int getTypeNo() {
+	public void setJobNo(int jobNo) {
+		this.jobNo = jobNo;
+	}
+	public int getHouseNo() {
+		return houseNo;
+	}
+	public void setHouseNo(int houseNo) {
+		this.houseNo = houseNo;
+	}
+	public int getCommunityNo() {
+		return communityNo;
+	}
+	public void setCommunityNo(int communityNo) {
+		this.communityNo = communityNo;
+	}
+	public String getTypeNo() {
 		return typeNo;
 	}
-	public void setTypeNo(int typeNo) {
+	public void setTypeNo(String typeNo) {
 		this.typeNo = typeNo;
 	}
 	public String getTypeName() {
@@ -37,10 +76,10 @@ public class NletterList {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
-	public int getTitle() {
+	public String getTitle() {
 		return title;
 	}
-	public void setTitle(int title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 	public Date getWriteDate() {
@@ -51,9 +90,10 @@ public class NletterList {
 	}
 	@Override
 	public String toString() {
-		return "NletterList [letterNo=" + letterNo + ", typeNo=" + typeNo + ", typeName=" + typeName + ", title="
-				+ title + ", writeDate=" + writeDate + "]";
+		return "NletterList [jobNo=" + jobNo + ", houseNo=" + houseNo + ", communityNo=" + communityNo + ", typeNo="
+				+ typeNo + ", typeName=" + typeName + ", title=" + title + ", writeDate=" + writeDate + "]";
 	}
+	
 
 	
 }

@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 import community.model.dao.CommunityDao;
 import community.model.vo.Community;
-import job.model.dao.JobSearchDao;
-import job.model.vo.JobSearch;
+
 
 public class CommunityService {
 

@@ -171,7 +171,7 @@
 
 <body>
 
-	<%@=include file="/views/common/menubar.jsp" %>
+	<%@ include file="/views/common/menubar.jsp" %>
 
 
 
@@ -194,7 +194,7 @@
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Letter/nLetter.jsp" target="_self">내가 쓴 글</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.common" target="_self">내가 쓴 글</a>
 
 
        
@@ -216,14 +216,14 @@
         <thead>
           <tr class="mainChoice" style="background: lightgray;">
             <th scope="col" style="width: 100px;">글 번호</th>
-            <th scope="col" style="width: 150px;">구인/집 매물</th>
+            <th scope="col" style="width: 150px;">글 종류</th>
             <th scope="col" style="width: 300px;">글 제목</th>
             <th scope="col" style="width: 200px;">작성 날짜</th>
             
 
           </tr>
         </thead>
-        <tbody>
+        <tbody id="letterDetail">
            <%if(list.isEmpty()){ %>
       		  <tr>
                 	<td colspan="4">작성한 게시글이 존재하지 않습니다.</td>
@@ -231,7 +231,10 @@
      		<%}else{ %>
           			<%for(int i=0; i<list.size(); i++){ %>
                     <tr>
-                        <td><%=((NletterList)list.get(i)).getLetterNo() %></td>
+                        <td>
+                        		 <%=((NletterList)list.get(i)).getJobNo()%> 
+                        		
+                        </td>
                         <td><%=((NletterList)list.get(i)).getTypeName() %></td>
                         <td><%=((NletterList)list.get(i)).getTitle() %></td> 
                         <td><%=((NletterList)list.get(i)).getWriteDate() %></td>

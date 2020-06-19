@@ -9,10 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.model.service.NletterListService;
 import community.model.service.CommunityService;
 import job.model.vo.Pagination;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class ListCommon
@@ -33,9 +35,12 @@ public class ListCommonServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	HttpSession session = request.getSession();
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	int userNo = loginUser.getUserNo();
+	
 	NletterListService nletter = new NletterListService();
-		
-		int listCount = NletterListService.getListCount();
+		int listCount = NletterListService.getListCount(userNo);
 		
 		int currentPage;	// 현재 페이지를 표시 할 변수
 		int limit;			// 한 페이지에 게시글이 몇 개가 보여질 것인지
@@ -88,18 +93,19 @@ public class ListCommonServlet extends HttpServlet {
 		Pagination pn = new Pagination(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		// 1_2. 화면에 뿌려줄 워홀러 내가 쓴 글 테이블 리스트 조회하기
-		ArrayList list = CommunityService.selectList(currentPage, limit);	
-		
+		ArrayList list =nletter.selectList(currentPage, limit,userNo);	
+		System.out.println(userNo);
+		System.out.println(list);
+		System.out.println(listCount);
 		RequestDispatcher view = null;
 		if(list != null) {
-			view = request.getRequestDispatcher("views/mypage/Letter/wLetter.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("pn", pn);
+			view = request.getRequestDispatcher("views/mypage/Letter/nLetter.jsp");
+		}else {
+			view =request.getRequestDispatcher("views/common/errorPage.jsp");
 		}
 		view.forward(request, response);
-		
-		
-		
 		
 		
 	}

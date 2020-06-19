@@ -105,10 +105,10 @@ public class JobSearchService {
 		return result;
 	}
 
-	public int getJaListCount() {
+	public int getJaListCount(int userNo) {
 		Connection conn = getConnection();
 		
-		int jalistCount = new JobSearchDao().getJaListCount(conn);
+		int jalistCount = new JobSearchDao().getJaListCount(conn,userNo);
 		
 		close(conn);
 		
@@ -116,11 +116,11 @@ public class JobSearchService {
 		
 	}
 
-	public ArrayList selectListJa(int currentPage, int limit) {
+	public ArrayList selectListJa(int currentPage, int limit,int userNo) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList list = new JobSearchDao().selectListJa(conn, currentPage, limit);
+		ArrayList list = new JobSearchDao().selectListJa(conn, currentPage, limit,userNo);
 		
 		close(conn);
 		

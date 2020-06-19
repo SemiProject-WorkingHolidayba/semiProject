@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import job.model.service.JobSearchService;
 import job.model.vo.Pagination;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class JobApplicatorList
@@ -33,8 +35,10 @@ public class JobApplicatorList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	JobSearchService jService = new JobSearchService();
-		
-		int jalistCount = jService.getJaListCount();
+	HttpSession session = request.getSession();
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	int userNo = loginUser.getUserNo();
+		int jalistCount = jService.getJaListCount(userNo);
 		
 		int currentPage;	// 현재 페이지를 표시 할 변수
 		int limit;			// 한 페이지에 게시글이 몇 개가 보여질 것인지
@@ -87,13 +91,13 @@ public class JobApplicatorList extends HttpServlet {
 		Pagination pn = new Pagination(currentPage, jalistCount, limit, maxPage, startPage, endPage);
 		
 		// 1_2. 화면에 뿌려줄 구직신청자 테이블 리스트 조회하기
-		ArrayList list = jService.selectListJa(currentPage, limit);	
+		ArrayList list = jService.selectListJa(currentPage, limit, userNo);	
 		
 		RequestDispatcher view = null;
 		if(list != null) {
-			view = request.getRequestDispatcher("views/mypage/Work/nWork.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("pn", pn);
+			view = request.getRequestDispatcher("views/mypage/Work/nWork.jsp");
 		}else {
 			view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			request.setAttribute("msg", "게시글 조회 실패!!");

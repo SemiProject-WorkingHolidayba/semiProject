@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import community.model.vo.Community;
-import job.model.vo.JobSearch;
+
 
 public class CommunityDao {
 

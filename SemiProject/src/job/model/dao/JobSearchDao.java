@@ -341,15 +341,16 @@ public class JobSearchDao {
 	
 	}
 
-	public int getJaListCount(Connection conn) {
+	public int getJaListCount(Connection conn,int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT COUNT(*) FROM ARESERVATIONLIST ";
+		String query = "SELECT COUNT(*) FROM ARESERVATIONLIST WHERE J=? ";
 		
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				result = rs.getInt(1);
@@ -366,7 +367,7 @@ public class JobSearchDao {
 		
 	}
 
-	public ArrayList selectListJa(Connection conn, int currentPage, int limit) {
+	public ArrayList selectListJa(Connection conn, int currentPage, int limit,int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -376,13 +377,13 @@ public class JobSearchDao {
 		int endRow = currentPage * limit;
 		
 		
-		String query = "SELECT * FROM (SELECT A.* FROM ARESERVATIONLIST A) WHERE RNUM BETWEEN ? AND ?";
+		String query = " SELECT * FROM (SELECT A.* FROM ARESERVATIONLIST A WHERE RNUM BETWEEN ? AND ? AND J=?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1,startRow);
 			pstmt.setInt(2, endRow);
-			
+			pstmt.setInt(3, userNo);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
