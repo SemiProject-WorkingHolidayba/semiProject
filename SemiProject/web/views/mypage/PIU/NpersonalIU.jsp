@@ -624,8 +624,7 @@
  $(function(){
 	 $("#deleteMan").click(function(){
 	
-		 var pwd = $("#deletePwd");
-	
+		var pwd = $("#deletePwd");
 		
 	      $("#deletePwd").change(function(){
 	         
