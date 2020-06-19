@@ -37,7 +37,7 @@ public class HomeDetailView extends HttpServlet {
 		int houseNo2 = Integer.valueOf(houseNo);
 		String userNo = request.getParameter("userNo");
 		int userNo2 = Integer.valueOf(userNo);
-	
+
 		myHome home  = new HomeService().mselectHome(houseNo2, userNo2);
 		
 	
