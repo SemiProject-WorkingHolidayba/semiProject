@@ -127,7 +127,7 @@
 					<%
 					 for(int i=0;i<rplist.size();i++){
 						 String categoryname = "";
-						 switch(((member.model.vo.Report)rplist.get(i)).getCategoryno()){
+						 switch(((Report)rplist.get(i)).getCategoryno()){
 						 case 1: categoryname= "자유게시판"; break;
 						 case 2: categoryname= "질문게시판"; break;
 						 case 3: categoryname= "벼룩시장"; break;
@@ -146,7 +146,7 @@
 					<td><%=i+1%></td>
 					<td><%=((Report)rplist.get(i)).getUploaduser() %></td>
 					<td><%=categoryname %></td>
-					<td><button>글 확인</button></td>
+					<td><button onclick="findBoard('<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno()%>')">글 확인</button></td>
 					 <td><%if(process==null){%>
 					 							 		
 						 		<button onclick="setSanction('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getUploaduserno()%>','<%=((Report)rplist.get(i)).getReportno()%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>');">사용자 정지</button>
@@ -265,7 +265,22 @@
 					
 			}
 		}
-		
+		function findBoard(categoryno, boardno){
+			
+			
+			 /* case 1: categoryname= "자유게시판"; break;
+			 case 2: categoryname= "질문게시판"; break;
+			 case 3: categoryname= "벼룩시장"; break;
+			 case 4: categoryname= "댓글"; break;
+			 case 5: categoryname= "구직글"; break;
+			 case 6: categoryname= "구직리뷰"; break;
+			 case 7: categoryname= "집 게시글"; break;
+			 case 8: categoryname= "집 리뷰"; break;
+			 나중에 해야쥥
+			  */
+			 
+			 
+		}
 		
 	</script>
 
