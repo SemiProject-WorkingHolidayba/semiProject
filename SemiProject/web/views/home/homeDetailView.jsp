@@ -264,8 +264,6 @@
 					Img a = flist.get(i);%>
 				        <div class = "item<%=i%>"><img id="myImg" src = "<%=request.getContextPath() %>/home_uploadFiles/<%=a.getSaveImg()%>"></div>
 				        <!-- The Modal -->
-<<<<<<< HEAD
-=======
 						<div id="myModal" class="modal">
 						
 						  <!-- The Close Button -->
@@ -277,19 +275,7 @@
 						  <!-- Modal Caption (Image Text) -->
 						  <div id="caption"></div>
 						</div>
->>>>>>> refs/remotes/origin/kimsung
 				<%} %>
-				<div id="myModal" class="modal">
-
-				  <!-- The Close Button -->
-				  <span class="close" onclick="document.getElementById('myModal').style.display='none'">X</span>
-				
-				  <!-- Modal Content (The Image) -->
-				  <img class="modal-content" id="img01">
-				
-				  <!-- Modal Caption (Image Text) -->
-				  <div id="caption"></div>
-				</div>
 			<%} %>
 		</div>
 				
@@ -306,7 +292,6 @@
             <p><%=home.getContent()%></p>
             <p><%=home.getAddress()%>
           </div>
-          
         </div>
         <div id = "middle">
             <div id="reservation" style = "position: absolute">
@@ -515,9 +500,9 @@
       });
       
       $(function(){
-
     	  $("#myImg").click(function(){
     		  var modal = document.getElementById('myModal');
+
     	    	// Get the image and insert it inside the modal - use its "alt" text as a caption
     	    	var img = document.getElementById('myImg');
     	    	var modalImg = document.getElementById("img01");
@@ -628,11 +613,7 @@
 		});
   	});
    	  
-<<<<<<< HEAD
 
-=======
-
->>>>>>> refs/remotes/origin/kimsung
     </script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

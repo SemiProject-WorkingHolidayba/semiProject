@@ -9,10 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import community.model.service.CommunityService;
-import community.model.vo.Pagination;
+import community.model.vo.*;
 import member.model.vo.Member;
 
 /**
@@ -41,7 +42,7 @@ public class CommunityListServlet extends HttpServlet {
 		
 		CommunityService community = new CommunityService();
 		
-		int listCount = CommunityService.getListCount(userNo);
+		int listCount = CommunityService.getcListCount(userNo);
 		
 		int currentPage;	// 현재 페이지를 표시 할 변수
 		int limit;			// 한 페이지에 게시글이 몇 개가 보여질 것인지

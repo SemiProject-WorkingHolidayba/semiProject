@@ -252,12 +252,11 @@
                     <tr id = "term">
                         <td><b>기간</b></td>
                         <td>
-
-                            <label class="term_option"><input type="checkbox"" name = "period" value="3개월미만"><span>3개월 미만</span></label>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="3개월이상"><span>3개월 이상</span></label>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="6개월이상"><span>6개월 이상</span></label>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="9개월이상"><span>9개월 이상</span></label>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="1년이상"><span>1년 이상</span></label>
+                            <label class="term_option"><input type="checkbox"" name = "period" value="3monthless"><span>3개월 미만</span></label>
+                            <label class="term_option"><input type="checkbox"" name = "period" value="3months"><span>3개월 이상</span></label>
+                            <label class="term_option"><input type="checkbox"" name = "period" value="6months"><span>6개월 이상</span></label>
+                            <label class="term_option"><input type="checkbox"" name = "period" value="9months"><span>9개월 이상</span></label>
+                            <label class="term_option"><input type="checkbox"" name = "period" value="1year"><span>1년 이상</span></label>
                         </td>
                     </tr>
                     <tr>
@@ -313,7 +312,6 @@
 					<%} %>
 				<%} %>
 			                
-
 				<button onclick = "location.href ='<%=request.getContextPath()%>/list.ho?currentPage=<%=currentPage+1%>'"> > </button>
 				<button onclick = "location.href ='<%=request.getContextPath()%>/list.ho?currentPage=<%=maxPage%>'"> >> </button>
             </div>

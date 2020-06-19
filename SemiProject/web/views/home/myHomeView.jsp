@@ -29,19 +29,14 @@
 	String period = home.getPeriod();
 	String[] checkedPeriod = new String[5];
 	switch(period){
-<<<<<<< HEAD
+
 		case "3개월미만": checkedPeriod[0] = "checked"; break;
 		case "3개월이상": checkedPeriod[1] = "checked"; break;
 		case "6개월이상": checkedPeriod[2] = "checked"; break;
 		case "9개월이상": checkedPeriod[3] = "checked"; break;
 		case "1년이상": checkedPeriod[4] = "checked"; break;
-=======
-		case "3monthless": checkedPeriod[0] = "checked"; break;
-		case "3months": checkedPeriod[1] = "checked"; break;
-		case "6months": checkedPeriod[2] = "checked"; break;
-		case "9months": checkedPeriod[3] = "checked"; break;
-		case "1year": checkedPeriod[4] = "checked"; break;
->>>>>>> refs/remotes/origin/Eunjin
+
+		
 	}
 	
 	String essentialitem = home.getEssentialitem();

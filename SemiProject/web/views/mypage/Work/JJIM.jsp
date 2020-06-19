@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="job.model.vo.*, java.util.ArrayList"%>
 <%
-   Pagination pn = (Pagination)request.getAttribute("pn");
-   ArrayList list = (ArrayList)request.getAttribute("list");
-   
-   int listCount = pn.getListCount();
-   int currentPage = pn.getCurrentPage();
-   int maxPage = pn.getMaxPage();
-   int startPage = pn.getStartPage();
-   int endPage = pn.getEndPage();
+	Pagination pn = (Pagination)request.getAttribute("pn");
+	ArrayList list = (ArrayList)request.getAttribute("list");
+	
+	int listCount = pn.getListCount();
+	int currentPage = pn.getCurrentPage();
+	int maxPage = pn.getMaxPage();
+	int startPage = pn.getStartPage();
+	int endPage = pn.getEndPage();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -284,13 +284,13 @@
                     </tr>
                 </thead>
                 <tbody id="listChoice">
-                   <%if(list.isEmpty()){ %>
-                   <tr>
-                      <td colspan="7">찜 내역이 없습니다!.</td>
-                   </tr>
-                   <%}else{ %>
-                   <%for(int i=0; i<list.size(); i++){ %>
-                   <label id="jan" style="visibility:hidden;"><%=((JobSearch)list.get(i)).getHeartNo() %></label>
+                	<%if(list.isEmpty()){ %>
+                	<tr>
+                		<td colspan="7">찜 내역이 없습니다!.</td>
+                	</tr>
+                	<%}else{ %>
+                	<%for(int i=0; i<list.size(); i++){ %>
+                	<label id="jan" style="visibility:hidden;"><%=((JobSearch)list.get(i)).getHeartNo() %></label>
                     <tr>
                         <td><i class="fas fa-grin-hearts"></i></td>
                         <td><%=((JobSearch)list.get(i)).getJobNo() %></td>
@@ -300,8 +300,8 @@
                         <td><%=((JobSearch)list.get(i)).getWorkTime() %></td>
                         <td><%=((JobSearch)list.get(i)).getDueDate() %></td>
                     </tr>
-                     <%} %>
-            <%} %>
+               		<%} %>
+				<%} %>
                 </tbody>
             </table>
            <!--  <nav aria-label="Page navigation example">
@@ -322,24 +322,24 @@
                 </ul>
             </nav> -->
             <div class="pagingArea" align="center">
-         <!-- 맨 처음으로(<<) -->
-         <button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=1'"> << </button>
-         <!-- 이전 페이지로(<) -->
-         <button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage-1 %>'"> < </button>
-         <!-- 10개의 페이지 목록 -->
-         <% for(int p = startPage ; p <= endPage ; p ++) {%>
-            <%if(p == currentPage) {%>
-               <button disabled><%=p %></button>
-            <%}else{ %>
-               <button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=p %>'"><%=p %></button>
-            <%} %>
-         <% } %>
-         
-         <!-- 다음 페이지로(>) -->
-         <button type="button" onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage+1 %>'"> > </button>
-         <!-- 맨 끝으로(>>) -->
-         <button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=maxPage %>'"> >> </button>
-      </div>
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=1'"> << </button>
+			<!-- 이전 페이지로(<) -->
+			<button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage-1 %>'"> < </button>
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = startPage ; p <= endPage ; p ++) {%>
+				<%if(p == currentPage) {%>
+					<button disabled><%=p %></button>
+				<%}else{ %>
+					<button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=p %>'"><%=p %></button>
+				<%} %>
+			<% } %>
+			
+			<!-- 다음 페이지로(>) -->
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage+1 %>'"> > </button>
+			<!-- 맨 끝으로(>>) -->
+			<button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=maxPage %>'"> >> </button>
+		</div>
         </form>
 
 
@@ -347,30 +347,30 @@
 
     <script>
     $(function(){
-      $("#listChoice td").click(function(){
-         
+		$("#listChoice td").click(function(){
+			
 
-            location.href="<%=request.getContextPath()%>/detail.job?jobNo=" +jobNo;
-      
-         // JobDetailServlet을 만들러 가자
-      });
-      
-      $("#listChoice td").children("i").click(function(){
-         var bool = confirm("찜목록에서 제거하시겠습니까?");
-         var heartNo = $("#jan").text();
-         if(bool){
-            location.href="<%=request.getContextPath()%>/delete.jjim?heartNo=" +heartNo;
-         }
-      
-      })
-      
-         
+				location.href="<%=request.getContextPath()%>/detail.job?jobNo=" +jobNo;
+		
+			// JobDetailServlet을 만들러 가자
+		});
+		
+		$("#listChoice td").children("i").click(function(){
+			var bool = confirm("찜목록에서 제거하시겠습니까?");
+			var heartNo = $("#jan").text();
+			if(bool){
+				location.href="<%=request.getContextPath()%>/delete.jjim?heartNo=" +heartNo;
+			}
+		
+		})
+		
+			
 
-   
-      // JJimDeleteServlet을 만들러 가자
-   });
-      
-   
+	
+		// JJimDeleteServlet을 만들러 가자
+	});
+		
+	
     </script>
 
 

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import community.model.service.CommunityService;
-import community.model.vo.Community;
+import community.model.vo.CommunityMy;
 
 
 
@@ -39,8 +39,7 @@ public class CommunityDetailServlet extends HttpServlet {
 					String categoryNo = request.getParameter("categoryNo");
 					int categoryNo2 = Integer.valueOf(categoryNo);
 				
-
-					Community community = new CommunityService().selectCommunity(communityNo2, categoryNo2);
+					CommunityMy community = new CommunityService().selectcCommunity(communityNo2, categoryNo2);
 					
 					
 					if(community != null) {
@@ -52,7 +51,6 @@ public class CommunityDetailServlet extends HttpServlet {
 					
 					
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
