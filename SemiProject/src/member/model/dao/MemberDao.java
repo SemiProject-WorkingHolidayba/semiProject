@@ -606,7 +606,7 @@ public class MemberDao {
 
 			pstmt.setString(1, email);
 			pstmt.setString(2, userId);
-
+			
 			result = pstmt.executeUpdate();
 			
 			

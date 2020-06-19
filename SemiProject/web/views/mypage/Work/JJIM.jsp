@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="job.model.vo.*, java.util.ArrayList"%>
 <%
-	Pagination pn = (Pagination)request.getAttribute("pn");
-	ArrayList list = (ArrayList)request.getAttribute("list");
-	
-	int listCount = pn.getListCount();
-	int currentPage = pn.getCurrentPage();
-	int maxPage = pn.getMaxPage();
-	int startPage = pn.getStartPage();
-	int endPage = pn.getEndPage();
+   Pagination pn = (Pagination)request.getAttribute("pn");
+   ArrayList list = (ArrayList)request.getAttribute("list");
+   
+   int listCount = pn.getListCount();
+   int currentPage = pn.getCurrentPage();
+   int maxPage = pn.getMaxPage();
+   int startPage = pn.getStartPage();
+   int endPage = pn.getEndPage();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -244,7 +244,6 @@
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
 
         </li>
-<<<<<<< HEAD
         <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/search.ho" target="_self">집 예약 내역</a>
         </li>
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.aj" target="_self">구직 신청
@@ -285,13 +284,13 @@
                     </tr>
                 </thead>
                 <tbody id="listChoice">
-                	<%if(list.isEmpty()){ %>
-                	<tr>
-                		<td colspan="7">찜 내역이 없습니다!.</td>
-                	</tr>
-                	<%}else{ %>
-                	<%for(int i=0; i<list.size(); i++){ %>
-                	<label id="jan" style="visibility:hidden;"><%=((JobSearch)list.get(i)).getHeartNo() %></label>
+                   <%if(list.isEmpty()){ %>
+                   <tr>
+                      <td colspan="7">찜 내역이 없습니다!.</td>
+                   </tr>
+                   <%}else{ %>
+                   <%for(int i=0; i<list.size(); i++){ %>
+                   <label id="jan" style="visibility:hidden;"><%=((JobSearch)list.get(i)).getHeartNo() %></label>
                     <tr>
                         <td><i class="fas fa-grin-hearts"></i></td>
                         <td><%=((JobSearch)list.get(i)).getJobNo() %></td>
@@ -301,8 +300,8 @@
                         <td><%=((JobSearch)list.get(i)).getWorkTime() %></td>
                         <td><%=((JobSearch)list.get(i)).getDueDate() %></td>
                     </tr>
-               		<%} %>
-				<%} %>
+                     <%} %>
+            <%} %>
                 </tbody>
             </table>
            <!--  <nav aria-label="Page navigation example">
@@ -323,24 +322,24 @@
                 </ul>
             </nav> -->
             <div class="pagingArea" align="center">
-			<!-- 맨 처음으로(<<) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=1'"> << </button>
-			<!-- 이전 페이지로(<) -->
-			<button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage-1 %>'"> < </button>
-			<!-- 10개의 페이지 목록 -->
-			<% for(int p = startPage ; p <= endPage ; p ++) {%>
-				<%if(p == currentPage) {%>
-					<button disabled><%=p %></button>
-				<%}else{ %>
-					<button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=p %>'"><%=p %></button>
-				<%} %>
-			<% } %>
-			
-			<!-- 다음 페이지로(>) -->
-			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage+1 %>'"> > </button>
-			<!-- 맨 끝으로(>>) -->
-			<button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=maxPage %>'"> >> </button>
-		</div>
+         <!-- 맨 처음으로(<<) -->
+         <button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=1'"> << </button>
+         <!-- 이전 페이지로(<) -->
+         <button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage-1 %>'"> < </button>
+         <!-- 10개의 페이지 목록 -->
+         <% for(int p = startPage ; p <= endPage ; p ++) {%>
+            <%if(p == currentPage) {%>
+               <button disabled><%=p %></button>
+            <%}else{ %>
+               <button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=p %>'"><%=p %></button>
+            <%} %>
+         <% } %>
+         
+         <!-- 다음 페이지로(>) -->
+         <button type="button" onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage+1 %>'"> > </button>
+         <!-- 맨 끝으로(>>) -->
+         <button type="button"  onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=maxPage %>'"> >> </button>
+      </div>
         </form>
 
 
@@ -348,146 +347,30 @@
 
     <script>
     $(function(){
-		$("#listChoice td").click(function(){
-			
+      $("#listChoice td").click(function(){
+         
 
-				location.href="<%=request.getContextPath()%>/detail.job?jobNo=" +jobNo;
-		
-			// JobDetailServlet을 만들러 가자
-		});
-		
-		$("#listChoice td").children("i").click(function(){
-			var bool = confirm("찜목록에서 제거하시겠습니까?");
-			var heartNo = $("#jan").text();
-			if(bool){
-				location.href="<%=request.getContextPath()%>/delete.jjim?heartNo=" +heartNo;
-=======
-        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Home/wHome.jsp" target="_self">집 예약 내역</a>
-        </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/wWork.jsp" target="_self">구직 신청
-            내역</a>
+            location.href="<%=request.getContextPath()%>/detail.job?jobNo=" +jobNo;
+      
+         // JobDetailServlet을 만들러 가자
+      });
+      
+      $("#listChoice td").children("i").click(function(){
+         var bool = confirm("찜목록에서 제거하시겠습니까?");
+         var heartNo = $("#jan").text();
+         if(bool){
+            location.href="<%=request.getContextPath()%>/delete.jjim?heartNo=" +heartNo;
+         }
+      
+      })
+      
+         
 
-
-        </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Letter/wLetter.jsp" target="_self">내가 쓴 글</a>
-
-
-        </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/JJIM.jsp" target="_self">찜 목록</a>
-
-
-        </li>
-
-      </ul>
-
-    </nav>
-  </div>
-<!-------------------------------------------------찜 목록 div-------------------------------------------------------------------  -->
-<div id="wrap" class=" area " style="position:absolute; margin-left: 5%;" ; align="center">
-
-        <h1 style="font-weight: 900;">찜 목록</h1>
-
-        <form style="margin-top: 100px; margin-left: 100px;">
-
-            <table class="table table-hover table-bordered" >
-                <thead>
-                    <tr class="mainChoice" style="background: lightgray;">
-                        <th scope="col">찜 목록</th>
-                        <th scope="col">글 번호</th>
-                        <th scope="col">글 제목</th>
-                        <th scope="col">근무 위치</th>
-                        <th scope="col">근무 기간</th>
-                        <th scope="col">근무 시간</th>
-                        <th scope="col">마감일</th>
-                    </tr>
-                </thead>
-                <tbody id="listChoice">
-                	<%if(list.isEmpty()){ %>
-                	<tr>
-                		<td colspan="7">찜 내역이 없습니다!.</td>
-                	</tr>
-                	<%}else{ %>
-                	<%for(int i=0; i<list.size(); i++){ %>
-                    <tr>
-                        <td><i class="fas fa-grin-hearts"></i></td>
-                        <td><%=((JobSearch)list.get(i)).getJobNo() %></td>
-                        <td><%=((JobSearch)list.get(i)).getTitle() %></td>
-                        <td><%=((JobSearch)list.get(i)).getCountry() %></td>
-                        <td><%=((JobSearch)list.get(i)).getPeriod() %></td>
-                        <td><%=((JobSearch)list.get(i)).getWorkTime() %></td>
-                        <td><%=((JobSearch)list.get(i)).getDueDate() %></td>
-                    </tr>
-               		<%} %>
-				<%} %>
-                </tbody>
-            </table>
-           <!--  <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&rsaquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav> -->
-            <div class="pagingArea" align="center">
-			<!-- 맨 처음으로(<<) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=1'"> << </button>
-			<!-- 이전 페이지로(<) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage-1 %>'"> < </button>
-			<!-- 10개의 페이지 목록 -->
-			<% for(int p = startPage ; p <= endPage ; p ++) {%>
-				<%if(p == currentPage) {%>
-					<button disabled><%=p %></button>
-				<%}else{ %>
-					<button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=p %>'"><%=p %></button>
-				<%} %>
-			<% } %>
-			
-			<!-- 다음 페이지로(>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=currentPage+1 %>'"> > </button>
-			<!-- 맨 끝으로(>>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/list.job?currentPage=<%=maxPage %>'"> >> </button>
-		</div>
-        </form>
-
-
-    </div>
-
-    <script>
-    $(function(){
-		$("#listChoice td").click(function(){
-			
-
-				location.href="<%=request.getContextPath()%>/detail.job?jobNo=" +jobNo;
-		
-			// JobDetailServlet을 만들러 가자
-		});
-		
-		$("#listChoice td").children("i").click(function(){
-			var bool = confirm("찜목록에서 제거하시겠습니까?");
-			if(bool){
-				location.href="<%=request.getContextPath()%>/delete.jjim";
->>>>>>> refs/remotes/origin/Eunjin
-			}
-		
-		})
-		
-			
-
-	
-		// JJimDeleteServlet을 만들러 가자
-	});
-		
-	
+   
+      // JJimDeleteServlet을 만들러 가자
+   });
+      
+   
     </script>
 
 

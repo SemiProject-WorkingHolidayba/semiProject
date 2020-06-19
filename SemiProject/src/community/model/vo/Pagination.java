@@ -1,6 +1,7 @@
 package community.model.vo;
 
 
+
 public class Pagination {
 	private int currentPage;
 	private int listCount;
@@ -62,7 +63,4 @@ public class Pagination {
 				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
 	
-
-	
-
 }

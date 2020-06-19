@@ -373,8 +373,6 @@ public class HomeService {
 		
 		return list;
 		
-		
-
 
 	}
 

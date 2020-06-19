@@ -748,8 +748,9 @@ public class HomeDao {
 		
 		int result = 0;
 		
+
 		String query = "INSERT INTO HOME VALUES (SEQ_HOME.NEXTVAL,?,?,?,?,?,DEFAULT,?,DEFAULT,?,?,DEFAULT,'H')";
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, h.getType());

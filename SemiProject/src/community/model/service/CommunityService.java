@@ -1,163 +1,95 @@
 package community.model.service;
 
 
-
 import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
 import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import community.model.dao.CommunityDao;
 import community.model.vo.Community;
-import community.model.vo.Community1;
-import community.model.vo.CommunityImg;
-import community.model.vo.Reply;
+import community.model.vo.CommunityMy;
+
 
 public class CommunityService {
-
-	public int getListCount() {
-		Connection conn = getConnection();
-		
-		int listCount = new CommunityDao().getListCount(conn);
-		
-		close(conn);
-		return listCount;
-	}
-	public int insertCommunity(Community1 c) {
-		Connection conn = getConnection();
-		
-		int result = new CommunityDao().insertCommunity(conn, c);
-		
-		if(result>0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		return result;
-	}
-	public ArrayList selectList(int currentPage, int limit) {
-		Connection conn = getConnection();
-		ArrayList list = new CommunityDao().selectList(conn,currentPage,limit);
-		close(conn);
-		return list;
-	}
-
-	public ArrayList selectList1(int currentPage, int limit) {
-		Connection conn =getConnection();
-		ArrayList list = new CommunityDao().selectList1(conn, currentPage, limit);
-		close(conn);
-		
-		return list;
-	}
-	public ArrayList selectList2(int currentPage, int limit) {
-		Connection conn =getConnection();
-		ArrayList list = new CommunityDao().selectList2(conn, currentPage, limit);
-		close(conn);
-		
-		return list;
-	}
 	
+	public Community selectCommunity(Connection conn, int communityno) { /* 게시판 리스트 뿌려줌 */
+	      
+	      PreparedStatement pstmt = null;
+	      ResultSet rs= null;
+	      Community community =null;
+	      String query ="SELECT * FROM CLIST WHERE COMMUNITYNO=?";
+	      
+	      //************************** 바로위 수정 요망****************************>
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, communityno);
+	         
+	         rs = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            community = new Community(rs.getInt("communityno"),
+	                                 rs.getString("title"),
+	                                 rs.getString("content"),
+	                                 rs.getDate("writedate"),
+	                                 rs.getInt("viewcount"),
+	                                 rs.getInt("report"),
+	                                 rs.getString("country"),
+	                                 rs.getString("categoryname"),
+	                                 rs.getString("userid"));
+	                           
 
-	public ArrayList selectList3(int currentPage, int limit) {
-		Connection conn =getConnection();
-		ArrayList list = new CommunityDao().selectList3(conn, currentPage, limit);
-		close(conn);
-		
-		return list;
-	}
+	         
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	         close(rs);
+	      }
+	   
 
-	public int insertCommunity(Community1 c, ArrayList<CommunityImg> fileList) {
-		Connection conn = getConnection();
-		
-		int result = new CommunityDao().insertCommunity(conn,c);
-		int result1 = new CommunityDao().insertCommunityImg(conn, fileList);
-		System.out.println(result);
-		System.out.println(result1);
-		
-		if(result>0 && result1 >0) {
-			commit(conn);
-			result =1;
-		}else {
-			rollback(conn);
-			result =0;
-		}
-		close(conn);
-		
-		return result;
-	}
+	      return community;
+	   }
 
-	public int updateCount(int communityno) {
-		Connection conn = getConnection();
-		
-		int result = new CommunityDao().updateCount(conn,communityno);
-		
-		if(result>0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
+	public CommunityMy selectcCommunity(int communityNo2, int categoryNo2) {
 
-	public Community selectCommunity(int communityno) {
-	Connection conn = getConnection();
-		
-		Community community = new CommunityDao().selectCommunity(conn, communityno);
-				
-		close(conn);
-		
-		return community;
-		
-	}
+	      Connection conn = getConnection();
+	      
+	      CommunityMy community = new CommunityDao().selectcCommunity(conn, communityNo2, categoryNo2);
+	      
+	      close(conn);
+	      return community;
+	   }
 
-	public ArrayList<Reply> selectReplyList(int communityno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	   public static int getcListCount(int userNo) {
+	      Connection conn = getConnection();
+	      
+	      int listCount = new CommunityDao().getcListCount(conn, userNo);
+	      
+	      
+	      close(conn);
+	      
+	      return listCount;
+	   }
 
-
-	public int updateCommunity(Community1 c, ArrayList<CommunityImg> fileList) {
-Connection conn = getConnection();
-		
-		int result = new CommunityDao().updateCommunity(conn,c);
-		int result1 = new CommunityDao().updateCommunityImg(conn, fileList);
-	
-		if(result>0 && result1 >0) {
-			commit(conn);
-			result =1;
-			
-		}else {
-			rollback(conn);
-			result =0;
-		}
-		close(conn);
-		System.out.println("result :"+result);
-		System.out.println("result1 :"+result1);
-		return result;
-	
-	}
-	
-	public CommunityImg selectCommunityImg(int communityno) {
-Connection conn = getConnection();
-		
-		CommunityImg communityimg = new CommunityDao().selectCommunityImg(conn, communityno);
-		System.out.println("serice"+communityimg);
-				
-		close(conn);
-		
-		return communityimg;
-	}
-
-	
-
-
-
+	   public static ArrayList selectcList(int currentPage, int limit,int userNo) {
+	      Connection conn = getConnection();
+	      
+	      ArrayList list = new CommunityDao().selectcList(conn, currentPage, limit, userNo);
+	      
+	      close(conn);
+	      
+	      return list;
+	   
+	   
+	   
+	   }
 
 
 }

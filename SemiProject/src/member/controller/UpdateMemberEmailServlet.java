@@ -41,7 +41,6 @@ public class UpdateMemberEmailServlet extends HttpServlet {
 	
 		String userId = loginUser.getUserId();
 
-
 	
 		int resultEmail = new MemberService().updateEmail(email,userId);
 		PrintWriter out = response.getWriter();

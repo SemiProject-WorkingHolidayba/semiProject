@@ -39,7 +39,9 @@ public class UpdateMemberPwdServlet extends HttpServlet {
 	
 		String userPw = request.getParameter("userPw");
 		String userId = loginUser.getUserId();
+
 		System.out.println(userPw);
+
 		System.out.println(userId);
 		int resultPwd = new MemberService().updatePwd(userPw,userId);
 		System.out.println(resultPwd);
