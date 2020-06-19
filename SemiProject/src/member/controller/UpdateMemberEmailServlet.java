@@ -41,6 +41,7 @@ public class UpdateMemberEmailServlet extends HttpServlet {
 	
 		String userId = loginUser.getUserId();
 
+
 	
 		int resultEmail = new MemberService().updateEmail(email,userId);
 		PrintWriter out = response.getWriter();
@@ -49,6 +50,7 @@ public class UpdateMemberEmailServlet extends HttpServlet {
 			 loginUser = new MemberService().loginMember(loginUser);
 			 session.setAttribute("loginUser",loginUser);
 //			 request.setAttribute("email", email);
+
 //			 session.setAttribute("userName", userName);
 			 out.print("Y");
 		 }else {

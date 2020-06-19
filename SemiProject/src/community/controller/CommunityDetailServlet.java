@@ -2,8 +2,8 @@ package community.controller;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,15 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import community.model.service.CommunityService;
 import community.model.vo.Community;
-
-
+import community.model.vo.CommunityImg;
+import community.model.vo.Reply;
+import oracle.jdbc.OracleConnection.CommitOption;
 
 /**
  * Servlet implementation class CommunityDetailServlet
  */
-@WebServlet("/detail.ca")
+@WebServlet("/Detail.bo")
 public class CommunityDetailServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,23 +35,36 @@ public class CommunityDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-					String communityNo = request.getParameter("communityNo");
-					int communityNo2 = Integer.valueOf(communityNo);
-					String categoryNo = request.getParameter("categoryNo");
-					int categoryNo2 = Integer.valueOf(categoryNo);
+		int communityno =  Integer.valueOf(request.getParameter("communityno"));
+		
+		
+		
+		int result = new CommunityService().updateCount(communityno);
+		if(result>0) {
+			Community community = new CommunityService().selectCommunity(communityno);
+		
+			CommunityImg communityimg = new CommunityService().selectCommunityImg(communityno);
+			
+		if(community != null) {
+			System.out.println(community);
+			System.out.println(communityimg);
+			
+			request.setAttribute("community", community);
+			request.setAttribute("communityimg", communityimg);
+			
+			
+			request.getRequestDispatcher("views/community/DetailView.jsp").forward(request, response);
 				
-					Community community = new CommunityService().selectCommunity(communityNo2, categoryNo2);
-					
-					
-					if(community != null) {
-						request.setAttribute("community", community);
-						request.getRequestDispatcher("views/Community/민환이의.jsp").forward(request, response);
-						// 글 상세 페이지로 전환
-					}
-						
-					
-					
+		} else {
+			request.setAttribute("msg", "게시글 상세 조회 실패!");
+			
+		}
+	}else {			// 조회수가 증가하지 않았다면
+		request.setAttribute("msg", "게시글 조회수 증가 실패!");
+		
 	}
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

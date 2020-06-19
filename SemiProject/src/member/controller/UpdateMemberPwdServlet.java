@@ -49,6 +49,7 @@ public class UpdateMemberPwdServlet extends HttpServlet {
 		 if(resultPwd > 0) {
 			 loginUser = new MemberService().loginMember(loginUser);
 			 session.setAttribute("loginUser",loginUser);
+
 			 out.print("Y");
 		 }else {
 		

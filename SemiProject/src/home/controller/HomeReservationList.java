@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import home.model.service.HomeService;
@@ -100,6 +101,7 @@ public class HomeReservationList extends HttpServlet {
 			request.setAttribute("list", list);
 			request.setAttribute("pn", pn);
 			view = request.getRequestDispatcher("views/mypage/Home/nHome.jsp");
+
 		}else {
 			view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			request.setAttribute("msg", "게시글 조회 실패!!");

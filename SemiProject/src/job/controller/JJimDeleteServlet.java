@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 
 import job.model.service.JobSearchService;
@@ -54,6 +55,42 @@ public class JJimDeleteServlet extends HttpServlet {
 		}
 		view.forward(request, response);
 		
+=======
+
+import job.model.service.JobSearchService;
+import job.model.vo.JobSearch;
+
+/**
+ * Servlet implementation class JJimDeleteServlet
+ */
+@WebServlet("/delete.jjim")
+public class JJimDeleteServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public JJimDeleteServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userNo = request.getParameter("userNo");
+		String heartNo = request.getParameter("heartNo");
+		int userNo2 = Integer.valueOf(userNo);
+		int heartNo2 = Integer.valueOf(heartNo);
+		
+		ArrayList<JobSearch> jlist = new JobSearchService().deleteHeart(userNo2,heartNo2);
+		RequestDispatcher view = null;
+		
+			request.setAttribute("jlist",jlist);
+			view = request.getRequestDispatcher("/mypage/Work/JJIM.jsp");
+			view.forward(request, response);
+>>>>>>> refs/remotes/origin/Eunjin
 	}
 
 	/**

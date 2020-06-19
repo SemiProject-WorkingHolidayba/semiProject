@@ -184,6 +184,7 @@
             target="_self">개인정보수정</a>
 
         </li>
+<<<<<<< HEAD
         <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.home"
             target="_self">집 예약자 내역</a>
         </li>
@@ -258,6 +259,82 @@
 			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.ja?currentPage=<%=currentPage+1 %>'"> > </button>
 			<!-- 맨 끝으로(>>) -->
 			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.ja?currentPage=<%=maxPage %>'"> >> </button>
+=======
+        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Home/nHome.jsp"
+            target="_self">집 예약자 내역</a>
+        </li>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Work/nWork.jsp" target="_self">구직 신청자
+            내역</a>
+
+
+        </li>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/Letter/nLetter.jsp" target="_self">내가 쓴 글</a>
+
+
+       
+
+      </ul>
+
+
+    </nav>
+  </div>
+
+  <div id="wrap" class=" area " style="position:absolute; margin-left: 5%;" ; align="center">
+
+    <h1 style="font-weight: 900;">구직 신청자 내역</h1>
+
+    <form style="margin-top: 100px; margin-left: 50px;  " >
+
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr class="mainChoice" style="background: lightgray;">
+            <th scope="col" style="width: 100px;">구직 신청 번호</th>
+            <th scope="col" style="width: 300px;">글 제목</th>
+            <th scope="col" style="width: 100px;">구직자 명</th>
+            <th scope="col" style="width: 300px;">근무 기간</th>
+            <th scope="col" style="width: 200px;">구직자 이메일</th>
+
+          </tr>
+        </thead>
+        <tbody>
+         <%if(list.isEmpty()){ %>
+                	<tr>
+                		<td colspan="5">구직 신청자가 없습니다!.</td>
+                	</tr>
+                	<%}else{ %>
+                	<%for(int i=0; i<list.size(); i++){ %>
+			          <tr>			            
+						<td><%=((JobApplicator)list.get(i)).getJobApplyNo() %></td>
+			            <td><%=((JobApplicator)list.get(i)).getTitle() %></td>
+			            <td><%=((JobApplicator)list.get(i)).getUserName() %></td>
+			            <td><%=((JobApplicator)list.get(i)).getPeriod() %></td>
+			            <td><%=((JobApplicator)list.get(i)).getEmail() %></td>
+			          </tr>
+         			<%} %>
+         	<%} %>
+        
+
+        </tbody>
+      </table>
+     <div class="pagingArea" align="center">
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='<%=request.getContextPath() %>/list.ja?currentPage=1'"> << </button>
+			<!-- 이전 페이지로(<) -->
+			<button onclick="location.href='<%=request.getContextPath() %>/list.ja?currentPage=<%=currentPage-1 %>'"> < </button>
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = startPage ; p <= endPage ; p ++) {%>
+				<%if(p == currentPage) {%>
+					<button disabled><%=p %></button>
+				<%}else{ %>
+					<button onclick="location.href='<%=request.getContextPath() %>/list.ja?currentPage=<%=p %>'"><%=p %></button>
+				<%} %>
+			<% } %>
+			
+			<!-- 다음 페이지로(>) -->
+			<button onclick="location.href='<%=request.getContextPath() %>/list.ja?currentPage=<%=currentPage+1 %>'"> > </button>
+			<!-- 맨 끝으로(>>) -->
+			<button onclick="location.href='<%=request.getContextPath() %>/list.ja?currentPage=<%=maxPage %>'"> >> </button>
+>>>>>>> refs/remotes/origin/Eunjin
 		</div>
     </form>
 

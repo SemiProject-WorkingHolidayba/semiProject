@@ -14,10 +14,7 @@ public class Report {
 	public Report() {
 	}
 	
-	
-	
-	
-	
+
 
 	public Report(int upliaduserno, String uploaduser) {
 		this.uploaduserno = upliaduserno;

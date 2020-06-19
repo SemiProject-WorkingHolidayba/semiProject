@@ -1,6 +1,7 @@
 package home.controller;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -56,7 +57,7 @@ public class HomeSearchServlet extends HttpServlet {
 			view.forward(request, response);
 		}
 		
-		
+
 		
 	}
 
