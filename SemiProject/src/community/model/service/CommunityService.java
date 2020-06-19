@@ -8,25 +8,25 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import community.model.dao.CommunityDao;
-import community.model.vo.Community;
+import community.model.vo.CommunityMy;
 
 
 public class CommunityService {
 
-	public Community selectCommunity(int communityNo2, int categoryNo2) {
+	public CommunityMy selectcCommunity(int communityNo2, int categoryNo2) {
 
 		Connection conn = getConnection();
 		
-		Community community = new CommunityDao().selectCommunity(conn, communityNo2, categoryNo2);
+		CommunityMy community = new CommunityDao().selectcCommunity(conn, communityNo2, categoryNo2);
 		
 		close(conn);
 		return community;
 	}
 
-	public static int getListCount(int userNo) {
+	public static int getcListCount(int userNo) {
 		Connection conn = getConnection();
 		
-		int listCount = new CommunityDao().getListCount(conn, userNo);
+		int listCount = new CommunityDao().getcListCount(conn, userNo);
 		
 		
 		close(conn);
@@ -34,10 +34,10 @@ public class CommunityService {
 		return listCount;
 	}
 
-	public static ArrayList selectList(int currentPage, int limit,int userNo) {
+	public static ArrayList selectcList(int currentPage, int limit,int userNo) {
 		Connection conn = getConnection();
 		
-		ArrayList list = new CommunityDao().selectList(conn, currentPage, limit, userNo);
+		ArrayList list = new CommunityDao().selectcList(conn, currentPage, limit, userNo);
 		
 		close(conn);
 		

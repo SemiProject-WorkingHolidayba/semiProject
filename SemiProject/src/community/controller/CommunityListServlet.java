@@ -42,7 +42,7 @@ public class CommunityListServlet extends HttpServlet {
 		
 		CommunityService community = new CommunityService();
 		
-		int listCount = CommunityService.getListCount(userNo);
+		int listCount = CommunityService.getcListCount(userNo);
 		
 		int currentPage;	// 현재 페이지를 표시 할 변수
 		int limit;			// 한 페이지에 게시글이 몇 개가 보여질 것인지
@@ -95,7 +95,7 @@ public class CommunityListServlet extends HttpServlet {
 		Pagination pn = new Pagination(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		// 1_2. 화면에 뿌려줄 워홀러 내가 쓴 글 테이블 리스트 조회하기
-		ArrayList list = CommunityService.selectList(currentPage, limit, userNo);	
+		ArrayList list = CommunityService.selectcList(currentPage, limit, userNo);	
 //		System.out.println(listCount);
 //		System.out.println(list);
 		RequestDispatcher view = null;

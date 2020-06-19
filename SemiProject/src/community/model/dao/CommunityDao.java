@@ -3,27 +3,26 @@ package community.model.dao;
 import static common.JDBCTemplate.close;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import community.model.vo.Community;
+import community.model.vo.CommunityMy;
 
 
 public class CommunityDao {
 
-	public Community selectCommunity(Connection conn, int communityNo2, int categoryNo2) {
+	public CommunityMy selectcCommunity(Connection conn, int communityNo2, int categoryNo2) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 	
 		String query = "SELECT * " + 
-				"FROM CLIST" + 
+				"FROM MYCLIST" + 
 				"WHERE COMMUNITYNO = ? AND CATEGORYNO = ?";
 		
-		Community community =null;
+		CommunityMy community =null;
 		
 		try {
 			pstmt =conn.prepareStatement(query);
@@ -33,7 +32,7 @@ public class CommunityDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				 community = new Community(rs.getInt("communityNo"),
+				 community = new CommunityMy(rs.getInt("communityNo"),
 											rs.getString("title"),
 											rs.getString("content"),
 											rs.getDate("writeDate"),
@@ -54,11 +53,11 @@ public class CommunityDao {
 			return community;
 	}
 
-	public int getListCount(Connection conn, int userNo) {
+	public int getcListCount(Connection conn, int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT COUNT(*) FROM CLIST WHERE USERNO=?";
+		String query = "SELECT COUNT(*) FROM MYCLIST WHERE USERNO=?";
 		
 		int result = 0;
 		try {
@@ -80,7 +79,7 @@ public class CommunityDao {
 
 	}
 
-	public ArrayList selectList(Connection conn, int currentPage, int limit, int userNo) {
+	public ArrayList selectcList(Connection conn, int currentPage, int limit, int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -90,7 +89,7 @@ public class CommunityDao {
 		int endRow = currentPage * limit;
 		System.out.println(endRow);
 		
-		String query = "SELECT C.* FROM CLIST C WHERE (RNUM BETWEEN ? AND ? ) AND USERNO=?";
+		String query = "SELECT C.* FROM MYCLIST C WHERE (RNUM BETWEEN ? AND ? ) AND USERNO=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -100,7 +99,7 @@ public class CommunityDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-			Community community = new Community(rs.getInt("communityNo"),
+				CommunityMy community = new CommunityMy(rs.getInt("communityNo"),
 						rs.getString("title"),
 						rs.getString("content"),
 						rs.getDate("writeDate"),
