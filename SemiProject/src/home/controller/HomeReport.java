@@ -34,8 +34,9 @@ public class HomeReport extends HttpServlet {
 
 		int result = new HomeService().reportHome(hNo);
 
+
 		if(result > 0) {
-			response.sendRedirect("list.ho?currentPage=1");
+			response.sendRedirect("detail.ho?hNo="+hNo);
 		} else {
 			System.out.println("게시글 신고 실패");
 		}

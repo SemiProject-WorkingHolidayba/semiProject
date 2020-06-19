@@ -57,6 +57,18 @@ tr{
 <button onclick="location.href='<%=request.getContextPath()%>/wselectallmember.me'">워홀러 회원 관리</button>
 <button onclick="location.href='<%=request.getContextPath()%>/nselectallmember.me'">현지인 회원 관리</button>
 <button onclick="location.href='<%=request.getContextPath()%>/reportlist.me'">신고내역</button>
+<input type="hidden" id="test" value="<%=request.getContextPath()%>">
+<button id="test1"></button>
+<script>
+
+	$(function(){
+		$("#test1").click(function(){
+			var bid=$("#test").val();
+			alert(bid);
+			location.href="<%=request.getContextPath()%>/test.test?bid="+bid;
+		})
+	})
+</script>
 <table>
 	<tr id="tb_tr" border="1" data-toggle="modal" href="#registarModal">
 		

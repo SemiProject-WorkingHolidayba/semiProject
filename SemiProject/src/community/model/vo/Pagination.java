@@ -1,18 +1,17 @@
 package community.model.vo;
 
+
+
 public class Pagination {
-	// 페이지 처리를 위한 변수값들을 저장할 객체를 찍어낼 클래스
 	private int currentPage;
 	private int listCount;
 	private int limit;
 	private int maxPage;
 	private int startPage;
 	private int endPage;
-	
 	public Pagination() {
 		super();
 	}
-	
 	public Pagination(int currentPage, int listCount, int limit, int maxPage, int startPage, int endPage) {
 		super();
 		this.currentPage = currentPage;
@@ -22,7 +21,6 @@ public class Pagination {
 		this.startPage = startPage;
 		this.endPage = endPage;
 	}
-	
 	public int getCurrentPage() {
 		return currentPage;
 	}
@@ -59,13 +57,10 @@ public class Pagination {
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
 	}
-	
 	@Override
 	public String toString() {
 		return "Pagination [currentPage=" + currentPage + ", listCount=" + listCount + ", limit=" + limit + ", maxPage="
 				+ maxPage + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
-	
-	
 	
 }

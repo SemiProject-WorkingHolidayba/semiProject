@@ -26,130 +26,10 @@
 
     <!-- Custom styles for this template -->
     <style>
-
-    	header{
-      width: 100%;
-      font-family: 'Noto Sans KR', sans-serif;
-      color: black;
-      text-align: center;
-	  }
-	
-	
-	  #content{
-	      font-family: 'Noto Sans KR', sans-serif;
-	      text-align: center;
-	  }
-	
-	  .menu {
-	      background:rgb(113, 177, 197);
-	      text-align: center;
-	      margin: 0 auto;
-	  }
-	
-	  .navbar-brand{
-	      width: 12.9%; 
-	      height: 20%; 
-	      padding: 0px;
-	  }
-	
-	  .navbar-brand img{ 
-	      width: 100%; 
-	      height: 100% ; 
-	  }
-	
-	  .nav {
-	      margin: 0;
-	      padding: 0;
-	      list-style-type: none;  
-	      text-align: center;
-	      padding-top: 7%;
-	      margin: 0 auto;
-	      height: auto;
-	  }
-	
-	  .nav > li {
-	      margin:0;
-	      padding: 0;
-	      display: inline;
-	      padding-bottom: 5em;
-	      padding-left: 0;
-	  }
-	
-	  .nav > li > a {
-	      display: inline-block;
-	      font-weight: 600;
-	      font-size: 100%;
-	      color: black;
-	      text-decoration: none;
-	  }
-	
-	  .nav > li:hover > a{
-	      background: none;
-	      color: white;
-	  }
-	
-	  .nav li > ul {
-	      display: none;      
-	  }
-	
-	  .nav li:hover ul {
-	      width: 480%;
-	      position: absolute;
-	      opacity: 1;
-	      display: block;
-	      margin-top: 4.5%;
-	      height: 3em;
-	      text-align: center;
-	      background: #ADD4D9;
-	      right: 0;
-	  }
-	
-	  .nav li:hover > ul > li {
-	      float: left;
-	      border: rgb(113, 177, 197);
-	      margin: 0;
-	      padding: 0;
-	      display: block;
-	      margin-right: 10%;
-	      height: 3em;
-	  }
-	
-	  .nav li:hover > ul > li > a{
-	      color: black;
-	      margin: 0;
-	      line-height: 3em;
-	      display: block;
-	  }
-	
-	  .login_register{
-	      list-style-type: none;
-	      padding: 0;
-	      margin: 0;
-	      position: absolute;
-	      top: 2%;
-	      right: 4%;
-	  }
-	
-	  .login_register li{
-	      float: left;
-	      position: relative;
-	      line-height: 3em;
-	      padding-left: 1em;
-	      padding-right: 1em;
-	  }
-	
-	  .login_register li a {
-	      display: block;
-	      font-weight: 600;
-	      font-size: 95%;
-	      color: black;
-	      text-decoration: none;
-	  }
-	
-	  #footer{
-	      margin-top: 10%;
-	  }
-        #nation {
+	    body{
+	    	width: auto;
+	    }
+         #nation {
             border: 0.5px solid rgb(176, 171, 171);
             border-top-left-radius: 0.5em;
             border-top-right-radius: 0.5em;
@@ -234,8 +114,19 @@
 
         .container a{
             color: black;
+<<<<<<< HEAD
+
+            }
+	.item{
+		width: 960px;
+		height: 530px;
+		text-align: center;
+	}
+
+=======
         }
 
+>>>>>>> refs/remotes/origin/kimsung
     </style>
   </head>
   <body>
@@ -250,7 +141,7 @@
               <li data-target="#myCarousel" data-slide-to="3"></li>
               <li data-target="#myCarousel" data-slide-to="4"></li>
             </ol>
-            <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner" role="listbox" >
               <div class="item active">
                 <img src="images/country/Australia/OpheraHouse.jpg" alt="First slide">
                 <div class="container">
@@ -311,7 +202,8 @@
               <span class="sr-only">Next</span>
             </a>
           </div><!-- /.carousel -->
-          
+          <br>
+          <br>
           <div class="z2">
             <div id='nationSelect' align='center' style="margin-bottom: 50px;">
               <ul id='nation'>
@@ -380,11 +272,7 @@
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                   <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                  <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
+               
                 </ul>
             </div>
             <div id="area1" class="safe_information">
@@ -395,18 +283,18 @@
                 <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                 <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
                 <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
-                <li><a href="http://www.naver.com">가나다라마바사가나다라마바사가나다라마바사</a></li>
+               
               </ul>
             </div>
           </div>
     </div>
-
+	<br>
+	<br>
+	<br>
+	<br>
     <div id = "footer">
       <p class="pull-right"><a href="#">Back to top</a></p>
+      <hr>
       <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
     </div>
       <script>

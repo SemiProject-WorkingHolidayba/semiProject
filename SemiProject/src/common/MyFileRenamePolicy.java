@@ -19,7 +19,7 @@ public class MyFileRenamePolicy implements FileRenamePolicy{
 		// 확장자 명 가져오기
 		String name = originFile.getName();	// 사용자가 올린 원본 파일명
 		String ext = null;	// 확장자 담는 변수
-		
+
 		int dot = name.lastIndexOf(".");	
 		
 		if(dot != -1) {

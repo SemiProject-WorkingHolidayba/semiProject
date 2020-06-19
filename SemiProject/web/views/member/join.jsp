@@ -212,7 +212,7 @@
 			<label class="label_style">비밀번호 확인</label>
 			<br>   <div style="height:8px;"></div>
 			<div style="position: relative;">   
-			<input type="password" name="userPw2" id="userPw2" class="log"  placeholder=" 비밀번호를 확인해주세요." required>
+			<input type="password" name="userPw2" id="userPw2" class="log"  placeholder=" 비밀번호를 확인해주세요." required readonly>
 			<img class="check_img" id="check_img_pw">
 			</div>
 			<br>
@@ -322,8 +322,10 @@
  	 		if(!PregExp.test($(this).val())){ 	 			
  	 			$("#ero_msg_pw").html("※4~20자의 영문 소문자, 숫자만 가능합니다").css("color","red");
  	 			
+ 	 			
  	 		}else{ 	 			
  	 			$("#ero_msg_pw").html("사용 가능한 비밀번호 입니다.").css("color","green");
+ 	 			$("#userPw2").attr("readonly",false);
  	 			
  	 		}
  	 		
@@ -339,7 +341,8 @@
  	 			$("#check_img_pw").attr("src","<%=request.getContextPath()%>/images/checkGreen.png");
  	 			
  	 		}else{
- 	 			$("#check_img_id").attr("src","<%=request.getContextPath()%>/images/checkRed.png");
+ 	 			$("#check_img_pw").attr("src","<%=request.getContextPath()%>/images/checkRed.png"); 
+ 	 			$("#userPw2").focus();
  	 			
  	 		}
  	 	})

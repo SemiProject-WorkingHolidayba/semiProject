@@ -1,5 +1,6 @@
 package community.model.service;
 
+
 import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.getConnection;
 

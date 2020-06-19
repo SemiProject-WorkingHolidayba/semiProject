@@ -58,6 +58,9 @@
      	height: 45px;
      	
      }
+    #table-div{
+    	width: 980px;
+    }
     #memberTb{
     	width: 980px;
     	
@@ -106,6 +109,7 @@
 		<div id="content">
 			<p style="text-align: left;" class="font_style">현지인 회원
 			<div id="selectbar" style="height: 30px"></div>
+			<div id="table-div">
 			<table id="memberTb" border="1">
 				<tr>
 					<th style="width: 53px ">번호</th>
@@ -182,6 +186,7 @@
 			</div> 
 			<div id="selectbar" style="height: 30px"></div>
 			
+			</div>
 			<script>
 				function trClick(trId){
 					var trId = $("#"+trId);

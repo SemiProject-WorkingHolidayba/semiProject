@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import home.model.vo.Home;
 import home.model.vo.HomeReservator;
 import home.model.vo.Img;
+import member.model.vo.Report;
 import home.model.vo.Reservation;
 import home.model.vo.Review;
 import home.model.vo.myHome;
@@ -21,7 +22,7 @@ public class HomeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT COUNT(*) FROM HOME";
+		String query = "SELECT COUNT(*) FROM HOME WHERE STATUS = 'N'";
 		
 		int result = 0;
 		
@@ -46,7 +47,7 @@ public class HomeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT COUNT(*) FROM HOMEREVIEW";
+		String query = "SELECT COUNT(*) FROM HOMEREVIEW WHERE STATUS = N";
 		
 		int result = 0;
 		
@@ -71,13 +72,13 @@ public class HomeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT COUNT(*) FROM HOME WHERE PERIOD = ? AND COUNTRYNO = ? AND TYPE = ?";
-		String query2 = "SELECT COUNT(*) FROM HOME WHERE PERIOD = ?";
-		String query3 = "SELECT COUNT(*) FROM HOME WHERE COUNTRYNO = ?";
-		String query4 = "SELECT COUNT(*) FROM HOME WHERE TYPE = ?";
-		String query5 = "SELECT COUNT(*) FROM HOME WHERE PERIOD = ? AND COUNTRYNO = ?";
-		String query6 = "SELECT COUNT(*) FROM HOME WHERE COUNTRYNO = ? AND TYPE = ?";
-		String query7 = "SELECT COUNT(*) FROM HOME WHERE PERIOD = ? AND TYPE = ?";
+		String query = "SELECT COUNT(*) FROM HOME WHERE PERIOD = ? AND COUNTRYNO = ? AND TYPE = ? AND STATUS = 'N'";
+		String query2 = "SELECT COUNT(*) FROM HOME WHERE PERIOD = ? AND STATUS = 'N'";
+		String query3 = "SELECT COUNT(*) FROM HOME WHERE COUNTRYNO = ? AND STATUS = 'N'";
+		String query4 = "SELECT COUNT(*) FROM HOME WHERE TYPE = ? AND STATUS = 'N'";
+		String query5 = "SELECT COUNT(*) FROM HOME WHERE PERIOD = ? AND COUNTRYNO = ? AND STATUS = 'N'";
+		String query6 = "SELECT COUNT(*) FROM HOME WHERE COUNTRYNO = ? AND TYPE = ? AND STATUS = 'N'";
+		String query7 = "SELECT COUNT(*) FROM HOME WHERE PERIOD = ? AND TYPE = ? AND STATUS = 'N'";
 		
 		int result = 0;
 		
@@ -179,7 +180,7 @@ public class HomeDao {
 		int startRow = (currentPage-1) * limit + 1;
 		int endRow = currentPage * limit;
 		
-		String query = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -256,13 +257,13 @@ public class HomeDao {
 		int startRow = (currentPage-1) * limit + 1;
 		int endRow = currentPage * limit;
 		
-		String query = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE PERIOD = ? AND COUNTRYNO = ? AND TYPE = ? ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
-		String query2 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE PERIOD = ? ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
-		String query3 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE COUNTRYNO = ? ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
-		String query4 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE TYPE = ? ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
-		String query5 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE PERIOD = ? AND COUNTRYNO = ? ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
-		String query6 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE COUNTRYNO = ? AND TYPE = ? ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
-		String query7 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE PERIOD = ? AND TYPE = ? ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE PERIOD = ? AND COUNTRYNO = ? AND TYPE = ? AND STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query2 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE PERIOD = ? AND STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query3 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE COUNTRYNO = ? AND STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query4 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE TYPE = ? AND STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query5 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE PERIOD = ? AND COUNTRYNO = ? AND STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query6 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE COUNTRYNO = ? AND TYPE = ? AND STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query7 = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE PERIOD = ? AND TYPE = ? AND STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
 		
 		try {
 			if(country!=null && home!=null && period!=null) {
@@ -372,8 +373,8 @@ public class HomeDao {
 				
 				pstmt.setString(1, period);
 				pstmt.setString(2, country);
-				pstmt.setInt(2, startRow);
-				pstmt.setInt(3, endRow);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
 				
 				rs = pstmt.executeQuery();
 				
@@ -746,7 +747,7 @@ public class HomeDao {
 		
 		int result = 0;
 		
-		String query = "INSERT INTO HOME VALUES (SEQ_HOME.NEXTVAL,?,?,?,?,?,DEFAULT,?,DEFAULT,?,?)";
+		String query = "INSERT INTO HOME VALUES (SEQ_HOME.NEXTVAL,?,?,?,?,?,DEFAULT,?,DEFAULT,?,?,DEFAULT)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -804,7 +805,7 @@ public class HomeDao {
 		
 		int result = 0;
 		
-		String query = "INSERT INTO HOMEREVIEW VALUES(SEQ_HOMEREVIEW.NEXTVAL,?,?,SYSDATE,DEFAULT,?,?,?)";
+		String query = "INSERT INTO HOMEREVIEW VALUES(SEQ_HOMEREVIEW.NEXTVAL,?,?,SYSDATE,DEFAULT,?,?,?,DEFAULT)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1010,7 +1011,7 @@ public class HomeDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = "DELETE FROM HOME WHERE HOUSENO = ?";
+		String query = "UPDATE HOME SET STATUS = 'Y' WHERE HOUSENO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1036,9 +1037,8 @@ public class HomeDao {
 		
 		int result = 0;
 		
-		
 		String query = "UPDATE HOME SET REPORT = HOME.REPORT + 1 WHERE HOUSENO = ?";
-		String query2 = "SELECT * FROM HOME WHERE REPORT >= 5";
+		String query2 = "SELECT HOUSENO,USERNO FROM HOME WHERE REPORT >= 5";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1049,6 +1049,24 @@ public class HomeDao {
 			
 			pstmt2 = conn.prepareStatement(query2);
 			rs = pstmt2.executeQuery();
+			Report report = new Report();
+			int house ;
+			
+			if(rs.next()) {
+				house = rs.getInt(1);
+			}
+			
+			report = new Report(rs.getInt("houseno"),
+								"7",
+								rs.getInt("userno"));
+			
+			
+			if(rs.getInt(1) == hNo) {
+				insertReport(conn, report);
+			}
+			
+			
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1060,12 +1078,40 @@ public class HomeDao {
 		return result;
 	}
 
-	public int reportReviewe(Connection conn, int reviewNo) {
+	private int insertReport(Connection conn, Report report) {
 		PreparedStatement pstmt = null;
 		
 		int result = 0;
 		
+		String query = "INSERT INTO REPORT VALUES(SEQ_REPORT.NEXTVAL,?,DEFAULT,?,?)";
+		
+		try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, report.getBoardNo());
+				pstmt.setString(2, report.getCategoryNo());
+				pstmt.setInt(3, report.getUserNo());
+				
+				result += pstmt.executeUpdate();
+
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	public int reportReviewe(Connection conn, int reviewNo) {
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		
+		int result = 0;
+		
 		String query = "UPDATE HOMEREVIEW SET REPORT = HOMEREVIEW.REPORT + 1 WHERE REVIEWNO = ?";
+		String query2 = "SELECT REVIEWNO,USERNO FROM HOMEREVIEW WHERE REPORT >= 5";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1073,6 +1119,26 @@ public class HomeDao {
 			pstmt.setInt(1, reviewNo);
 			
 			result = pstmt.executeUpdate();
+			
+			pstmt2 = conn.prepareStatement(query2);
+			rs = pstmt2.executeQuery();
+			Report report = new Report();
+			
+			int review;
+			
+			if(rs.next()) {
+				review = rs.getInt(1);
+			}
+			
+			report = new Report(rs.getInt("reviewno"),
+								"8",
+								rs.getInt("userno"));
+			
+			
+			if(rs.getInt(1) == reviewNo) {
+				insertReport(conn, report);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -1081,6 +1147,7 @@ public class HomeDao {
 		
 		return result;
 	}
+
 
 	public ArrayList<Review> selectReplyList(Connection conn, int houseNo) {
 		PreparedStatement pstmt = null;
@@ -1123,7 +1190,7 @@ public class HomeDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = "DELETE FROM HOMEREVIEW WHERE REVIEWNO = ?";
+		String query = "UPDATE HOMEREVIEW SET STATUS = 'Y' WHERE REVIEWNO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1215,6 +1282,7 @@ public class HomeDao {
 							rs.getString("fee"),	
 							rs.getString("address"),
 							rs.getString("essentialItem"),
+
 							rs.getString("wifi"),
 							rs.getString("television"),
 							rs.getString("heater"),
