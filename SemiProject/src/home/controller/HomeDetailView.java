@@ -31,7 +31,7 @@ public class HomeDetailView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		     
 		// 오류가 생긴다면 heartno를 추가하던지 해야될듯 jsp에
 		String houseNo = request.getParameter("houseNo");
 		int houseNo2 = Integer.valueOf(houseNo);
