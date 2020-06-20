@@ -230,7 +230,10 @@
               </tr>
      		<%}else{ %>
           			<%for(int i=0; i<list.size(); i++){ %>
+<<<<<<< HEAD
                     
+=======
+>>>>>>> refs/remotes/origin/kimsung
                     <tr id="tr">
                         <td id="no"><%=((NletterList)list.get(i)).getJobNo()%></td>
                         <td id="name"><%=((NletterList)list.get(i)).getTypeName() %></td>

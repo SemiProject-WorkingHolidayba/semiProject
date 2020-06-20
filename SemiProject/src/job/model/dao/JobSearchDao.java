@@ -117,6 +117,7 @@ public class JobSearchDao {
 			}
 			
 			
+<<<<<<< HEAD
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -301,6 +302,8 @@ public class JobSearchDao {
 			}
 			
 			
+=======
+>>>>>>> refs/remotes/origin/kimsung
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -399,6 +402,7 @@ public class JobSearchDao {
 												rs.getString("pay"),
 												rs.getDate("dueDate"),
 												rs.getString("workTime"),
+<<<<<<< HEAD
 												rs.getString("workDay"),
 												rs.getString("title"),
 												rs.getString("content"),
@@ -509,6 +513,8 @@ public class JobSearchDao {
 												rs.getString("pay"),
 												rs.getDate("dueDate"),
 												rs.getString("workTime"),
+=======
+>>>>>>> refs/remotes/origin/kimsung
 												rs.getString("workDay"),
 												rs.getString("title"),
 												rs.getString("content"),
@@ -698,6 +704,7 @@ public class JobSearchDao {
 						rs.getString("typeNo"),
 						rs.getString("filePath"),
 						rs.getString("coName"));
+<<<<<<< HEAD
 				list.add(j);
 			}
 			
@@ -878,6 +885,8 @@ public class JobSearchDao {
 						rs.getString("typeNo"),
 						rs.getString("filePath"),
 						rs.getString("coName"));
+=======
+>>>>>>> refs/remotes/origin/kimsung
 				list.add(j);
 			}
 			

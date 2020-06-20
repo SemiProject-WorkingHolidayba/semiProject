@@ -364,7 +364,10 @@ nav{
       })
       var hNo =  $("#jan").text();
       $("#home .content").click(function(){
+<<<<<<< HEAD
  
+=======
+>>>>>>> refs/remotes/origin/kimsung
 			location.href="<%=request.getContextPath()%>/detail.ho?hNo="+hNo;
 	});
     })

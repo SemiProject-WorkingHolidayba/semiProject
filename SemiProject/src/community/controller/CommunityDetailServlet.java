@@ -27,6 +27,7 @@ public class CommunityDetailServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+<<<<<<< HEAD
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -455,6 +456,8 @@ public class CommunityDetailServlet extends HttpServlet {
       // TODO Auto-generated method stub
       doGet(request, response);
    }
+=======
+>>>>>>> refs/remotes/origin/kimsung
    /**
     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
     */

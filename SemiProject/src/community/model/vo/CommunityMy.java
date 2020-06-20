@@ -128,6 +128,7 @@ public class CommunityMy implements Serializable{
 	
 	
 }
+<<<<<<< HEAD
 package community.model.vo;
 
 import java.io.Serializable;
@@ -258,3 +259,5 @@ public class CommunityMy implements Serializable{
    
    
 }
+=======
+>>>>>>> refs/remotes/origin/kimsung

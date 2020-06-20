@@ -594,6 +594,7 @@
 	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
 	 		}else if(userP.val() != userP2.val()){
 	 			alert("사용하실 비밀번호가 맞는지 확인해주세요!");
+<<<<<<< HEAD
 	 		}else if(userP.val() == userP2.val()){
 	 			
 	 		     $.ajax({
@@ -690,6 +691,8 @@
 	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
 	 		}else if(userP.val() != userP2.val()){
 	 			alert("사용하실 비밀번호가 맞는지 확인해주세요!");
+=======
+>>>>>>> refs/remotes/origin/kimsung
 	 		}else if(userP.val() == userP2.val()){
 	 			
 	 		     $.ajax({
@@ -764,6 +767,7 @@
 
 
 
+<<<<<<< HEAD
 
  $(function(){
     $("#deleteMan").click(function(){
@@ -804,6 +808,9 @@
          })
          
          
+=======
+$(function(){
+>>>>>>> refs/remotes/origin/kimsung
 	 $("#deleteMan").click(function(){
 	      
 	         
@@ -841,8 +848,13 @@
 	      
 	      
 
+<<<<<<< HEAD
     })
  })      
+=======
+	 })
+})		
+>>>>>>> refs/remotes/origin/kimsung
  
  </script>
     

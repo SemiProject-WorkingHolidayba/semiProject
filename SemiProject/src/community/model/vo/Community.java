@@ -12,6 +12,7 @@ public class Community {
    private String country;
    private String categoryName;
    private String userId;
+<<<<<<< HEAD
    
    public Community() {
       super();
@@ -175,6 +176,8 @@ public class Community {
    private String country;
    private String categoryName;
    private String userId;
+=======
+>>>>>>> refs/remotes/origin/kimsung
    public Community() {
       super();
    }

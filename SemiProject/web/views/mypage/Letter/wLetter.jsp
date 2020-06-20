@@ -231,10 +231,10 @@
         <%}else{ %>
           <%for(int i=0; i<list.size(); i++){ %>
                     <tr>
-                        <td><%=((Community)list.get(i)).getCommunityNo() %></td>
-                        <td><%=((Community)list.get(i)).getCategoryName() %></td>
-                        <td><%=((Community)list.get(i)).getTitle() %></td> 
-                        <td><%=((Community)list.get(i)).getWriteDate() %></td>
+                        <td id="c"><%=((CommunityMy)list.get(i)).getCommunityNo() %></td>
+                        <td><%=((CommunityMy)list.get(i)).getCategoryName() %></td>
+                        <td><%=((CommunityMy)list.get(i)).getTitle() %></td> 
+                        <td><%=((CommunityMy)list.get(i)).getWriteDate() %></td>
                     </tr>
                      <%} %>
        <%} %>
@@ -268,12 +268,22 @@
   </div>
 <script>
 $(function(){
+<<<<<<< HEAD
    $("#communityList td").click(function(){
 
          location.href="<%=request.getContextPath()%>/detail.ca?communityNo=" +communityNo;
    
       // JobDetailServlet을 만들러 가자
    });
+=======
+	var communityno = $("#c").text(); 
+	
+	$("#communityList td").click(function(){
+		
+				location.href="<%=request.getContextPath()%>/Detail.bo?communityno="+communityno;
+	
+	});
+>>>>>>> refs/remotes/origin/kimsung
 });
 
 </script>
