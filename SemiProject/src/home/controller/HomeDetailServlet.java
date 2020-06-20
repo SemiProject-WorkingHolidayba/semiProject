@@ -35,7 +35,7 @@ public class HomeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String hNo = request.getParameter("hNo");
 		int hNo2 = Integer.valueOf(hNo);
-	
+		System.out.println("여기?"+hNo2);
 		Home home = new HomeService().selectHome(hNo2);
 		ArrayList<Img> flist = new HomeService().selectImgList(hNo2);
 		ArrayList<Review> rlist = new HomeService().selectReplyList(hNo2);
