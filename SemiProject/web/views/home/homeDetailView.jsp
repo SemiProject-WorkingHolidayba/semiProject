@@ -38,10 +38,10 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-    <title>Delivery Management System</title>
+    <title>WorkignThrough</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="images/semi.ico">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="carousel.css" rel="stylesheet">
     <!-- Bootstrap Javascript -->
@@ -50,6 +50,14 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
+    
+        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="path/to/swiper.min.css">
+	
+	<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    
     
 
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
@@ -248,6 +256,38 @@
 		        width: 100%;
 		    }
 		}
+		
+		.swiper-container {
+	      width: 100%;
+	      height: 300px;
+	      margin-left: auto;
+	      margin-right: auto;
+	    }
+	
+	    .swiper-slide {
+	      background-size: cover;
+	      background-position: center;
+	    }
+	
+	    .gallery-top {
+	      height: 80%;
+	      width: 100%;
+	    }
+	
+	    .gallery-thumbs {
+	      height: 20%;
+	      box-sizing: border-box;
+	      padding: 10px 0;
+	    }
+	
+	    .gallery-thumbs .swiper-slide {
+	      height: 100%;
+	      opacity: 0.4;
+	    }
+	
+	    .gallery-thumbs .swiper-slide-thumb-active {
+	      opacity: 1;
+	    }
 
     </style>
   </head>
@@ -262,20 +302,20 @@
 			<%} else{%>
 				<%for(int i = 0; i < flist.size(); i++) { 
 					Img a = flist.get(i);%>
-				        <div class = "item<%=i%>"><img id="myImg" src = "<%=request.getContextPath() %>/home_uploadFiles/<%=a.getSaveImg()%>"></div>
-				        <!-- The Modal -->
-						<div id="myModal" class="modal">
-						
-						  <!-- The Close Button -->
-						  <span class="close" onclick="document.getElementById('myModal').style.display='none'">X</span>
-						
-						  <!-- Modal Content (The Image) -->
-						  <img class="modal-content" id="img01">
-						
-						  <!-- Modal Caption (Image Text) -->
-						  <div id="caption"></div>
-						</div>
+				        <div class = "item<%=i%>"><img id="myImg" src = "<%=request.getContextPath() %>/home_uploadFiles/<%=a.getSaveImg()%>" onclick = "imageModal()"></div>
 				<%} %>
+				<!-- The Modal -->
+				<div id="myModal" class="modal">
+				
+				  <!-- The Close Button -->
+				  <span class="close" onclick="document.getElementById('myModal').style.display='none'">X</span>
+				
+				  <!-- Modal Content (The Image) -->
+				  <img class="modal-content" id="img01">
+				
+				  <!-- Modal Caption (Image Text) -->
+				  <div id="caption"></div>
+				</div>
 			<%} %>
 		</div>
 				
@@ -284,8 +324,8 @@
         	<img style = "width:2%; height:2%; margin-top:-1%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "reportHome();">
         	<br>
         	<%if(loginUser.getUserNo() == home.getWriterNo()){ %>
-        	<button id = "modifyBtn" onclick = "location.href = '<%=request.getContextPath()%>/myHome.ho?hNo=<%=home.gethNo()%>';">수정</button>
-        	<button id = "deleteBtn" onclick = "location.href = '<%=request.getContextPath()%>/delete.ho?hNo=<%=home.gethNo()%>';">삭제</button>
+        	<button id = "modifyBtn" onclick = "modifyHome();">수정</button>
+        	<button id = "deleteBtn" onclick = "deleteHome();">삭제</button>
         	<%} %>
           <h3><b><%=home.getTitle()%></b></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <div class = "detail">
@@ -323,7 +363,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="3"><button onclick = "location.href ='<%=request.getContextPath()%>/reservation.ho?hNo=<%=home.gethNo()%>'">예약하기</button></td>
+                  <td colspan="3"><button onclick = "reservationHome();">예약하기</button></td>
                 </tr>     
               </table>
           </div>
@@ -419,13 +459,13 @@
           <div name = "review" id = "review" class = "review paginated">
           	<% if(rlist.isEmpty()){ %>
 			<%} else{%>
-				<%for(int i=0; i<rlist.size(); i++) { int score = rlist.get(i).getScore(); int rWriter = rlist.get(i).getUserNo();%>	
+				<%for(int i=rlist.size()-1; i>=0; i--) { int score = rlist.get(i).getScore(); int rWriter = rlist.get(i).getUserNo();%>
 					<span class = "writerName" style = "padding-right:1.3%; font-weight:bold"><%=rlist.get(i).getUserName() %></span>
 					<span style = "padding-right:1.3%; font-size:0.8em"><%=rlist.get(i).getWriteDate() %></span>
-					<img style = "width:1.5%; height:1.5%; margin-right:3%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "reportReview(<%=rlist.get(i).getReviewNo()%>);">
+					<img id = "siren" style = "width:1.5%; height:1.5%; margin-right:3%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "reportReview(<%=rlist.get(i).getReviewNo()%>);">
 					<%if(rWriter == loginUser.getUserNo()) {%>
 					<img style = "width:1.5%; height:1.5%; margin-right:0.5%;" src = "<%=request.getContextPath()%>/images/update.png" onclick = "location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
-					<img id = "delete" style = "width:1.5%; height:1.5%;" src = "<%=request.getContextPath()%>/images/delete.png" onclick = "location.href = '<%=request.getContextPath()%>/deleteReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
+					<img id = "delete" style = "width:1.5%; height:1.5%;" src = "<%=request.getContextPath()%>/images/delete.png" onclick = "deleteReview(<%=rlist.get(i).getReviewNo()%>);">
 					<%} %>
 					<br>
 					<%for(int j = 0 ; j < score; j++){ %>
@@ -448,6 +488,7 @@
     
     <script>
         $(function(){
+        	var price = <%=home.getFee()%>
           $('#decreaseQuantity').click(function(e){
             e.preventDefault();
             var stat = $('#numberUpDown').val();
@@ -458,7 +499,7 @@
               num =1;
              }
             $('#numberUpDown').val(num);
-            $("#totalPrice").text("₩ " + num * 190000)
+            $("#totalPrice").text(num * price)
           });
           
           $('#increaseQuantity').click(function(e){
@@ -472,7 +513,7 @@
               num=5;
             }
             $('#numberUpDown').val(num);
-            $("#totalPrice").text("₩ " + num * 190000)
+            $("#totalPrice").text(num * price)
           });
       });
         
@@ -499,44 +540,27 @@
         });
       });
       
-      $(function(){
-    	  $("#myImg").click(function(){
-    		  var modal = document.getElementById('myModal');
+      function imageModal(){
+    	  $("#myImg").each(function(index){
+    		var modal = document.getElementById('myModal');
 
-    	    	// Get the image and insert it inside the modal - use its "alt" text as a caption
-    	    	var img = document.getElementById('myImg');
-    	    	var modalImg = document.getElementById("img01");
-    	    	var captionText = document.getElementById("caption");
-    	    	img.onclick = function(){
-    	    	    modal.style.display = "block";
-    	    	    modalImg.src = this.src;
-    	    	    modalImg.alt = this.alt;
-    	    	    captionText.innerHTML = this.alt;
-    	    	}
-	// Get the <span> element that closes the modal
-    	    	var span = document.getElementsByClassName("close")[0];
-
-    	    	var img = document.getElementById('myImg');
-    	    	var modalImg = document.getElementById("img01");
-    	    	var captionText = document.getElementById("caption");    	    	
-    	    	img.onclick = function(){
-    	    	    modal.style.display = "block";
-    	    	    modalImg.src = this.src;
-    	    	    modalImg.alt = this.alt;
-    	    	    captionText.innerHTML = this.alt;
-    	    	}
-
-    	    	// Get the <span> element that closes the modal
-    	    	var span = document.getElementsByClassName("close")[0];
-
-    	    	// When the user clicks on <span> (x), close the modal
-    	    	span.onclick = function() {
-    	    	  modal.style.display = "none";
-    	    	}
-
-    	  });    	  
-
-      })
+   	    	// Get the image and insert it inside the modal - use its "alt" text as a caption
+   	    	var img = document.getElementById('myImg');
+   	    	var modalImg = document.getElementById("img01");
+   	    	var captionText = document.getElementById("caption");
+   	    	img.onclick = function(){
+   	    		console.log(this.src);
+   	    	    modal.style.display = "block";
+   	    	    modalImg.src = this.src;
+   	    	    modalImg.alt = this.alt;
+   	    	    captionText.innerHTML = this.alt;
+   	    	}
+			// Get the <span> element that closes the modal
+   	    	var span = document.getElementsByClassName("close")[0];
+   	  	});  
+    	   	
+      }
+      
       
       </script>
 		
@@ -550,12 +574,46 @@
 		}
 		
 		function reportReview(rNo){
-			result = window.confirm("신고하시겠습니까? ");
+			$("#siren").each(function(index){
+				result = window.confirm("신고하시겠습니까? ");
+				if(result == true){	
+					 location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo='+rNo;
+				}
+			});
+		}
+		
+		function modifyHome(){
+			result = window.confirm("수정하시겠습니까? ");
 			
 			if(result == true){	
-			 location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo='+rNo;
+				location.href = '<%=request.getContextPath()%>/myHome.ho?hNo=<%=home.gethNo()%>';
 			}
 		}
+		
+		function deleteHome(){
+			result = window.confirm("삭제하시겠습니까? ");
+			if(result == true){	
+				location.href = '<%=request.getContextPath()%>/delete.ho?hNo=<%=home.gethNo()%>';
+			}
+			
+		}
+		
+		function deleteReview(rNo){
+			$("#delete").each(function(index){
+				result = window.confirm("삭제하시겠습니까? ");
+				if(result == true){	
+					 location.href = '<%=request.getContextPath()%>/deleteReview.ho?reviewNo='+rNo;
+				}
+			});
+		}
+		
+		function reservationHome(){
+			result = window.confirm("예약하시겠습니까? ");
+			if(result == true){	
+				location.href ='<%=request.getContextPath()%>/reservation.ho?hNo=<%=home.gethNo()%>';
+			}
+		}
+		
    	  $(function(){
 		$("#registerReview").click(function(){  
 			var userNo = <%=loginUser.getUserNo()%>;
@@ -600,8 +658,7 @@
 						$span.append("<br>");
 						
 						$replyTable.append($span);
-						
-						page();
+					
 					}
 					// 댓글 작성 부분 기존 입력값 삭제
 					$("#reviewContent").val("");

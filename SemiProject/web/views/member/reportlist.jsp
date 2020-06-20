@@ -116,10 +116,9 @@
 				
 					<th>번호</th>
 					<th >게시자</th>
-					<th style="width: 120px">카테고리</th>
-					<th style="width: 120px">글 확인</th>	
-					<th style="width: 230px">처리</th>
-					<th>신고자</th>
+					<th >카테고리</th>
+					<th>글 확인</th>	
+					<th>처리</th>
 					
 							
 				</tr>
@@ -144,12 +143,12 @@
 					%>
 					<tr id="rp_tb_tr<%=i%>">
 					<td><%=i+1%></td>
-					<td><%=((Report)rplist.get(i)).getUploaduser() %></td>
+					<td><%=((Report)rplist.get(i)).getUserid() %></td>
 					<td><%=categoryname %></td>
-					<td><button>글 확인</button></td>
+					<td><button onclick = "goDetailBoard('<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>','<%=((Report)rplist.get(i)).getUserno()%>');">글 확인</button></td>
 					 <td><%if(process==null){%>
 					 							 		
-						 		<button onclick="setSanction('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getUploaduserno()%>','<%=((Report)rplist.get(i)).getReportno()%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>');">사용자 정지</button>
+						 		<button onclick="setSanction('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getUserno()%>','<%=((Report)rplist.get(i)).getReportno()%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>');">사용자 정지</button>
 					 		
 						 		<button onclick="deleteBoard('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>','<%=((Report)rplist.get(i)).getReportno()%>');">게시글 삭제</button>
 					 		
@@ -160,14 +159,12 @@
 					 		
 					 	<%}else if(process.equals("BR")){ %>
 					 		
-					 			<button onclick="setSanction('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getUploaduserno()%>','<%=((Report)rplist.get(i)).getReportno()%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>');">사용자 정지</button>
+					 			<button onclick="setSanction('rp_tb_tr<%=i%>','<%=((Report)rplist.get(i)).getUserno()%>','<%=((Report)rplist.get(i)).getReportno()%>','<%=((Report)rplist.get(i)).getCategoryno()%>','<%=((Report)rplist.get(i)).getBoardno() %>');">사용자 정지</button>
 					 						 		
 					 			<span style="color:red; font-weight: 800; margin:0 7px;">게시글 삭제</span>
 					 		
 					 	<%}%>
 					 </td>
-					
-					<td><%=((Report)rplist.get(i)).getReportuser() %></td>
 					</tr>
 					<%} %>
 				<%} else{ %>
@@ -282,6 +279,7 @@
 		 	if(resu == true){
 		 		
 				  $.ajax({
+					  
 					url:"<%=request.getContextPath()%>/reportsetsanction.me",
 					type:"post",
 					data:{reportNo:reportno, 
@@ -338,20 +336,42 @@
 					
 			}
 		}
-		function findBoard(categoryno, boardno){
+		function goDetailBoard(categoryno, boardno, userno){
+			alert("글 보러 가라 categoryno"+categoryno+" boardno"+boardno+" userno"+userno);
 			
-			
-			 /* case 1: categoryname= "자유게시판"; break;
-			 case 2: categoryname= "질문게시판"; break;
-			 case 3: categoryname= "벼룩시장"; break;
-			 case 4: categoryname= "댓글"; break;
-			 case 5: categoryname= "구직글"; break;
-			 case 6: categoryname= "구직리뷰"; break;
-			 case 7: categoryname= "집 게시글"; break;
-			 case 8: categoryname= "집 리뷰"; break;
-			 나중에 해야쥥
-			  */
+			switch(categoryno){
+			 case "1": 
+				 alert("1");
+				 location.href="<%=request.getContextPath()%>/test.test";
+				 break;
+			 case "2": 
+				 alert("2");
+				 location.href="<%=request.getContextPath()%>/test.test";
+				 break;
+			 case "3": 
+				 alert("3");
+				 location.href="<%=request.getContextPath()%>/test.test";
+				 break;
+			 case "4": 
+				 alert("4");
+				 location.href="<%=request.getContextPath()%>/test.test";
+				 break;
+			 case "5": 
+				 alert("5");
+				 location.href="<%=request.getContextPath()%>/test.test";
+				 break;
+			 case "6": 
+				 alert("6");
+				 location.href="<%=request.getContextPath()%>/test.test";
+				 break;
+			 case "7": 
+			 case "8": 
+				 alert("7,8");
+				 location.href="<%=request.getContextPath()%>/detail.ho?hNo="+boardno;
+				 break;
 			 
+			 default: break;
+			}			 
 			 
 		}
 

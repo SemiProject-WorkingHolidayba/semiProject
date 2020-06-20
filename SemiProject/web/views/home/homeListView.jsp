@@ -15,6 +15,7 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+    	<link rel="icon" href="images/semi.ico">
         <style>
             .home_reservation_category{
                 position: relative;

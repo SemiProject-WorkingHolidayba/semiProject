@@ -34,7 +34,6 @@ public class HomeReport extends HttpServlet {
 
 		int result = new HomeService().reportHome(hNo);
 
-
 		if(result > 0) {
 			response.sendRedirect("detail.ho?hNo="+hNo);
 		} else {

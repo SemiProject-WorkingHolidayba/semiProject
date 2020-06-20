@@ -818,9 +818,7 @@ public class HomeDao {
 			pstmt.setInt(5, r.getUserNo());
 			
 			result = pstmt.executeUpdate();
-			
-			System.out.println("댓글 잘 들어갔는지 Dao에서 확인 : " + result);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -1040,7 +1038,7 @@ public class HomeDao {
 		int result = 0;
 		
 		String query = "UPDATE HOME SET REPORT = HOME.REPORT + 1 WHERE HOUSENO = ?";
-		String query2 = "SELECT HOUSENO,USERNO FROM HOME WHERE REPORT >= 5";
+		String query2 = "SELECT HOUSENO,USERNO FROM HOME WHERE REPORT = 5";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1085,7 +1083,7 @@ public class HomeDao {
 		
 		int result = 0;
 		
-		String query = "INSERT INTO REPORT VALUES(SEQ_REPORT.NEXTVAL,?,DEFAULT,?,?)";
+		String query = "INSERT INTO REPORT VALUES(SEQ_REPORT.NEXTVAL,?,DEFAULT,?,?,DEFAULT)";
 		
 		try {
 				pstmt = conn.prepareStatement(query);
@@ -1113,7 +1111,7 @@ public class HomeDao {
 		int result = 0;
 		
 		String query = "UPDATE HOMEREVIEW SET REPORT = HOMEREVIEW.REPORT + 1 WHERE REVIEWNO = ?";
-		String query2 = "SELECT REVIEWNO,USERNO FROM HOMEREVIEW WHERE REPORT >= 5";
+		String query2 = "SELECT REVIEWNO,USERNO FROM HOMEREVIEW WHERE REPORT = 5 AND STATUS = 'N'";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1126,20 +1124,18 @@ public class HomeDao {
 			rs = pstmt2.executeQuery();
 			Report report = new Report();
 			
-			int review;
 			
-			if(rs.next()) {
-				review = rs.getInt(1);
+			while(rs.next()) {
+				report = new Report(rs.getInt("reviewno"),
+						"8",
+						rs.getInt("userno"));
+				
+				if(rs.getInt(1) == reviewNo) {
+					insertReport(conn, report);
+				}
 			}
 			
-			report = new Report(rs.getInt("reviewno"),
-								"8",
-								rs.getInt("userno"));
 			
-			
-			if(rs.getInt(1) == reviewNo) {
-				insertReport(conn, report);
-			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1157,7 +1153,7 @@ public class HomeDao {
 		
 		ArrayList<Review> rlist = new ArrayList<Review>();
 		
-		String query = "SELECT * FROM RLIST WHERE HOUSENO = ?";
+		String query = "SELECT * FROM RLIST WHERE HOUSENO = ? AND STATUS = 'N'";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1175,7 +1171,7 @@ public class HomeDao {
 						rs.getInt("userno"),
 						rs.getString("username")));
 			}
-//			System.out.println(rlist);
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

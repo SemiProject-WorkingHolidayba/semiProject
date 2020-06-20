@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WorkingThrough</title>
 </head>
 <body>
 	<!-- 로그인 실패지롱 ~-->

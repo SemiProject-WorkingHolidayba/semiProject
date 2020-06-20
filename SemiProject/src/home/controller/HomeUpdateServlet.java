@@ -40,7 +40,7 @@ public class HomeUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int maxSize = 1024 * 1024 * 10;
 		
-		String root = request.getSession().getServletContext().getRealPath("/");
+		String root = "C:\\semiProject\\SemiProject\\web\\";
 		String savePath = root + "home_uploadFiles/";
 		
 		MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
@@ -160,7 +160,7 @@ public class HomeUpdateServlet extends HttpServlet {
 		if(result > 0) {
 			response.sendRedirect("list.ho?currentPage=1");
 		} else {
-			System.out.println("게시글 등록 실패");
+			System.out.println("게시글 수정 실패");
 		}
 	}
 

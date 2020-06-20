@@ -374,21 +374,20 @@ public class MemberDao {
 	public ArrayList<Report> ReportList(Connection conn, int limit, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;		
-		Report rp = null;
-		Report uploaduserinfo=null;
+		Report rep = null;
 		int startRow = 1+(currentPage-1)*limit;
 		int endRow = currentPage*limit;
 		ArrayList<Report> rplist = new ArrayList<>();
-		int reportno =0;
-		int categoryno =0;
-		int uploaduserno=0;
-		String uploaduser="";
-		int boardno = 0;
-		String process="";
-		String reportuser="";
 		
 		
-		String query="SELECT * FROM (SELECT ROWNUM RNUM, R.REPORTNO, R.BOARDNO, R.PROCESS, R.CATEGORYNO, M.USERID FROM REPORT R JOIN MEMBER M ON (R.USERNO = M.USERNO)) RR WHERE RNUM BETWEEN ? AND ?";
+		
+		String query="\r\n" + 
+				"SELECT * FROM(\r\n" + 
+				"                            SELECT ROWNUM RNUM,R.REPORTNO, R.BOARDNO, R.PROCESS, R.CATEGORYNO, M.USERID, R.USERNO   \r\n" + 
+				"                            FROM REPORT R \r\n" + 
+				"                            JOIN MEMBER M ON (R.USERNO = M.USERNO)\r\n" + 
+				"            )\r\n" + 
+				"WHERE RNUM BETWEEN ? AND ?";
 		
 		
 		try {
@@ -400,61 +399,17 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
-				reportno = rs.getInt("reportno");
-				boardno = rs.getInt("boardno");
-				process = rs.getString("process");
-				categoryno = rs.getInt("categoryno");
-				switch (categoryno) {
-				case 1:
-					uploaduserinfo = new TestDao().SelectCommunityUserId(boardno);
-					 uploaduserno = uploaduserinfo.getUploaduserno();
-					 uploaduser=uploaduserinfo.getUploaduser();
-					break;
-				case 2:
-					uploaduserinfo = new TestDao().SelectCommunityUserId(boardno);
-					 uploaduserno = uploaduserinfo.getUploaduserno();
-					 uploaduser=uploaduserinfo.getUploaduser();
-					break;
-				case 3:
-					uploaduserinfo = new TestDao().SelectCommunityUserId(boardno);
-					 uploaduserno = uploaduserinfo.getUploaduserno();
-					 uploaduser=uploaduserinfo.getUploaduser();
-					break;
-				case 4:
-					uploaduserinfo = new TestDao().SelectCommentUserId(boardno);
-					 uploaduserno = uploaduserinfo.getUploaduserno();
-					 uploaduser=uploaduserinfo.getUploaduser();
-					break;
-				case 5:
-					uploaduserinfo = new TestDao().SelectJobsearchUserId(boardno);
-					 uploaduserno = uploaduserinfo.getUploaduserno();
-					 uploaduser=uploaduserinfo.getUploaduser();
-					break;
-				case 6:
-					uploaduserinfo= new TestDao().SelectJobreviewUserId(boardno);
-					 uploaduserno = uploaduserinfo.getUploaduserno();
-					 uploaduser=uploaduserinfo.getUploaduser();
-					break;
-				case 7:
-					uploaduserinfo= new TestDao().SelectHomeUserId(boardno);
-					 uploaduserno = uploaduserinfo.getUploaduserno();
-					 uploaduser=uploaduserinfo.getUploaduser();
-					break;
-				case 8:
-					uploaduserinfo= new TestDao().SelectHomeReviewUserId(boardno);
-					 uploaduserno = uploaduserinfo.getUploaduserno();
-					 uploaduser=uploaduserinfo.getUploaduser();
-					break;
-				default:
-					break;
-				}
-				reportuser = rs.getString("userid");
-				
-				rp = new Report(reportno, categoryno, uploaduserno, uploaduser, boardno, process, reportuser);
-				rplist.add(rp);
+				rep = new Report(
+								 rs.getInt("REPORTNO"),
+								 rs.getInt("BOARDNO"),
+								 rs.getString("PROCESS"),
+								 rs.getInt("CATEGORYNO"),
+								 rs.getString("USERID"),
+								 rs.getInt("USERNO")
+						);
+				rplist.add(rep);
 			}
 			
-			System.out.println("reportno:"+reportno+" categoryno:"+categoryno+" uploaduser:"+uploaduser+" boardno:"+boardno+" process:"+process+" reportuser:"+reportuser);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

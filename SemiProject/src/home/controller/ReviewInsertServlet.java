@@ -36,7 +36,6 @@ public class ReviewInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userNo = Integer.valueOf(request.getParameter("userNo"));
-		System.out.println(userNo);
 		int hNo = Integer.valueOf( request.getParameter("hNo"));
 		String content = request.getParameter("content");
 		int score = Integer.valueOf(request.getParameter("score"));

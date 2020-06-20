@@ -41,8 +41,10 @@ public class HomeInsertServlet extends HttpServlet {
 		
 		int maxSize = 1024 * 1024 * 10;
 		
-		String root = request.getSession().getServletContext().getRealPath("/");
+		String root = "C:\\semiProject\\SemiProject\\web\\";
 		String savePath = root + "home_uploadFiles/";
+		
+		System.out.println(root);
 		
 		MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
@@ -141,8 +143,6 @@ public class HomeInsertServlet extends HttpServlet {
 			fileList.add(at);
 			
 		}
-		
-		System.out.println(fileList);
 		
 		int result = new HomeService().insertHome(h,fileList);
 		

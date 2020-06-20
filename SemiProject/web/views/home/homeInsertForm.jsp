@@ -11,10 +11,10 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-    <title>Delivery Management System</title>
+    <title>WorkignThrough</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="images/semi.ico">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="carousel.css" rel="stylesheet">
     <!-- Bootstrap Javascript -->

@@ -79,6 +79,7 @@ public class MemberService {
 	public int SetSanction(int userNo) {
 		Connection conn = getConnection();
 		int result = new MemberDao().SetSanction(conn, userNo);
+		
 
 		if (result > 0) {
 			commit(conn);

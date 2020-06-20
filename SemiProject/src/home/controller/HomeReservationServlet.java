@@ -45,13 +45,18 @@ public class HomeReservationServlet extends HttpServlet {
 			
 		if(checkResult == 0) {
 			result = hService.reservationHome(new Reservation(userNo, hNo2));
+			
 			if(result > 0) {
-				response.sendRedirect("detail.ho?hNo="+hNo);
+				request.setAttribute("msg", "예약되었습니다.");
+				request.getRequestDispatcher("views/home/homeReservationConfirm.jsp").forward(request, response);
 			} else {
 				System.out.println("예약 실패");
 			}
+			
+			
 		} else {
-			System.out.println("예약 한건 존재");
+			request.setAttribute("msg", "예약이 이미 되었습니다.");
+			request.getRequestDispatcher("views/home/homeReservationConfirm.jsp").forward(request, response);
 		}
 		
 	}

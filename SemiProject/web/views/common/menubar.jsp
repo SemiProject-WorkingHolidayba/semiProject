@@ -16,12 +16,12 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script> 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-<title>Delivery Management System</title>
+<title>WorkingThrough</title>
 
 <!-- Bootstrap CSS -->
 <link rel="icon" href="../../favicon.ico">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link href="../carousel/carousel.css" rel="stylesheet">
+<link href="../carousel.css" rel="stylesheet">
 <!-- Bootstrap Javascript -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -164,12 +164,9 @@
 <body>
 <header>
     <div class="container2">
-      <div class="logo">
-        <a class="navbar-brand" href="main.jsp"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
-      </div>
       <div class="menu">
         <div class="logo">
-        	<a class="navbar-brand" href="#"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
+        	<a class="navbar-brand" href="<%=request.getContextPath() %>/main.jsp"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
       	</div>
         <ul class="nav">
           <li><a href="#">안전정보</a></li>
@@ -188,25 +185,18 @@
     </div>
     <ul class="login_register" >
     	<%if(loginUser == null){ %>
-        <li><a href="<%=request.getContextPath() %>/views/member/login.jsp">로그인</a></li>
-        <li><a href="<%=request.getContextPath() %>/views/member/join.jsp">회원가입</a></li>
-        <%} else{ %>
-        	<%if(loginUser.getGrade() == 2){ %>
-	        <li><a href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp">마이페이지</a></li>
-        	<%} else if(loginUser.getGrade() == 3){ %>
-<<<<<<< HEAD
-        		<li><a href="<%=request.getContextPath() %>/views/member/#.jsp">마이페이지</a></li>
->>>>>>> refs/remotes/origin/Eunjin
-=======
-        		<li><a href="<%=request.getContextPath() %>/views/mypage/PIU/NpersonalIU.jsp">마이페이지</a></li>
->>>>>>> refs/remotes/origin/kimsung
-        	<%} else{ %>
-        	<li><a href="<%=request.getContextPath()%>/wselectallmember.me">회원관리</a></li>
-        	 <%} %>
-	        <li><a href="<%=request.getContextPath()%>/sessionclear.me">로그아웃</a></li>
-	       
-        <%} %>
-       
+	        <li><a href="<%=request.getContextPath() %>/views/member/login.jsp">로그인</a></li>
+	        <li><a href="<%=request.getContextPath() %>/views/member/join.jsp">회원가입</a></li>
+        <%} else { %>
+        	<% if(loginUser.getGrade() == 2){ %>
+	        	<li><a href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp">마이페이지</a></li>
+	        <%} else if(loginUser.getGrade() == 3){ %>
+	        	<li><a href="<%=request.getContextPath() %>/views/mypage/PIU/NpersonalIU.jsp">마이페이지</a></li>
+	        <%} else{ %>
+	        	<li><a href="<%=request.getContextPath()%>/wselectallmember.me">회원관리</a></li>
+	        <%} %>
+		    <li><a href="<%=request.getContextPath()%>/sessionclear.me">로그아웃</a></li>
+	    <%} %>
     </ul>
     </div>
 </header>

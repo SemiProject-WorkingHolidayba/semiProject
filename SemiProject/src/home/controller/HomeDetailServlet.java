@@ -39,6 +39,7 @@ public class HomeDetailServlet extends HttpServlet {
 		Home home = new HomeService().selectHome(hNo2);
 		ArrayList<Img> flist = new HomeService().selectImgList(hNo2);
 		ArrayList<Review> rlist = new HomeService().selectReplyList(hNo2);
+		
 
 		if(home != null) {
 			request.setAttribute("home", home);
@@ -46,7 +47,7 @@ public class HomeDetailServlet extends HttpServlet {
 			request.setAttribute("rlist", rlist);
 			request.getRequestDispatcher("views/home/homeDetailView.jsp").forward(request, response);
 		} else {
-			System.out.println("실패");
+			System.out.println("게시글 상세보기 실패");
 		}
 		
 	}

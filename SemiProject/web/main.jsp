@@ -10,24 +10,33 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-    <title>Delivery Management System</title>
+    <title>WorkignThrough</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="images/semi.ico">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link href="carousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="carousel.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="path/to/swiper.min.css">
+	
+	<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+
     <!-- Bootstrap Javascript -->
     
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
 
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- Custom styles for this template -->
     <style>
+    	 html,
 	    body{
-	    	width: auto;
+	    	width: 100%;
 	    }
          #nation {
             border: 0.5px solid rgb(176, 171, 171);
@@ -113,103 +122,113 @@
         }
 
         .container a{
-<<<<<<< HEAD
+
             color: black;
-=======
-            color: black;
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/kimsung
 
             }
-	.item{
-		width: 960px;
-		height: 530px;
-		text-align: center;
-	}
+		.item{
+			width: 960px;
+			height: 530px;
+			text-align: center;
+		}
+		
+		.swiper-container {
+	      width: 100%;
+	      height: 400px;
+	
+	    }
+	    
+	    .swiper-slide img{
+	    	width:100%;
+	    }
+	
+	    .swiper-slide {
+	      text-align: center;
+	      font-size: 18px;
+	      background: #fff;
+	
+	      /* Center slide text vertically */
+	      display: -webkit-box;
+	      display: -ms-flexbox;
+	      display: -webkit-flex;
+	      display: flex;
+	      -webkit-box-pack: center;
+	      -ms-flex-pack: center;
+	      -webkit-justify-content: center;
+	      justify-content: center;
+	      -webkit-box-align: center;
+	      -ms-flex-align: center;
+	      -webkit-align-items: center;
+	      align-items: center;
+    	}
+    	
+    	.swiper-slid img{
+    		width:100%;
+    		height:100%;
+    		position:relative
+       	}
 
-<<<<<<< HEAD
-
-=======
-=======
-        }
-
->>>>>>> refs/remotes/origin/kimsung
->>>>>>> refs/remotes/origin/kimsung
     </style>
   </head>
   <body>
     <%@include file="views/common/menubar.jsp"%>
     <div id = "content">
-        <div id="myCarousel" class="carousel slide z2" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-              <li data-target="#myCarousel" data-slide-to="3"></li>
-              <li data-target="#myCarousel" data-slide-to="4"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox" >
-              <div class="item active">
-                <img src="images/country/Australia/OpheraHouse.jpg" alt="First slide">
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>호주</h1>
-                    <h1>오페라하우스</h1>
-                    <hr />
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <img src="images/country/Japan/Sakura.jpg" alt="Second slide">
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>일본</h1>
-                    <h1>벚꽃 성</h1>
-                    <hr />
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <img src="images/country/Canada/AgeAgara.jpg" alt="Third slide">
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>캐나다</h1>
-                    <h1>나이아가라 폭포</h1>
-                    <hr />
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <img src="images/country/Germany/Fruit.jpg" alt="Third slide">
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>독일</h1>
-                    <h1>프랑크 프루트</h1>
-                    <hr />
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <img src="images/country/Newzealand/gotohell.jpg" alt="Third slide">
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>뉴질랜드</h1>
-                    <h1>지옥에나 가라</h1>
-                    <hr />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div><!-- /.carousel -->
+    	<div class="swiper-container">
+		    <!-- Additional required wrapper -->
+		    <div class="swiper-wrapper">
+		        <!-- Slides -->
+		        <div class="swiper-slide">
+		        	<img src="images/country/Australia/ophera.jpg" alt="First slide">
+		        	 <div class="carousel-caption">
+	                    <h1>호주</h1>
+	                    <h1>오페라하우스</h1>
+	                    <hr />
+	                  </div>
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/country/Japan/himeji.jpg" alt="Second slide">
+		        	<div class="carousel-caption">
+	                    <h1>일본</h1>
+	                    <h1>히메지 성</h1>
+	                    <hr />
+                  	</div>
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/country/Canada/niagaraFalls.jpg" alt="Third slide">
+		        	<div class="carousel-caption">
+	                    <h1>캐나다</h1>
+	                    <h1>나이아가라 폭포</h1>
+	                    <hr />
+	                </div>
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/country/Germany/Frankfurt.jpg" alt="Third slide">
+		        	<div class="carousel-caption">
+	                    <h1>독일</h1>
+	                    <h1>프랑크 프루트</h1>
+	                    <hr />
+                  	</div>
+		        </div>
+		        <div class="swiper-slide">
+		        	<img src="images/country/Newzealand/auckland.jpg" alt="Third slide">
+		        	<div class="carousel-caption">
+	                    <h1>뉴질랜드</h1>
+	                    <h1>오클랜드</h1>
+	                    <hr />
+                  	</div>
+		        </div>
+		    </div>
+		    <!-- If we need pagination -->
+		    <div class="swiper-pagination swiper-pagination-white"></div>
+		
+		    <!-- If we need navigation buttons -->
+		    <div class="swiper-button-prev swiper-button-white"></div>
+		    <div class="swiper-button-next swiper-button-white"></div>
+		
+		    <!-- If we need scrollbar -->
+		    <div class="swiper-scrollbar"></div>
+		</div>
+        
           <br>
           <br>
           <div class="z2">
@@ -305,14 +324,34 @@
       <hr>
       <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
     </div>
-      <script>
+    <script>
           $('.carousel').carousel({ interval: 2000 });
-        </script>
+          
+    </script>
+    <script>
+	    var swiper = new Swiper('.swiper-container', {
+	        spaceBetween: 30,
+	        centeredSlides: true,
+	        autoplay: {
+	          delay: 2000,
+	          disableOnInteraction: false,
+	        },
+	        pagination: {
+	          el: '.swiper-pagination',
+	          clickable: true,
+	        },
+	        navigation: {
+	          nextEl: '.swiper-button-next',
+	          prevEl: '.swiper-button-prev',
+	        },
+	      });
+    </script>
 
+	<script src="path/to/swiper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../../assets/js/docs.min.js"></script>
+    <script src="assets/js/docs.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <!-- <script src="vendor/holder.js"></script> -->
   </body>
 </html>
