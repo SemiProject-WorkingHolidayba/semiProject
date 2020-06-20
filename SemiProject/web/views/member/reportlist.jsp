@@ -279,6 +279,7 @@
 		 	if(resu == true){
 		 		
 				  $.ajax({
+					  
 					url:"<%=request.getContextPath()%>/reportsetsanction.me",
 					type:"post",
 					data:{reportNo:reportno, 
