@@ -4,7 +4,6 @@ import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
-
 import java.util.ArrayList;
 
 import common.model.dao.NletterListDao;
@@ -32,7 +31,11 @@ public class NletterListService {
 		
 		return list;
 		
-
+		
+		
+		
+		
+		
 	}
 
 }

@@ -236,7 +236,7 @@ nav{
                 	<%for(int i=0; i<list.size(); i++){ %>
                 	<label id="jan" style="visibility:hidden;"><%=((JobSearch)list.get(i)).getJobApplyNo() %></label>
 			          <tr>			            
-						<td><%=((JobSearch)list.get(i)).getJobNo() %></td>
+						<td id="j"><%=((JobSearch)list.get(i)).getJobNo() %></td>
 			            <td><%=((JobSearch)list.get(i)).getTitle() %></td>
 			            <td><%=((JobSearch)list.get(i)).getCountry() %></td>
 			            <td><%=((JobSearch)list.get(i)).getPeriod() %></td>
@@ -275,10 +275,11 @@ nav{
 
 
 $(function(){
+	var jobNo = $("#j").text();
 		$("#aList td").click(function(){
 			
 
-				location.href="<%=request.getContextPath()%>/detail.job?jobNo=" +jobNo;
+				location.href="<%=request.getContextPath()%>/jobDetail.bo?jobNo=" +jobNo;
 		
 			// JobDetailServlet을 만들러 가자
 		});

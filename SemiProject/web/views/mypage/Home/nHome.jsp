@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="home.model.vo.*, java.util.ArrayList"%>
 <%
-   Pagination pn = (Pagination)request.getAttribute("pn");
-   ArrayList list = (ArrayList)request.getAttribute("list");
-   
-   int listCount = pn.getListCount();
-   int currentPage = pn.getCurrentPage();
-   int maxPage = pn.getMaxPage();
-   int startPage = pn.getStartPage();
-   int endPage = pn.getEndPage();
+	Pagination pn = (Pagination)request.getAttribute("pn");
+	ArrayList list = (ArrayList)request.getAttribute("list");
+	
+	int listCount = pn.getListCount();
+	int currentPage = pn.getCurrentPage();
+	int maxPage = pn.getMaxPage();
+	int startPage = pn.getStartPage();
+	int endPage = pn.getEndPage();
 %>
 <!DOCTYPE html>
 <html lang="en">

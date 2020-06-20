@@ -9,11 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
 
 import community.model.service.CommunityService;
-import community.model.vo.*;
+import community.model.vo.Pagination;
 import member.model.vo.Member;
 
 /**
@@ -95,7 +94,7 @@ public class CommunityListServlet extends HttpServlet {
 		Pagination pn = new Pagination(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		// 1_2. 화면에 뿌려줄 워홀러 내가 쓴 글 테이블 리스트 조회하기
-		ArrayList list = CommunityService.selectList(currentPage, limit, userNo);	
+		ArrayList list = CommunityService.selectcList(currentPage, limit, userNo);	
 //		System.out.println(listCount);
 //		System.out.println(list);
 		RequestDispatcher view = null;
@@ -113,7 +112,7 @@ public class CommunityListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

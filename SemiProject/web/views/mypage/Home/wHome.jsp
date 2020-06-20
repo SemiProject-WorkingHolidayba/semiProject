@@ -254,6 +254,7 @@ nav{
           <br><br>
           
            <%}else{ %> 
+           	<label id="jan" style="visibility:hidden;"><%=((myHome)hrlist.get(0)).getHouseNo() %></label>
            <table align="center" id="home">
           <tr>
             <td class="mainChoice">글 제목</td>
@@ -361,10 +362,11 @@ nav{
              location.href="<%=request.getContextPath()%>/delete.home";
           }
       })
-      
+      var hNo =  $("#jan").text();
       $("#home .content").click(function(){
-         location.href="<%=request.getContextPath()%>/detail.home";
-   });
+ 
+			location.href="<%=request.getContextPath()%>/detail.ho?hNo="+hNo;
+	});
     })
 
 

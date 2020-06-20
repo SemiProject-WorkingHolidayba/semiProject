@@ -293,12 +293,12 @@
                 	<label id="jan" style="visibility:hidden;"><%=((JobSearch)list.get(i)).getHeartNo() %></label>
                     <tr>
                         <td><i class="fas fa-grin-hearts"></i></td>
-                        <td><%=((JobSearch)list.get(i)).getJobNo() %></td>
-                        <td><%=((JobSearch)list.get(i)).getTitle() %></td>
-                        <td><%=((JobSearch)list.get(i)).getCountry() %></td>
-                        <td><%=((JobSearch)list.get(i)).getPeriod() %></td>
-                        <td><%=((JobSearch)list.get(i)).getWorkTime() %></td>
-                        <td><%=((JobSearch)list.get(i)).getDueDate() %></td>
+                        <td class="j" id="j"><%=((JobSearch)list.get(i)).getJobNo() %></td>
+                        <td class="j"><%=((JobSearch)list.get(i)).getTitle() %></td>
+                        <td class="j"><%=((JobSearch)list.get(i)).getCountry() %></td>
+                        <td class="j"><%=((JobSearch)list.get(i)).getPeriod() %></td>
+                        <td class="j"><%=((JobSearch)list.get(i)).getWorkTime() %></td>
+                        <td class="j"><%=((JobSearch)list.get(i)).getDueDate() %></td>
                     </tr>
                		<%} %>
 				<%} %>
@@ -347,10 +347,11 @@
 
     <script>
     $(function(){
-		$("#listChoice td").click(function(){
+    	var jobNo = $("#j").text();
+		$("#listChoice .j").click(function(){
 			
 
-				location.href="<%=request.getContextPath()%>/detail.job?jobNo=" +jobNo;
+				location.href="<%=request.getContextPath()%>/jobDetail.bo?jobNo=" +jobNo;
 		
 			// JobDetailServlet을 만들러 가자
 		});

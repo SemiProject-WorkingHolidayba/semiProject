@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
  <% 
-   Member member = (Member)session.getAttribute("loginUser");
+	Member member = (Member)session.getAttribute("loginUser");
     String userName = member.getUserName();
-     String userPw = member.getUserPw();
-   
+  	String userPw = member.getUserPw();
+	
     String email = member.getEmail() ;
  %>    
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
   <!-- <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script> -->
 
   <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-   
+	
   <!-- Custom styles for this template -->
 
   <style>
@@ -573,6 +573,150 @@
           
    })
      
+	  $("#pwdChange").click(function(){ 
+	  		
+	 		var PregExp=/^[a-z0-9]{4,20}$/;
+	 		var currentPwd = $("#currentPwd");
+	 		var userP = $("#userPwd");
+	 		var userP2 = $("#userPwd2");
+	 		if(currentPwd.val().trim().length == 0){
+	 			alert("현재비밀번호를 입력해주세요")
+	 		}else if(currentPwd.val() != "<%=loginUser.getUserPw()%>") { 	 			
+	 			alert("현재 비밀번호가 일치하지 않습니다!");
+	 		}
+	 		else if(userP.val().trim().length == 0){
+		 			alert("사용하실 비밀번호를 입력해주세요");
+		 	}else if(!PregExp.test(userP.val())){
+	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
+	 		}else if(userP2.val().trim().length == 0){
+		 			alert("비밀번호를 확인해주세요");	
+	 		}else if(!PregExp.test(userP2.val())){
+	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
+	 		}else if(userP.val() != userP2.val()){
+	 			alert("사용하실 비밀번호가 맞는지 확인해주세요!");
+	 		}else if(userP.val() == userP2.val()){
+	 			
+	 		     $.ajax({
+			            url:"<%=request.getContextPath()%>/updatePwd.me",
+			            type:"post",
+			            data:{userPw:userP2.val()},
+			            success:function(data){
+			              if(data=="Y"){
+							location.href="<%=request.getContextPath()%>/views/common/alert.jsp";
+			              
+			              }else{
+			            		alert("수정이 실패하였습니다.");
+			            	}
+			               
+			               
+			            },
+			            error:function(request,status,error){
+			                      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			                  }
+			         }); 
+	 		}
+	 		
+	 	
+	  })
+	       
+	})
+  	
+	  $("#pwdChange").click(function(){ 
+	  		
+	 		var PregExp=/^[a-z0-9]{4,20}$/;
+	 		var currentPwd = $("#currentPwd");
+	 		var userP = $("#userPwd");
+	 		var userP2 = $("#userPwd2");
+	 		if(currentPwd.val().trim().length == 0){
+	 			alert("현재비밀번호를 입력해주세요")
+	 		}else if(currentPwd.val() != "<%=loginUser.getUserPw()%>") { 	 			
+	 			alert("현재 비밀번호가 일치하지 않습니다!");
+	 		}
+	 		else if(userP.val().trim().length == 0){
+		 			alert("사용하실 비밀번호를 입력해주세요");
+		 	}else if(!PregExp.test(userP.val())){
+	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
+	 		}else if(userP2.val().trim().length == 0){
+		 			alert("비밀번호를 확인해주세요");	
+	 		}else if(!PregExp.test(userP2.val())){
+	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
+	 		}else if(userP.val() != userP2.val()){
+	 			alert("사용하실 비밀번호가 맞는지 확인해주세요!");
+	 		}else if(userP.val() == userP2.val()){
+	 			
+	 		     $.ajax({
+			            url:"<%=request.getContextPath()%>/updatePwd.me",
+			            type:"post",
+			            data:{userPw:userP2.val()},
+			            success:function(data){
+			              if(data=="Y"){
+							location.href="<%=request.getContextPath()%>/views/common/alert.jsp";
+			              
+			              }else{
+			            		alert("수정이 실패하였습니다.");
+			            	}
+			               
+			               
+			            },
+			            error:function(request,status,error){
+			                      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			                  }
+			         }); 
+	 		}
+	 		
+	 	
+	  })
+	       
+	})
+  	
+	  $("#pwdChange").click(function(){ 
+	  		
+	 		var PregExp=/^[a-z0-9]{4,20}$/;
+	 		var currentPwd = $("#currentPwd");
+	 		var userP = $("#userPwd");
+	 		var userP2 = $("#userPwd2");
+	 		if(currentPwd.val().trim().length == 0){
+	 			alert("현재비밀번호를 입력해주세요")
+	 		}else if(currentPwd.val() != "<%=loginUser.getUserPw()%>") { 	 			
+	 			alert("현재 비밀번호가 일치하지 않습니다!");
+	 		}
+	 		else if(userP.val().trim().length == 0){
+		 			alert("사용하실 비밀번호를 입력해주세요");
+		 	}else if(!PregExp.test(userP.val())){
+	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
+	 		}else if(userP2.val().trim().length == 0){
+		 			alert("비밀번호를 확인해주세요");	
+	 		}else if(!PregExp.test(userP2.val())){
+	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
+	 		}else if(userP.val() != userP2.val()){
+	 			alert("사용하실 비밀번호가 맞는지 확인해주세요!");
+	 		}else if(userP.val() == userP2.val()){
+	 			
+	 		     $.ajax({
+			            url:"<%=request.getContextPath()%>/updatePwd.me",
+			            type:"post",
+			            data:{userPw:userP2.val()},
+			            success:function(data){
+			              if(data=="Y"){
+							location.href="<%=request.getContextPath()%>/views/common/alert.jsp";
+			              
+			              }else{
+			            		alert("수정이 실패하였습니다.");
+			            	}
+			               
+			               
+			            },
+			            error:function(request,status,error){
+			                      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			                  }
+			         }); 
+	 		}
+	 		
+	 	
+	  })
+	       
+	})
+  	
 </script> 
 
 <script>
@@ -660,6 +804,42 @@
          })
          
          
+	 $("#deleteMan").click(function(){
+	      
+	         
+	    	  var pwd = $("#deletePwd").val();
+	    	  var userPwd = "<%=loginUser.getUserPw()%>";
+	    	  
+		     if(pwd != "<%=loginUser.getUserPw()%>" ){
+	    	  alert("사용중인 비밀번호가 아닙니다! 다시 입력해주세요");
+	    		
+		     } else {
+				 $.ajax({
+				      url:"<%=request.getContextPath()%>/delete.me",
+				      type:"post",
+				      data:{},
+				      success:function(data){
+				        if(data=="Y"){
+				      	  alert("탈퇴되었습니다.");
+				         document.location.href="<%= request.getContextPath()%>/sessionclear.me";
+				      
+				      	}else{
+				      		alert("탈퇴하지 못하였습니다 ㅠㅠ");
+				      	}
+				         
+				         
+				      },
+				      error:function(request,status,error){
+				                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				            }
+				   });
+				 
+	      
+	      
+	      
+	      }
+	      
+	      
 
     })
  })      

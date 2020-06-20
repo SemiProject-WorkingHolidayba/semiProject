@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="common.model.vo.*, java.util.ArrayList, job.model.vo.Pagination"%>
  <%
-   Pagination pn = (Pagination)request.getAttribute("pn");
-   ArrayList list = (ArrayList)request.getAttribute("list");
-   
-   int listCount = pn.getListCount();
-   int currentPage = pn.getCurrentPage();
-   int maxPage = pn.getMaxPage();
-   int startPage = pn.getStartPage();
-   int endPage = pn.getEndPage();
+	Pagination pn = (Pagination)request.getAttribute("pn");
+	ArrayList list = (ArrayList)request.getAttribute("list");
+	
+	int listCount = pn.getListCount();
+	int currentPage = pn.getCurrentPage();
+	int maxPage = pn.getMaxPage();
+	int startPage = pn.getStartPage();
+	int endPage = pn.getEndPage();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -171,7 +171,7 @@
 
 <body>
 
-   <%@ include file="/views/common/menubar.jsp" %>
+	<%@ include file="/views/common/menubar.jsp" %>
 
 
 
@@ -225,45 +225,43 @@
         </thead>
         <tbody id="letterDetail">
            <%if(list.isEmpty()){ %>
-              <tr>
-                   <td colspan="4">작성한 게시글이 존재하지 않습니다.</td>
+      		  <tr>
+                	<td colspan="4">작성한 게시글이 존재하지 않습니다.</td>
               </tr>
-           <%}else{ %>
-                   <%for(int i=0; i<list.size(); i++){ %>
-                    <tr>
-                        <td>
-                               <%=((NletterList)list.get(i)).getJobNo()%> 
-                              
-                        </td>
-                        <td><%=((NletterList)list.get(i)).getTypeName() %></td>
+     		<%}else{ %>
+          			<%for(int i=0; i<list.size(); i++){ %>
+                    
+                    <tr id="tr">
+                        <td id="no"><%=((NletterList)list.get(i)).getJobNo()%></td>
+                        <td id="name"><%=((NletterList)list.get(i)).getTypeName() %></td>
                         <td><%=((NletterList)list.get(i)).getTitle() %></td> 
                         <td><%=((NletterList)list.get(i)).getWriteDate() %></td>
                     </tr>
-                     <%} %>
+               		<%} %>
        <%} %>
 
         </tbody>
       </table>
       
       <div class="pagingArea" align="center">
-         <!-- 맨 처음으로(<<) -->
-         <button onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=1'"> << </button>
-         <!-- 이전 페이지로(<) -->
-         <button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=currentPage-1 %>'"> < </button>
-         <!-- 10개의 페이지 목록 -->
-         <% for(int p = startPage ; p <= endPage ; p ++) {%>
-            <%if(p == currentPage) {%>
-               <button disabled><%=p %></button>
-            <%}else{ %>
-               <button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=p %>'"><%=p %></button>
-            <%} %>
-         <% } %>
-         
-         <!-- 다음 페이지로(>) -->
-         <button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=currentPage+1 %>'"> > </button>
-         <!-- 맨 끝으로(>>) -->
-         <button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=maxPage %>'"> >> </button>
-      </div>
+			<!-- 맨 처음으로(<<) -->
+			<button onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=1'"> << </button>
+			<!-- 이전 페이지로(<) -->
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=currentPage-1 %>'"> < </button>
+			<!-- 10개의 페이지 목록 -->
+			<% for(int p = startPage ; p <= endPage ; p ++) {%>
+				<%if(p == currentPage) {%>
+					<button disabled><%=p %></button>
+				<%}else{ %>
+					<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=p %>'"><%=p %></button>
+				<%} %>
+			<% } %>
+			
+			<!-- 다음 페이지로(>) -->
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=currentPage+1 %>'"> > </button>
+			<!-- 맨 끝으로(>>) -->
+			<button type="button" onclick="location.href='<%=request.getContextPath() %>/list.common?currentPage=<%=maxPage %>'"> >> </button>
+		</div>
       
       
       
@@ -274,7 +272,37 @@
 
   </div>
 
+<script>
 
+	$(function(){
+		$("#letterDetail tr").click(function(){
+			var tr = $(this);
+	        var td = tr.children();
+			var name =td.eq(1).text();
+
+			if(name == "구인"){
+				var jobNo = td.eq(0).text();
+				location.href="<%=request.getContextPath()%>/jobDetail.bo?jobNo=" +jobNo;
+			}else if(name == "집 매물"){
+				var hNo = td.eq(0).text();
+				location.href="<%=request.getContextPath()%>/detail.ho?hNo="+hNo;
+			}else{
+				var communityno = td.eq(0).text();
+				location.href="<%=request.getContextPath()%>/Detail.bo?communityno="+communityno;
+			}
+			
+			
+		})
+		
+	})
+	
+
+
+
+
+
+
+</script>
 
 
 

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
  <% 
-   Member member = (Member)session.getAttribute("loginUser");
+	Member member = (Member)session.getAttribute("loginUser");
     String userName = member.getUserName();
-     String userPw = member.getUserPw();
-   
+  	String userPw = member.getUserPw();
+	
     String email = member.getEmail() ;
  %>    
 <!DOCTYPE html>
@@ -262,21 +262,20 @@
 
  <%@ include file="/views/common/menubar.jsp" %>
 
-<div class="area" id="wrap" align="left"
-    style="width:160px; height: 900px; margin: 0; padding: 0; border-right: 1px solid lightgray; ">
 
-    <nav class="side_menu" style="text-align:left !important; " >
 
-      <ul class="depth2_menu" style="margin-top: 80%;">
-        <li class="depth2_list"><a class="depth2_anchor"
-            href="<%=request.getContextPath() %>/views/mypage/PIU/NpersonalIU.jsp"
-            target="_self">개인정보수정</a>
+ <div class="area side z2"
+    style="width: 160px; height: 900px; margin: 0; padding: 0; border-right: 1px solid lightgray; ">
+
+    <nav class="side_menu" style="margin-top:80%">
+
+      <ul class="depth2_menu">
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
 
         </li>
-        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.home"
-            target="_self">집 예약자 내역</a>
+        <li class="depth2_list actived"><a class="depth2_anchor" href="<%=request.getContextPath() %>/search.ho" target="_self">집 예약 내역</a>
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.ja" target="_self">구직 신청자
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.aj" target="_self">구직 신청
             내역</a>
 
 
@@ -284,10 +283,13 @@
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.common" target="_self">내가 쓴 글</a>
 
 
-       
+        </li>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.job" target="_self">찜 목록</a>
+
+
+        </li>
 
       </ul>
-
 
     </nav>
   </div>
