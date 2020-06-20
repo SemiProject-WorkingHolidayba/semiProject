@@ -1,30 +1,28 @@
-package home.controller;
+package job.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import home.model.service.HomeService;
-import home.model.vo.Home;
-import home.model.vo.Img;
-import home.model.vo.Review;
+import job.model.service.JobService;
+import job.model.vo.Heart;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class HomeDetailServlet
+ * Servlet implementation class JJimServlet
  */
-@WebServlet("/detail.ho")
-public class HomeDetailServlet extends HttpServlet {
+@WebServlet("/JJim.bo")
+public class JJimServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeDetailServlet() {
+    public JJimServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +31,25 @@ public class HomeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hNo = Integer.valueOf(request.getParameter("hNo"));
-	
-		Home home = new HomeService().selectHome(hNo);
-		ArrayList<Img> flist = new HomeService().selectImgList(hNo);
-		ArrayList<Review> rlist = new HomeService().selectReplyList(hNo);
-
-		if(home != null) {
-			request.setAttribute("home", home);
-			request.setAttribute("flist", flist);
-			request.setAttribute("rlist", rlist);
-			request.getRequestDispatcher("views/home/homeDetailView.jsp").forward(request, response);
-		} else {
-			System.out.println("실패");
+		int jobNo = Integer.valueOf(request.getParameter("jobno"));
+		
+		HttpSession session = request.getSession();
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		int userNo = Integer.valueOf(loginUser.getUserNo());
+		
+		Heart h = new Heart();
+		h.setJobNo(jobNo);
+		h.setUserNo(userNo);
+		
+		int result = new JobService().jobJJim(h);
+		
+		if(result>0) {
+			response.sendRedirect("views/job/jobDetail.bo?jobNo="+jobNo);
+		}else {
+			request.setAttribute("msg", "게시판 조회 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		
 	}

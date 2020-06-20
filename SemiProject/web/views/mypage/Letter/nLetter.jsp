@@ -230,12 +230,9 @@
               </tr>
      		<%}else{ %>
           			<%for(int i=0; i<list.size(); i++){ %>
-                    <tr>
-                        <td>
-                        		 <%=((NletterList)list.get(i)).getJobNo()%> 
-                        		
-                        </td>
-                        <td><%=((NletterList)list.get(i)).getTypeName() %></td>
+                    <tr id="tr">
+                        <td id="no"><%=((NletterList)list.get(i)).getJobNo()%></td>
+                        <td id="name"><%=((NletterList)list.get(i)).getTypeName() %></td>
                         <td><%=((NletterList)list.get(i)).getTitle() %></td> 
                         <td><%=((NletterList)list.get(i)).getWriteDate() %></td>
                     </tr>
@@ -274,7 +271,37 @@
 
   </div>
 
+<script>
 
+	$(function(){
+		$("#letterDetail tr").click(function(){
+			var tr = $(this);
+	        var td = tr.children();
+			var name =td.eq(1).text();
+
+			if(name == "구인"){
+				var jobNo = td.eq(0).text();
+				location.href="<%=request.getContextPath()%>/jobDetail.bo?jobNo=" +jobNo;
+			}else if(name == "집 매물"){
+				var hNo = td.eq(0).text();
+				location.href="<%=request.getContextPath()%>/detail.ho?hNo="+hNo;
+			}else{
+				var communityno = td.eq(0).text();
+				location.href="<%=request.getContextPath()%>/Detail.bo?communityno="+communityno;
+			}
+			
+			
+		})
+		
+	})
+	
+
+
+
+
+
+
+</script>
 
 
 

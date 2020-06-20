@@ -44,12 +44,13 @@ public class JobSearchDao {
 		ResultSet rs = null;
 		
 		ArrayList list = new ArrayList();
-		
 		int startRow = (currentPage-1) * limit + 1;
 		int endRow = currentPage * limit;
 		
 		
-		String query = " SELECT * FROM (SELECT J.* FROM JHLIST J WHERE (RNUM BETWEEN ? AND ?) AND USERNO = ?)";
+		String query = "SELECT J.* \r\n" + 
+				"             FROM JHLIST J\r\n" + 
+				"             WHERE (RNUM BETWEEN ? AND ?) AND J.USERNO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -59,17 +60,18 @@ public class JobSearchDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				JobSearch j = new JobSearch(rs.getInt("jobNo"),
-						rs.getString("period"),
-						rs.getDate("dueDate"),
-						rs.getDate("workTime"),
-						rs.getString("title"),
-						rs.getInt("userNo"),
-						rs.getString("country"),
-						rs.getInt("heartNo")
+				JobSearch j = new JobSearch(rs.getInt("JOBNO"),
+						rs.getString("PERIOD"),
+						rs.getDate("DUEDATE"),
+						rs.getString("WORKTIME"),
+						rs.getString("TITLE"),
+						rs.getInt("USERNO"),
+						rs.getString("COUNTRY"),
+						rs.getInt("HEARTNO")
 						);
 				list.add(j);
 			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,7 +115,7 @@ public class JobSearchDao {
 												rs.getString("address"),
 												rs.getString("pay"),
 												rs.getDate("dueDate"),
-												rs.getDate("workTime"),
+												rs.getString("workTime"),
 												rs.getString("workDay"),
 												rs.getString("title"),
 												rs.getString("content"),
@@ -218,31 +220,31 @@ public class JobSearchDao {
 			
 			while(rs.next()){
 				JobSearch j = new JobSearch(rs.getInt("jobNo"),
-											rs.getString("job"),
-											rs.getString("period"),
-											rs.getString("logoImg"),
-											rs.getInt("recruitment"),
-											rs.getString("gender"),	
-											rs.getString("age"),
-											rs.getString("address"),
-											rs.getString("pay"),
-											rs.getDate("dueDate"),
-											rs.getDate("workTime"),
-											rs.getString("workDay"),
-											rs.getString("title"),
-											rs.getString("content"),
-											rs.getInt("jobReport"),
-											rs.getDate("writeDate"),
-											rs.getString("countryNo"),
-											rs.getInt("userNo"),
-											rs.getString("changename"),
-											rs.getString("country"),
-											
-											rs.getInt("jobApplyNo"),
-											rs.getDate("jobApplyDate"),
-											rs.getString("typeNo"),
-											rs.getString("filePath"),
-											rs.getString("coName"));
+						rs.getString("job"),
+						rs.getString("period"),
+						rs.getString("logoImg"),
+						rs.getInt("recruitment"),
+						rs.getString("gender"),	
+						rs.getString("age"),
+						rs.getString("address"),
+						rs.getString("pay"),
+						rs.getDate("dueDate"),
+						rs.getString("workTime"),
+						rs.getString("workDay"),
+						rs.getString("title"),
+						rs.getString("content"),
+						rs.getInt("jobReport"),
+						rs.getDate("writeDate"),
+						rs.getString("countryNo"),
+						rs.getInt("userNo"),
+						rs.getString("changename"),
+						rs.getString("country"),
+						
+						rs.getInt("jobApplyNo"),
+						rs.getDate("jobApplyDate"),
+						rs.getString("typeNo"),
+						rs.getString("filePath"),
+						rs.getString("coName"));
 				list.add(j);
 			}
 			
@@ -284,7 +286,7 @@ public class JobSearchDao {
 											rs.getString("address"),
 											rs.getString("pay"),
 											rs.getDate("dueDate"),
-											rs.getDate("workTime"),
+											rs.getString("workTime"),
 											rs.getString("workDay"),
 											rs.getString("title"),
 											rs.getString("content"),
@@ -345,7 +347,7 @@ public class JobSearchDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "SELECT COUNT(*) FROM ARESERVATIONLIST WHERE J=? ";
+		String query = "SELECT COUNT(*) FROM ARESERVATIONLIST WHERE USERNO=? ";
 		
 		int result = 0;
 		try {
@@ -377,7 +379,7 @@ public class JobSearchDao {
 		int endRow = currentPage * limit;
 		
 		
-		String query = " SELECT * FROM (SELECT A.* FROM ARESERVATIONLIST A WHERE RNUM BETWEEN ? AND ? AND J=?)";
+		String query = " SELECT * FROM (SELECT A.* FROM ARESERVATIONLIST A WHERE RNUM BETWEEN ? AND ? AND USERNO=?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

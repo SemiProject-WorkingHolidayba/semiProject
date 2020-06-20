@@ -19,13 +19,13 @@ import member.model.vo.Member;
  * Servlet implementation class jobListServlet
  */
 @WebServlet("/list.job")
-public class JobListServlet extends HttpServlet {
+public class JobSearchListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JobListServlet() {
+    public JobSearchListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -95,6 +95,7 @@ public class JobListServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(list != null) {
+			
 			request.setAttribute("list", list);
 			request.setAttribute("pn", pn);
 			view = request.getRequestDispatcher("views/mypage/Work/JJIM.jsp");

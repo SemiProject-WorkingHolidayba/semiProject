@@ -18,7 +18,7 @@ public class JobSearch implements Serializable{
 	private String address;		// 주소
 	private String pay;			// 급여
 	private Date dueDate;		// 마감일
-	private Date workTime;		// 근무시간
+	private String workTime;		// 근무시간
 	private String workDay;		// 근무요일
 	private String title;		// 제목
 	private String content;		// 내용
@@ -39,10 +39,9 @@ public class JobSearch implements Serializable{
 		super();
 	}
 
-
-
-
-	public JobSearch(int jobNo, String period, Date dueDate, Date workTime, String title, int userNo, String country,int heartNo) {
+	
+	public JobSearch(int jobNo, String period, Date dueDate, String workTime, String title, int userNo, String country,
+			int heartNo) {
 		super();
 		this.jobNo = jobNo;
 		this.period = period;
@@ -55,47 +54,8 @@ public class JobSearch implements Serializable{
 	}
 
 
-
 	public JobSearch(int jobNo, String job, String period, String logoImg, int recruitment, String gender, String age,
-			String address, String pay, Date dueDate, Date workTime, String workDay, String title, String content,
-			int jobReport, Date writeDate, String countryNo, int userNo, String changeName, String country, int heartNo,
-			int jobApplyNo, Date jobApplyDate, String typeNo, String filePath, String coName) {
-		super();
-		this.jobNo = jobNo;
-		this.job = job;
-		this.period = period;
-		this.logoImg = logoImg;
-		this.recruitment = recruitment;
-		this.gender = gender;
-		this.age = age;
-		this.address = address;
-		this.pay = pay;
-		this.dueDate = dueDate;
-		this.workTime = workTime;
-		this.workDay = workDay;
-		this.title = title;
-		this.content = content;
-		this.jobReport = jobReport;
-		this.writeDate = writeDate;
-		this.countryNo = countryNo;
-		this.userNo = userNo;
-		this.changeName = changeName;
-		this.country = country;
-		this.heartNo = heartNo;
-		this.jobApplyNo = jobApplyNo;
-		this.jobApplyDate = jobApplyDate;
-		this.typeNo = typeNo;
-		this.filePath = filePath;
-		this.coName = coName;
-	}
-
-
-
-
-
-
-	public JobSearch(int jobNo, String job, String period, String logoImg, int recruitment, String gender, String age,
-			String address, String pay, Date dueDate, Date workTime, String workDay, String title, String content,
+			String address, String pay, Date dueDate, String workTime, String workDay, String title, String content,
 			int jobReport, Date writeDate, String countryNo, int userNo, String changeName, String country,
 			int jobApplyNo, Date jobApplyDate, String typeNo, String filePath, String coName) {
 		super();
@@ -127,63 +87,70 @@ public class JobSearch implements Serializable{
 	}
 
 
-
-
-
-
-	public String getFilePath() {
-		return filePath;
-	}
-
-
-
-
-
-
-	public void setFilePath(String filePath) {
+	public JobSearch(int jobNo, String job, String period, String logoImg, int recruitment, String gender, String age,
+			String address, String pay, Date dueDate, String workTime, String workDay, String title, String content,
+			int jobReport, Date writeDate, String countryNo, int userNo, String changeName, String country,
+			int jobApplyNo, Date jobApplyDate, String typeNo, String filePath) {
+		super();
+		this.jobNo = jobNo;
+		this.job = job;
+		this.period = period;
+		this.logoImg = logoImg;
+		this.recruitment = recruitment;
+		this.gender = gender;
+		this.age = age;
+		this.address = address;
+		this.pay = pay;
+		this.dueDate = dueDate;
+		this.workTime = workTime;
+		this.workDay = workDay;
+		this.title = title;
+		this.content = content;
+		this.jobReport = jobReport;
+		this.writeDate = writeDate;
+		this.countryNo = countryNo;
+		this.userNo = userNo;
+		this.changeName = changeName;
+		this.country = country;
+		this.jobApplyNo = jobApplyNo;
+		this.jobApplyDate = jobApplyDate;
+		this.typeNo = typeNo;
 		this.filePath = filePath;
 	}
 
 
-
-
-
-
-	public String getCoName() {
-		return coName;
-	}
-
-
-
-
-
-
-	public void setCoName(String coName) {
+	public JobSearch(int jobNo, String job, String period, String logoImg, int recruitment, String gender, String age,
+			String address, String pay, Date dueDate, String workTime, String workDay, String title, String content,
+			int jobReport, Date writeDate, String countryNo, int userNo, String changeName, String country, int heartNo,
+			int jobApplyNo, Date jobApplyDate, String typeNo, String filePath, String coName) {
+		super();
+		this.jobNo = jobNo;
+		this.job = job;
+		this.period = period;
+		this.logoImg = logoImg;
+		this.recruitment = recruitment;
+		this.gender = gender;
+		this.age = age;
+		this.address = address;
+		this.pay = pay;
+		this.dueDate = dueDate;
+		this.workTime = workTime;
+		this.workDay = workDay;
+		this.title = title;
+		this.content = content;
+		this.jobReport = jobReport;
+		this.writeDate = writeDate;
+		this.countryNo = countryNo;
+		this.userNo = userNo;
+		this.changeName = changeName;
+		this.country = country;
+		this.heartNo = heartNo;
+		this.jobApplyNo = jobApplyNo;
+		this.jobApplyDate = jobApplyDate;
+		this.typeNo = typeNo;
+		this.filePath = filePath;
 		this.coName = coName;
 	}
-
-
-
-
-
-
-	public String getTypeNo() {
-		return typeNo;
-	}
-
-
-
-	public void setTypeNo(String typeNo) {
-		this.typeNo = typeNo;
-	}
-
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
 
 	public int getJobNo() {
 		return jobNo;
@@ -265,11 +232,11 @@ public class JobSearch implements Serializable{
 		this.dueDate = dueDate;
 	}
 
-	public Date getWorkTime() {
+	public String getWorkTime() {
 		return workTime;
 	}
 
-	public void setWorkTime(Date workTime) {
+	public void setWorkTime(String workTime) {
 		this.workTime = workTime;
 	}
 
@@ -369,10 +336,33 @@ public class JobSearch implements Serializable{
 		this.jobApplyDate = jobApplyDate;
 	}
 
+	public String getTypeNo() {
+		return typeNo;
+	}
 
+	public void setTypeNo(String typeNo) {
+		this.typeNo = typeNo;
+	}
 
+	public String getFilePath() {
+		return filePath;
+	}
 
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
 
+	public String getCoName() {
+		return coName;
+	}
+
+	public void setCoName(String coName) {
+		this.coName = coName;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public String toString() {
@@ -384,6 +374,8 @@ public class JobSearch implements Serializable{
 				+ country + ", heartNo=" + heartNo + ", jobApplyNo=" + jobApplyNo + ", jobApplyDate=" + jobApplyDate
 				+ ", typeNo=" + typeNo + ", filePath=" + filePath + ", coName=" + coName + "]";
 	}
+
+
 
 
 

@@ -9,11 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
 
 import community.model.service.CommunityService;
-import community.model.vo.*;
+import community.model.vo.Pagination;
 import member.model.vo.Member;
 
 /**

@@ -460,7 +460,9 @@
               </tr>
               <tr>
                   <td>
+                  
                   <input type="password" class="password" id="deletePwd"></td>
+                  
               </tr>
             </table>
         </div>
@@ -545,6 +547,8 @@
 		 			alert("비밀번호를 확인해주세요");	
 	 		}else if(!PregExp.test(userP2.val())){
 	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
+	 		}else if(userP.val() != userP2.val()){
+	 			alert("사용하실 비밀번호가 맞는지 확인해주세요!");
 	 		}else if(userP.val() == userP2.val()){
 	 			
 	 		     $.ajax({
@@ -622,18 +626,15 @@
 
  $(function(){
 	 $("#deleteMan").click(function(){
-	
-		 var pwd = $("#deletePwd");
-	
-		
-	      $("#deletePwd").change(function(){
+	      
 	         
 	    	  var pwd = $("#deletePwd").val();
+	    	  var userPwd = "<%=loginUser.getUserPw()%>";
 	    	  
-	    	  if(pwd != "<%=loginUser.getUserPw()%>" || pwd == null){
+		     if(pwd != "<%=loginUser.getUserPw()%>" ){
 	    	  alert("사용중인 비밀번호가 아닙니다! 다시 입력해주세요");
-	    	  
-		      }else{
+	    		
+		     } else {
 				 $.ajax({
 				      url:"<%=request.getContextPath()%>/delete.me",
 				      type:"post",
@@ -652,12 +653,12 @@
 				      error:function(request,status,error){
 				                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				            }
-				   }); 
-				 }
+				   });
+				 
 	      
 	      
 	      
-	      })
+	      }
 	      
 	      
 

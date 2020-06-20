@@ -1,30 +1,29 @@
-package home.controller;
+package job.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import home.model.service.HomeService;
-import home.model.vo.Home;
-import home.model.vo.Img;
-import home.model.vo.Review;
+import job.model.service.JobService;
+import job.model.vo.Job;
 
 /**
- * Servlet implementation class HomeDetailServlet
+ * Servlet implementation class jobDetailServlet
  */
-@WebServlet("/detail.ho")
-public class HomeDetailServlet extends HttpServlet {
+@WebServlet("/jobDetail.bo")
+public class jobDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeDetailServlet() {
+    public jobDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +32,24 @@ public class HomeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int hNo = Integer.valueOf(request.getParameter("hNo"));
-	
-		Home home = new HomeService().selectHome(hNo);
-		ArrayList<Img> flist = new HomeService().selectImgList(hNo);
-		ArrayList<Review> rlist = new HomeService().selectReplyList(hNo);
-
-		if(home != null) {
-			request.setAttribute("home", home);
-			request.setAttribute("flist", flist);
-			request.setAttribute("rlist", rlist);
-			request.getRequestDispatcher("views/home/homeDetailView.jsp").forward(request, response);
-		} else {
-			System.out.println("실패");
+		String jno = request.getParameter("jobNo");
+		System.out.println("jno : "+jno);
+		int jno2 = Integer.valueOf(jno);
+		System.out.println("jno2 : " +jno2);
+		
+		Job j = new JobService().selectJobList(jno2);
+			
+		if(j != null) {
+			request.setAttribute("job", j);
+			request.getRequestDispatcher("views/job/jobDetailView.jsp").forward(request, response);
+		}else {
+			request.setAttribute("msg", "게시글 상세 조회 실패!");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
+		 
 		
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
