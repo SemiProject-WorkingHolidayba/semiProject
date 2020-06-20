@@ -12,19 +12,15 @@ import java.util.ArrayList;
 
 import community.model.dao.CommunityDao;
 import community.model.vo.Community;
-<<<<<<< HEAD
-import community.model.vo.CommunityMy;
-=======
 import community.model.vo.Community1;
 import community.model.vo.CommunityImg;
 import community.model.vo.CommunityMy;
 import community.model.vo.Reply;
->>>>>>> refs/remotes/origin/kimsung
 
 
 public class CommunityService {
-<<<<<<< HEAD
-=======
+	
+	
 
 	public CommunityMy selectcCommunity(int communityNo2, int categoryNo2) {
 
@@ -55,38 +51,9 @@ public class CommunityService {
 		close(conn);
 		
 		return list;
->>>>>>> refs/remotes/origin/kimsung
-	
-<<<<<<< HEAD
-	public Community selectCommunity(Connection conn, int communityno) { /* 게시판 리스트 뿌려줌 */
-	      
-	      PreparedStatement pstmt = null;
-	      ResultSet rs= null;
-	      Community community =null;
-	      String query ="SELECT * FROM CLIST WHERE COMMUNITYNO=?";
-	      
-	      //************************** 바로위 수정 요망****************************>
-	      try {
-	         pstmt = conn.prepareStatement(query);
-	         pstmt.setInt(1, communityno);
-	         
-	         rs = pstmt.executeQuery();
-	         
-	         if(rs.next()) {
-	            community = new Community(rs.getInt("communityno"),
-	                                 rs.getString("title"),
-	                                 rs.getString("content"),
-	                                 rs.getDate("writedate"),
-	                                 rs.getInt("viewcount"),
-	                                 rs.getInt("report"),
-	                                 rs.getString("country"),
-	                                 rs.getString("categoryname"),
-	                                 rs.getString("userid"));
-	                           
-=======
-	
-	
 	}
+		
+	
 	 public int getListCount() {
 	      Connection conn = getConnection();
 	      
@@ -260,55 +227,7 @@ public class CommunityService {
 	      return result;
 	   }
 
->>>>>>> refs/remotes/origin/kimsung
-
-	         
-	         }
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }finally {
-	         close(pstmt);
-	         close(rs);
-	      }
-	   
-
-	      return community;
-	   }
-
-	public CommunityMy selectcCommunity(int communityNo2, int categoryNo2) {
-
-	      Connection conn = getConnection();
-	      
-	      CommunityMy community = new CommunityDao().selectcCommunity(conn, communityNo2, categoryNo2);
-	      
-	      close(conn);
-	      return community;
-	   }
-
-	   public static int getcListCount(int userNo) {
-	      Connection conn = getConnection();
-	      
-	      int listCount = new CommunityDao().getcListCount(conn, userNo);
-	      
-	      
-	      close(conn);
-	      
-	      return listCount;
-	   }
-
-	   public static ArrayList selectcList(int currentPage, int limit,int userNo) {
-	      Connection conn = getConnection();
-	      
-	      ArrayList list = new CommunityDao().selectcList(conn, currentPage, limit, userNo);
-	      
-	      close(conn);
-	      
-	      return list;
-	   
-	   
-	   
-	   }
+	
 
 
 }

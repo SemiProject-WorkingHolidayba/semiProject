@@ -35,16 +35,10 @@ public class HomeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int hNo = Integer.valueOf(request.getParameter("hNo"));
 	
-<<<<<<< HEAD
-		Home home = new HomeService().selectHome(hNo2);
-		ArrayList<Img> flist = new HomeService().selectImgList(hNo2);
-		ArrayList<Review> rlist = new HomeService().selectReplyList(hNo2);
-		
-=======
+
 		Home home = new HomeService().selectHome(hNo);
 		ArrayList<Img> flist = new HomeService().selectImgList(hNo);
 		ArrayList<Review> rlist = new HomeService().selectReplyList(hNo);
->>>>>>> refs/remotes/origin/kimsung
 
 		if(home != null) {
 			request.setAttribute("home", home);

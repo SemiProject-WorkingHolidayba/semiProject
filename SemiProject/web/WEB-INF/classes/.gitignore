@@ -1,10 +1,4 @@
-/common/
 /community/
-/filter/
 /home/
 /job/
-/member/
-<<<<<<< HEAD
-=======
-/sql/
->>>>>>> refs/remotes/origin/kimsung
+/mypage/
