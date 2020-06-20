@@ -168,6 +168,11 @@
     		position:relative
        	}
 
+<<<<<<< HEAD
+=======
+        }
+
+>>>>>>> refs/remotes/origin/eunjin1
     </style>
   </head>
   <body>
@@ -324,7 +329,27 @@
       <hr>
       <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
     </div>
+<<<<<<< HEAD
     <script>
+=======
+      <script>
+      	$(document).ready(function(){
+      		$.ajax({
+				url:"<%=request.getContextPath()%>/test.test",
+				type:"post",
+				data:{userNo:userno},
+				success:function(data){
+					if(data == "Y"){
+						alert("성공");
+					}
+				},
+				error:function(request,status,error){
+ 	                   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+ 	           		}
+			})
+      	})
+      	 
+>>>>>>> refs/remotes/origin/eunjin1
           $('.carousel').carousel({ interval: 2000 });
           
     </script>

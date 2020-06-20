@@ -165,9 +165,13 @@
 <header>
     <div class="container2">
       <div class="menu">
+<<<<<<< HEAD
         <div class="logo">
         	<a class="navbar-brand" href="<%=request.getContextPath() %>/main.jsp"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
       	</div>
+=======
+       
+>>>>>>> refs/remotes/origin/eunjin1
         <ul class="nav">
           <li><a href="#">안전정보</a></li>
           <li><a href="#" onclick = "goHome();">집 예약</a></li>
@@ -185,6 +189,7 @@
     </div>
     <ul class="login_register" >
     	<%if(loginUser == null){ %>
+<<<<<<< HEAD
 	        <li><a href="<%=request.getContextPath() %>/views/member/login.jsp">로그인</a></li>
 	        <li><a href="<%=request.getContextPath() %>/views/member/join.jsp">회원가입</a></li>
         <%} else { %>
@@ -197,6 +202,22 @@
 	        <%} %>
 		    <li><a href="<%=request.getContextPath()%>/sessionclear.me">로그아웃</a></li>
 	    <%} %>
+=======
+        <li><a href="<%=request.getContextPath() %>/views/member/login.jsp">로그인</a></li>
+        <li><a href="<%=request.getContextPath() %>/views/member/join.jsp">회원가입</a></li>
+        <%} else{ %>
+        	<%if(loginUser.getGrade() == 2){ %>
+	        <li><a href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp">마이페이지</a></li>
+        	<%} else if(loginUser.getGrade() == 3){ %>
+        		<li><a href="<%=request.getContextPath() %>/views/mypage/PIU/NpersonalIU.jsp">마이페이지</a></li>
+        	<%} else{ %>
+        	<li><a href="<%=request.getContextPath()%>/wselectallmember.me">회원관리</a></li>
+        	 <%} %>
+	        <li><a href="<%=request.getContextPath()%>/sessionclear.me">로그아웃</a></li>
+	       
+        <%} %>
+       
+>>>>>>> refs/remotes/origin/eunjin1
     </ul>
     </div>
 </header>
