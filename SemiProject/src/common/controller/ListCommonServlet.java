@@ -93,7 +93,7 @@ public class ListCommonServlet extends HttpServlet {
 		
 		Pagination pn = new Pagination(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		// 1_2. 화면에 뿌려줄 현지인 내가 쓴 글 테이블 리스트 조회하기
+		// 1_2. 화면에 뿌려줄 워홀러 내가 쓴 글 테이블 리스트 조회하기
 		ArrayList list =nletter.selectList(currentPage, limit,userNo);	
 		System.out.println(userNo);
 		System.out.println(list);

@@ -27,10 +27,9 @@ public class Test extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String houseNo = request.getParameter("houseNo");
-		String userNo = request.getParameter("userNo");
-		System.out.println(houseNo+"보드디테일서블릿옴"+userNo);
-		
+		System.out.println("서블릿옴");
+		String bid = request.getParameter("bid");
+		System.out.println(bid);
 	}
 
 	/**

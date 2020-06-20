@@ -33,7 +33,7 @@ public class DeleteReportBoard extends HttpServlet {
 		int categoryNo = Integer.valueOf(request.getParameter("categoryNo"));
 		int boardNo = Integer.valueOf(request.getParameter("boardNo"));
 		int reportNo = Integer.valueOf(request.getParameter("reportNo"));
-		PrintWriter out = response.getWriter();
+		 PrintWriter out = response.getWriter();
 		int result = new MemberService().ReportDeleteBoard(categoryNo,boardNo);
 		int reuslt2 = new MemberService().SetProcess(reportNo,"BR");
 		if(reuslt2 > 0) {
