@@ -30,7 +30,7 @@ public class SetSanctionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int userNo = userNo = Integer.valueOf(request.getParameter("userNo"));
+		int userNo = Integer.valueOf(request.getParameter("userNo"));
 		
 		
 		

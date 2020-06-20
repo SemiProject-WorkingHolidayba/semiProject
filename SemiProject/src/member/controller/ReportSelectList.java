@@ -41,9 +41,7 @@ public class ReportSelectList extends HttpServlet {
 		int endPage;
 	
 		int listCount = new MemberService().ReportListCount();
-		
-		
-		
+	
 		currentPage =1;
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.valueOf(request.getParameter("currentPage"));

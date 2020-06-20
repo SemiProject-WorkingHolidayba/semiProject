@@ -168,9 +168,7 @@
         <a class="navbar-brand" href="main.jsp"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
       </div>
       <div class="menu">
-        <div class="logo">
-        	<a class="navbar-brand" href="#"><img src="<%=request.getContextPath()%>/images/semi.png"></img></a>
-      	</div>
+       
         <ul class="nav">
           <li><a href="#">안전정보</a></li>
           <li><a href="#" onclick = "goHome();">집 예약</a></li>
@@ -194,12 +192,7 @@
         	<%if(loginUser.getGrade() == 2){ %>
 	        <li><a href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp">마이페이지</a></li>
         	<%} else if(loginUser.getGrade() == 3){ %>
-<<<<<<< HEAD
-        		<li><a href="<%=request.getContextPath() %>/views/member/#.jsp">마이페이지</a></li>
->>>>>>> refs/remotes/origin/Eunjin
-=======
         		<li><a href="<%=request.getContextPath() %>/views/mypage/PIU/NpersonalIU.jsp">마이페이지</a></li>
->>>>>>> refs/remotes/origin/kimsung
         	<%} else{ %>
         	<li><a href="<%=request.getContextPath()%>/wselectallmember.me">회원관리</a></li>
         	 <%} %>

@@ -113,12 +113,8 @@
         }
 
         .container a{
-<<<<<<< HEAD
+
             color: black;
-=======
-            color: black;
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/kimsung
 
             }
 	.item{
@@ -127,14 +123,8 @@
 		text-align: center;
 	}
 
-<<<<<<< HEAD
-
-=======
-=======
         }
 
->>>>>>> refs/remotes/origin/kimsung
->>>>>>> refs/remotes/origin/kimsung
     </style>
   </head>
   <body>
