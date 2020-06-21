@@ -3,6 +3,7 @@ package community.model.vo;
 import java.sql.Date;
 
 public class Community {
+
    private int communityNo;
    private String title;
    private String content;

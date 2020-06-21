@@ -98,11 +98,11 @@ public class CommunityInsertServlet extends HttpServlet {
 		//전송 순서를 역순으로 파일이 list에 저장되었기 때문에 반복문을 통해 다시 역순을 수행
 
 		for(int i = originFiles.size()-1 ; i >= 0; i--) {
-				CommunityImg at = new CommunityImg();
-				at.setFilePath(savePath);
-				at.setOriginName(originFiles.get(i));
-				at.setChangeName(saveFiles.get(i));
-				fileList.add(at);
+				CommunityImg ci = new CommunityImg();
+				ci.setFilePath(savePath);
+				ci.setOriginName(originFiles.get(i));
+				ci.setChangeName(saveFiles.get(i));
+				fileList.add(ci);
 			}
 		
 		System.out.println(fileList);

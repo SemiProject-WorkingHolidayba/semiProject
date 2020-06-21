@@ -13,8 +13,7 @@ import community.model.vo.Community;
 import community.model.vo.Community1;
 import community.model.vo.CommunityImg;
 import community.model.vo.CommunityMy;
-
-
+import community.model.vo.Report;
 public class CommunityDao {
 
    public CommunityMy selectcCommunity(Connection conn, int communityNo2, int categoryNo2) {
@@ -290,7 +289,6 @@ public class CommunityDao {
 		}
 
       
-      
 	   public ArrayList selectList3(Connection conn, int currentPage, int limit) {
 		      PreparedStatement pstmt = null;
 		      ResultSet rs= null;
@@ -400,7 +398,6 @@ public class CommunityDao {
 		   }
 		      return result;
 		}
-
 
       
 	   public int updateCount(Connection conn, int communityno2) {
@@ -840,6 +837,7 @@ public class CommunityDao {
 		   private int insertCommunityReport(Connection conn, Report report) {
 		      
 		PreparedStatement pstmt = null;
+
 		      
 		      int result = 0;
 		      
@@ -943,8 +941,6 @@ public class CommunityDao {
 		      return result;
 		   }
 
-		}
-
-
-
+	
 }
+

@@ -15,5 +15,4 @@
 	<h1><%= msg%></h1>
 	<a href="<%=request.getContextPath() %>/main.jsp">홈으로</a>
 	</div>
-</body>
 </html>

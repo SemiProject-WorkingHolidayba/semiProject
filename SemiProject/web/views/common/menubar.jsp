@@ -174,6 +174,12 @@
           <li><a href="#" onclick = "goHome();">집 예약</a></li>
           <li><a href="#">구직 정보</a></li>
           <li><a  onclick ="goCommunity();">커뮤니티</a>
+          
+          <script>
+          function goCommunity(){
+      		location.href = "<%=request.getContextPath()%>/list.bo";
+      	}
+          </script>
             <ul id="nara">
               <li><a href="http://www.naver.com">뉴질랜드</a></li>
               <li><a href="http://www.naver.com">독일</a></li>
