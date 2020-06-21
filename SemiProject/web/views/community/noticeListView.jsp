@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList"%>
+    pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList ,member.model.vo.*"%>
 <%
 	Pagination pn = (Pagination)request.getAttribute("pn");
 	ArrayList list = (ArrayList)request.getAttribute("list");
-	
+
 	int listCount = pn.getListCount();
 	int currentPage = pn.getCurrentPage();
 	int maxPage = pn.getMaxPage();
@@ -17,13 +17,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+ 
     </head>
  <body>
  <%@ include file="../common/menubar.jsp" %>
   <div id="wrap">
     <div style=" float: left; border-right: 2px solid rgb(113, 177, 197); height: 500px; padding:0 80px;">
-        <p style="margin-top: 20%z; font-size: 30px; font-weight: 800;color:#ADD4D9";>회원관리</p>
+        <p style="margin-top: 20%z; font-size: 30px; font-weight: 800;color:#ADD4D9">회원관리</p>
         <br>
         <br>
         <br>
@@ -58,7 +58,7 @@
   <table class ="table table-hover" id="listArea" style="width:80%">
     <tr>
     <th><span>국가</span></th>
-    <th><span>글 번호</span></th>
+
     <th><span>글 제목</span></th>
     <th><span>작성자</span></th>
     <th><span >작성일</span></th>
@@ -76,8 +76,15 @@
     	<tr style = "cursor: pointer;">
 	       <input type="hidden" value="<%= ((Community)list.get(i)).getCommunityNo()%>">
     	<td><%=((Community)list.get(i)).getCountry() %></td>
-    	<td><%=((Community)list.get(i)).getCommunityNo() %></td>
-    	<td><%=((Community)list.get(i)).getTitle() %></td>
+    	<td><%=((Community)list.get(i)).getTitle()%>   
+    	<%if((i<5)){ %>
+    	<img src = "<%=request.getContextPath() %>/new.png" style= "width:60px; height:30px;">
+    	<%} %>
+    	<%if(((Community)list.get(i)).getViewCount() >20) {%>
+    	<img src = "<%=request.getContextPath() %>/hot.png" style= "width:60px; height:30px;"></td>
+    	
+    	<%} %>
+    	</td>
     	<td><%=((Community)list.get(i)).getUserId() %></td>
     	<td><%=((Community)list.get(i)).getWriteDate() %></td>
     	
@@ -89,41 +96,49 @@
     <%} %>
    
     </table>
+    
   </div>
-  
+  <%if(loginUser.getGrade() == 1 ){ %>
+<button onclick="location.href='views/community/communityInsertForm.jsp'" class = "btn btn-info" style = "margin-left:1700px;">작성하기</button>
+			<%} else {%>
+		<button onclick="alert1();'" class = "btn btn-info" style = "margin-left:1700px;">작성하기</button>
+			
+			<script>
+		
+			function alert1() {
+			alert ('관리자만 등록가능합니다');	
+		}
+		
+	
+		
+			</script>
+			
+			
+			
+			<% }%>
+  <form action ="<%=request.getContextPath()%>/search.bo">
   <div class ="center-block" style=width:200px>
-   <form>
-    <select name="language">
-      <option value="none"selected>=== 구분 ===</option>
-      <option value="newzilland" >글번호</option>
-      <option value="german">글 제목</option>
-      <option value="japan">작성자</option>
+
+    <select name="selectbox" id = "category">
+      <option value="none">=== 구분 ===</option>
+      <option value="title" >글제목</option>
+      <option value="tcontent">제목+내용</option>
+      <option value="content">글 내용</option>
+      <option value="nation">국가</option>
 
       
     </select>
-    
-  </form>
-
-  <form>
-    <select name="language">
-      <option value="none"selected>=== 국가 ===</option>
-      <option value="newzilland" >뉴질랜드</option>
-      <option value="german">독일</option>
-      <option value="japan">일본</option>
-      <option value="austrailia">호주</option>
-      <option value="canada">캐나다</option>
-    </select>
-  </form>
-
-    <input type="search" class="pull-left">
-  </div> 
-  <a class = "btn btn-info" >검색</a>
  
-
-<button onclick="location.href='views/community/communityInsertForm.jsp'">작성하기</button>
-			<!-- boardInsertForm.jsp 만들러 가자! -->
-	
-
+    <input type="search" class="pull-left" name = "searchbox">
+  </div> 
+  <a class = "btn btn-info" onclick = "search();" >검색</a>
+  </form>
+<script>
+function search(){
+	   
+	   location.href="<%=request.getContextPath() %>/search.bo";
+	   }
+</script>
 </div> 
 </div >
 		<!-- 페이징 처리 시작! -->
@@ -155,8 +170,6 @@
 
 			location.href="<%=request.getContextPath()%>/Detail.bo?communityno=" + communityno;
 		
-			
-			
 		});
 	})
 	</script>

@@ -38,7 +38,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-    <title>WorkignThrough</title>
+    <title>WorkingThrough</title>
 
     <!-- Bootstrap CSS -->
     <link rel="icon" href="images/semi.ico">
@@ -459,13 +459,13 @@
           <div name = "review" id = "review" class = "review paginated">
           	<% if(rlist.isEmpty()){ %>
 			<%} else{%>
-				<%for(int i=rlist.size()-1; i>=0; i--) { int score = rlist.get(i).getScore(); int rWriter = rlist.get(i).getUserNo();%>
+				<%for(int i=0; i<rlist.size(); i++) { int score = rlist.get(i).getScore(); int rWriter = rlist.get(i).getUserNo();%>
 					<span class = "writerName" style = "padding-right:1.3%; font-weight:bold"><%=rlist.get(i).getUserName() %></span>
 					<span style = "padding-right:1.3%; font-size:0.8em"><%=rlist.get(i).getWriteDate() %></span>
 					<img id = "siren" style = "width:1.5%; height:1.5%; margin-right:3%" src = "<%=request.getContextPath()%>/images/siren.png" onclick = "reportReview(<%=rlist.get(i).getReviewNo()%>);">
 					<%if(rWriter == loginUser.getUserNo()) {%>
 					<img style = "width:1.5%; height:1.5%; margin-right:0.5%;" src = "<%=request.getContextPath()%>/images/update.png" onclick = "location.href = '<%=request.getContextPath()%>/reportReview.ho?reviewNo=<%=rlist.get(i).getReviewNo()%>';">
-					<img id = "delete" style = "width:1.5%; height:1.5%;" src = "<%=request.getContextPath()%>/images/delete.png" onclick = "deleteReview(<%=rlist.get(i).getReviewNo()%>);">
+					<img id = "delete" style = "width:1.5%; height:1.5%;" src = "<%=request.getContextPath()%>/images/delete.png" onclick = "deleteReview(<%=rlist.get(i).getReviewNo()%>,<%=rlist.get(i).getHouseNo()%>);">
 					<%} %>
 					<br>
 					<%for(int j = 0 ; j < score; j++){ %>
@@ -582,6 +582,7 @@
 			});
 		}
 		
+		
 		function modifyHome(){
 			result = window.confirm("수정하시겠습니까? ");
 			
@@ -595,14 +596,13 @@
 			if(result == true){	
 				location.href = '<%=request.getContextPath()%>/delete.ho?hNo=<%=home.gethNo()%>';
 			}
-			
 		}
 		
-		function deleteReview(rNo){
+		function deleteReview(rNo,hNo){
 			$("#delete").each(function(index){
 				result = window.confirm("삭제하시겠습니까? ");
 				if(result == true){	
-					 location.href = '<%=request.getContextPath()%>/deleteReview.ho?reviewNo='+rNo;
+					 location.href = '<%=request.getContextPath()%>/deleteReview.ho?reviewNo='+rNo+'&houseNo='+hNo;
 				}
 			});
 		}

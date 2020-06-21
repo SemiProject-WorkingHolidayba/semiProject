@@ -272,11 +272,11 @@
                 <tr>
                     <td><b>기간</b></td>
                     <td>
-                        <label class="term_option"><input type="radio" name = "period" value="3monthless" <%=checkedPeriod[0] %>><span>3개월 미만</span></label>
-                        <label class="term_option"><input type="radio" name = "period" value="3months" <%=checkedPeriod[1] %>><span>3개월 이상</span></label>
-                        <label class="term_option"><input type="radio" name = "period" value="6months" <%=checkedPeriod[2] %>><span>6개월 이상</span></label>
-                        <label class="term_option"><input type="radio" name = "period" value="9month" <%=checkedPeriod[3] %>><span>9개월 이상</span></label>
-                        <label class="term_option"><input type="radio" name = "period" value="1year" <%=checkedPeriod[4] %>><span>1년 이상</span></label>
+                        <label class="term_option"><input type="radio" name = "period" value="3개월미만" <%=checkedPeriod[0] %>><span>3개월 미만</span></label>
+                        <label class="term_option"><input type="radio" name = "period" value="3개월이상" <%=checkedPeriod[1] %>><span>3개월 이상</span></label>
+                        <label class="term_option"><input type="radio" name = "period" value="6개월이상" <%=checkedPeriod[2] %>><span>6개월 이상</span></label>
+                        <label class="term_option"><input type="radio" name = "period" value="9개월이상" <%=checkedPeriod[3] %>><span>9개월 이상</span></label>
+                        <label class="term_option"><input type="radio" name = "period" value="1년이상" <%=checkedPeriod[4] %>><span>1년 이상</span></label>
                     </td>
                 </tr>
                 <tr> 

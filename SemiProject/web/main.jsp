@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-    <title>WorkignThrough</title>
+    <title>WorkingThrough</title>
 
     <!-- Bootstrap CSS -->
     <link rel="icon" href="images/semi.ico">
@@ -134,7 +134,7 @@
 		
 		.swiper-container {
 	      width: 100%;
-	      height: 400px;
+	      height: 600px;
 	
 	    }
 	    
@@ -167,12 +167,6 @@
     		height:100%;
     		position:relative
        	}
-
-<<<<<<< HEAD
-=======
-        }
-
->>>>>>> refs/remotes/origin/eunjin1
     </style>
   </head>
   <body>

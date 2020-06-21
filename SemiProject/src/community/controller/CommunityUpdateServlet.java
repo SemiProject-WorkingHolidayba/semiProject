@@ -46,6 +46,7 @@ public class CommunityUpdateServlet extends HttpServlet {
 		String savePath =root + "community_uploadFiles/";
 		
 		MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+		int cNo = Integer.valueOf(multiRequest.getParameter("cno"));
 
 		HttpSession session = request.getSession();
 	
@@ -53,16 +54,14 @@ public class CommunityUpdateServlet extends HttpServlet {
 		
 		String title = multiRequest.getParameter("title");
 	
-		int imgNo=Integer.valueOf(multiRequest.getParameter("imgNo"));
 
-		System.out.println("11");
-		int communityNo=Integer.valueOf(multiRequest.getParameter("communityNo"));
+//		int communityNo=Integer.valueOf(multiRequest.getParameter("communityNo"));
 		
 		String content = multiRequest.getParameter("content");
 	
 	
-		String country=multiRequest.getParameter("countryNo");
-		String category = multiRequest.getParameter("categoryNo");
+		String country=multiRequest.getParameter("country");
+		String category = multiRequest.getParameter("categoryName");
 		
 		 int userNo=loginUser.getUserNo();
 //		String userId = Integer.valueOf(loginUser.getUserNo()).toString(
@@ -88,7 +87,7 @@ public class CommunityUpdateServlet extends HttpServlet {
 			System.out.println("origin" + originFiles);
 		Community1 c = new Community1();
 	
-		
+		c.setCommunityNo(cNo);
 		c.setTitle(title);
 		c.setContent(content);
 		c.setCountryNo(country);
@@ -104,16 +103,17 @@ public class CommunityUpdateServlet extends HttpServlet {
 
 		for(int i = originFiles.size()-1 ; i >= 0; i--) {
 				CommunityImg ci = new CommunityImg();
-				
-				ci.setImgNo(imgNo);
+				ci.setCommunityNo(c.getCommunityNo());
 				ci.setFilePath(savePath);
 				ci.setOriginName(originFiles.get(i));
 				ci.setChangeName(saveFiles.get(i));
-				ci.setCommunityNo(communityNo);
+//				ci.setCommunityNo(communityNo);
 				fileList.add(ci);
 			}
 		
-		System.out.println(fileList);
+		
+		System.out.println("servlet : " + c);
+		System.out.println("servlet : " + fileList);
 				int result = new CommunityService().updateCommunity(c,fileList);
 				   
 			      if(result>0) {

@@ -170,7 +170,7 @@
       	</div>
 
         <ul class="nav">
-          <li><a href="#">안전정보</a></li>
+          <li><a href="#" onclick = "goSafeInfo();">안전정보</a></li>
           <li><a href="#" onclick = "goHome();">집 예약</a></li>
           <li><a href="#">구직 정보</a></li>
           <li><a  onclick ="goCommunity();">커뮤니티</a>
@@ -209,6 +209,10 @@
 	}
 	function goCommunity(){
 		location.href = "<%=request.getContextPath()%>/list.bo";
+	}
+	function goSafeInfo(){
+		<%-- location.href = "<%=request.getContextPath()%>/list.si"; --%>
+		location.href = "views/safeInfo/safeListView.jsp"
 	}
 </script>
 </body>
