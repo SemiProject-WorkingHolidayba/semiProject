@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import community.model.service.CommunityService;
+import community.model.vo.Comment;
 import community.model.vo.Community;
+import community.model.vo.Community1;
 import community.model.vo.CommunityImg;
-import community.model.vo.Reply;
-import oracle.jdbc.OracleConnection.CommitOption;
 
 /**
  * Servlet implementation class CommunityDetailServlet
@@ -34,23 +34,29 @@ public class CommunityDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int communityno =  Integer.valueOf(request.getParameter("communityno"));
+		String communityno = request.getParameter("communityno");
 		
+		int communityno2 = Integer.valueOf(communityno);
+
 		
+		int result = new CommunityService().updateCount(communityno2);
 		
-		int result = new CommunityService().updateCount(communityno);
 		if(result>0) {
-			Community community = new CommunityService().selectCommunity(communityno);
-		
-			CommunityImg communityimg = new CommunityService().selectCommunityImg(communityno);
-			
+			Community community = new CommunityService().selectCommunity(communityno2);
+			Community1 community1 = new CommunityService().selectCommunity1(communityno2);
+			CommunityImg communityimg = new CommunityService().selectCommunityImg(communityno2);
+			ArrayList<Comment> colist = new CommunityService().selectCommentList(communityno2);
+	
 		if(community != null) {
-			System.out.println(community);
-			System.out.println(communityimg);
+			
 			
 			request.setAttribute("community", community);
+			request.setAttribute("community1", community1);
 			request.setAttribute("communityimg", communityimg);
+			request.setAttribute("communityno2", communityno2);
 			
+			request.setAttribute("colist", colist);
+			System.out.println("communityno2" +communityno2);
 			
 			request.getRequestDispatcher("views/community/DetailView.jsp").forward(request, response);
 				
@@ -63,6 +69,7 @@ public class CommunityDetailServlet extends HttpServlet {
 		
 	}
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

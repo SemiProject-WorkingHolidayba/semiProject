@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList"%>
+    pageEncoding="UTF-8" import="community.model.vo.*, java.util.ArrayList ,member.model.vo.*"%>
 <%
 	Pagination pn = (Pagination)request.getAttribute("pn");
 	ArrayList list = (ArrayList)request.getAttribute("list");
-	
+
 	int listCount = pn.getListCount();
 	int currentPage = pn.getCurrentPage();
 	int maxPage = pn.getMaxPage();
@@ -28,7 +28,7 @@
         <br>
         <br>
         <div style="line-height: 250%; font-weight:bold; font-size: 20px;">
-             <p style="font-size: 18px; float: left; "><a onclick ="goNotice();">공지사항</a></p><br>
+            <p style="font-size: 18px; float: left; "><a onclick ="goNotice();">공지사항</a></p><br>
             <p  style="font-size: 18px; float: left;"><a onclick ="goFree();">자유게시판</a></p><br>
             <p  style="font-size: 18px; float: left;"><a onclick ="goQuestion();">질문게시판</a></p><br>
             <p style="font-size: 18px; float: left;"><a onclick ="goMarket();">벼룩시장</a></p><br>
@@ -52,14 +52,13 @@
 	   location.href="<%=request.getContextPath() %>/market.bo";
 	   }
    </script>
-   </script>
-      <h1 Style="color:#ADD4D9; font-weight:600; font-size:50px;">벼룩시장 </b></h1>
+      <h1 Style="color:#ADD4D9; font-weight:600; font-size:50px;">벼룩시장 </b> </h1>
   
   <div id="wrap">
-  <table class ="table table-hover" style="width:80%">
+  <table class ="table table-hover" id="listArea" style="width:80%">
     <tr>
     <th><span>국가</span></th>
-    <th><span>글 번호</span></th>
+
     <th><span>글 제목</span></th>
     <th><span>작성자</span></th>
     <th><span >작성일</span></th>
@@ -73,27 +72,37 @@
     </tr>
     <%}else{ %>
     <%for(int i=0; i<list.size(); i++){ %>
-    
-    	<tr>
-    
+
+    	<tr style = "cursor: pointer;">
+	       <input type="hidden" value="<%= ((Community)list.get(i)).getCommunityNo()%>">
     	<td><%=((Community)list.get(i)).getCountry() %></td>
-    	<td><%=((Community)list.get(i)).getCommunityNo() %></td>
-    	<td><%=((Community)list.get(i)).getTitle() %></td>
+    
+    	<td><%=((Community)list.get(i)).getTitle()%>   
+    	<%if((i<5)){ %>
+    	<img src = "<%=request.getContextPath() %>/new.png" style= "width:60px; height:30px;">
+    	<%} %>
+    	<%if(((Community)list.get(i)).getViewCount() >20) {%>
+    	<img src = "<%=request.getContextPath() %>/hot.png" style= "width:60px; height:30px;"></td>
+    	
+    	<%} %>
+    	</td>
+    	
     	<td><%=((Community)list.get(i)).getUserId() %></td>
     	<td><%=((Community)list.get(i)).getWriteDate() %></td>
     	
     	<td><%=((Community)list.get(i)).getViewCount() %></td>
+    	 </tr>
     	
     	
-    	</tr>
     	<%} %>
     <%} %>
- 
+   <a href="https://icon-library.net/icon/new-icon-gif-20.html"></a>
     </table>
   </div>
-  
+  <button onclick="location.href='views/community/communityInsertForm.jsp'" class = "btn btn-info" style = "margin-left:1700px;">작성하기</button>
+  <form action ="<%=request.getContextPath()%>/search.bo">
   <div class ="center-block" style=width:200px>
-   <form>
+ <a href="https://icon-library.net/icon/new-icon-gif-20.html"></a>
     <select name="language">
       <option value="none"selected>=== 구분 ===</option>
       <option value="newzilland" >글번호</option>
@@ -103,9 +112,8 @@
       
     </select>
     
-  </form>
 
-  <form>
+
     <select name="language">
       <option value="none"selected>=== 국가 ===</option>
       <option value="newzilland" >뉴질랜드</option>
@@ -114,16 +122,16 @@
       <option value="austrailia">호주</option>
       <option value="canada">캐나다</option>
     </select>
-  </form>
+ 
 
     <input type="search" class="pull-left">
   </div> 
-  <a class = "btn btn-info" >검색</a>
- 
+  <a class = "btn btn-info" onclick = "search();" >검색</a>
+  </form>
 
-<button onclick="location.href='views/community/communityInsertForm.jsp'">작성하기</button>
-			<!-- boardInsertForm.jsp 만들러 가자! -->
-	
+
+		
+
 
 </div> 
 </div >
@@ -147,7 +155,18 @@
 			<!-- 맨 끝으로(>>) -->
 			<button onclick="location.href='<%=request.getContextPath() %>/list.bo?currentPage=<%=maxPage %>'"> >> </button>
 		</div>
-  
+  <script>
+	// 게시판 상세보기 기능을 만들어 보자
+	$(function(){
+		$("#listArea td").click(function(){
+			var communityno = $(this).parent().children("input").val();
+			alert(communityno);
+
+			location.href="<%=request.getContextPath()%>/Detail.bo?communityno=" + communityno;
+		
+		});
+	})
+	</script>
   
 
 
@@ -159,7 +178,7 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    
+
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="../../assets/js/docs.min.js"></script>

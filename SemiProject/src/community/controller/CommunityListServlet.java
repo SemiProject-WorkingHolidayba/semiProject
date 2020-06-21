@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import community.model.service.CommunityService;
+import community.model.vo.Comment;
 import community.model.vo.Community;
 import community.model.vo.Pagination;
 
@@ -66,12 +67,13 @@ public class CommunityListServlet extends HttpServlet {
 	
 	//1_2.공지사항 리스트 뿌려주기
 	ArrayList<Community> list = cService.selectList(currentPage,limit);
-	
+	ArrayList<Comment> colist = new ArrayList<Comment>();
 	RequestDispatcher view = null;
 
 		 view = request.getRequestDispatcher("views/community/noticeListView.jsp");
 		 request.setAttribute("list", list);
 		 request.setAttribute("pn", pn);
+		 request.setAttribute("colist", colist);
 		 
 		
 			 view.forward(request, response);

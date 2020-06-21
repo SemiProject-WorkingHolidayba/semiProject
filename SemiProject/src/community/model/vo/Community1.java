@@ -13,11 +13,13 @@ public class Community1 {
 	private String countryNo;
 	private String categoryNo;
 	private int userNo;
+	private String status;
+	private String typeNo;
 	public Community1() {
 		
 	}
 	public Community1(int communityNo, String title, String content, Date writeDate, int viewCount, int report,
-			String countryNo, String categoryNo, int userNo) {
+			String countryNo, String categoryNo, int userNo, String status, String typeNo) {
 		super();
 		this.communityNo = communityNo;
 		this.title = title;
@@ -28,6 +30,8 @@ public class Community1 {
 		this.countryNo = countryNo;
 		this.categoryNo = categoryNo;
 		this.userNo = userNo;
+		this.status = status;
+		this.typeNo = typeNo;
 	}
 	public int getCommunityNo() {
 		return communityNo;
@@ -83,12 +87,26 @@ public class Community1 {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getTypeNo() {
+		return typeNo;
+	}
+	public void setTypeNo(String typeNo) {
+		this.typeNo = typeNo;
+	}
 	@Override
 	public String toString() {
 		return "Community1 [communityNo=" + communityNo + ", title=" + title + ", content=" + content + ", writeDate="
 				+ writeDate + ", viewCount=" + viewCount + ", report=" + report + ", countryNo=" + countryNo
-				+ ", categoryNo=" + categoryNo + ", userNo=" + userNo + "]";
+				+ ", categoryNo=" + categoryNo + ", userNo=" + userNo + ", status=" + status + ", typeNo=" + typeNo
+				+ "]";
 	}
+	
 	
 	
 }
