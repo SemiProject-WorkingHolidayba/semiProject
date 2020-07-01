@@ -9,7 +9,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WorkingThrough</title>
+<link rel="icon" href="images/semi.ico">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#warp{
@@ -74,7 +75,7 @@
 
 <div id="warp">
 	<input type="hidden" name="nowView" vlaue="findId">
-	<img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png" onclick="location.href='main.jsp'">
+	<img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png"  onclick="location.href='<%=request.getContextPath() %>/main.jsp'">
 		<br>
 	
 	<div class="center_div">
@@ -91,11 +92,11 @@
        
 	</div>
 	<br><br><br><br>
-	<div class="center_div" style="border-top:1px solid rgb(202,202,202); padding: 10px; width:470px;">			
+	<div class="center_div" style="border-top:1px solid rgb(202,202,202); padding: 10px; ">			
 			<div class="menup" onclick="location.href='findid.jsp'">아이디 찾기</div>
-			<div class="menup" style="border-left: 1.5px solid rgb(202, 202, 202); border-right: 1.5px solid rgb(202, 202, 202); ">비밀번호 찾기</div>
-			<div class="menup" onclick="location.href='join.html'">회원가입</div>
-	</div>
+			<div class="menup" style="border-left: 1.5px solid rgb(202, 202, 202); border-right: 1.5px solid rgb(202, 202, 202);" onclick="location.href='findpw.jsp'">비밀번호 찾기</div>
+			<div class="menup" onclick="location.href='join.jsp'">회원가입</div>
+		</div>
 	<br><br>
 	<script>
 		function FindidFinish(){

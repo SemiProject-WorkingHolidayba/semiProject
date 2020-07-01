@@ -39,7 +39,7 @@ public class JobApplicationList extends HttpServlet {
       Member loginUser = (Member)session.getAttribute("loginUser");
       int userNo = loginUser.getUserNo();
       int AlistCount = jService.getAListCount(userNo);
-      
+   
       int currentPage;   // 현재 페이지를 표시 할 변수
       int limit;         // 한 페이지에 게시글이 몇 개가 보여질 것인지
       int maxPage;      // 전체 페이지에서 가장 마지막 페이지
@@ -92,8 +92,8 @@ public class JobApplicationList extends HttpServlet {
       
       // 1_2. 화면에 뿌려줄 신청한 구직 테이블 리스트 조회하기
       ArrayList list = jService.selectListA(currentPage, limit,userNo);   
-//      System.out.println(AlistCount);
-//      System.out.println(list);
+      System.out.println("나 AlistCount : " + AlistCount);
+      System.out.println("나 list : " + list);
       RequestDispatcher view = null;
       if(list != null) {
          request.setAttribute("list", list);

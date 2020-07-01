@@ -12,7 +12,6 @@
 <style>
 	#contents{
      	text-align: center;
-     	margin-top: 10%;
  	}
 	 .confirm{
 	     width:700px;
@@ -32,14 +31,20 @@
 </head>
 <body>
 	<%@ include file = "../common/menubar.jsp" %>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
 	<div id="contents">
 	<div class="confirm">
 		<br><br>
 		<div style="font-size:28px; color:black; font-weight:700;"><p><%=msg %></p>
 		<br>
 		<button class = "goBtn" onclick="location.href='main.jsp'">홈으로</button>
-		<button class = "goBtn" onclick="location.href='views/member/login.jsp'">마이페이지</button>
+		<button class = "goBtn" onclick="location.href='views/mypage/PIU/personalIU.jsp'">마이페이지</button>
 	</div>
+
 </div>
+<br><br><br><br><br><br><br><br><br>
+	<div id = "footer" style="margin-bottom: 0;">
+      <%@include file="/views/common/bottom.jsp"%>
+   </div>
 </body>
 </html>

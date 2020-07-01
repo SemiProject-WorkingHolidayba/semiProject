@@ -40,11 +40,11 @@ public class HomeReservationServlet extends HttpServlet {
 		String hNo = request.getParameter("hNo");
 		int hNo2 = Integer.valueOf(hNo);
 		
-		int checkResult = hService.reservationCheck(new Reservation(userNo, hNo2));
+		int checkResult = hService.reservationCheck(new Reservation(hNo2, userNo));
 		int result = 0;
 			
 		if(checkResult == 0) {
-			result = hService.reservationHome(new Reservation(userNo, hNo2));
+			result = hService.reservationHome(new Reservation(hNo2, userNo));
 			
 			if(result > 0) {
 				request.setAttribute("msg", "예약되었습니다.");

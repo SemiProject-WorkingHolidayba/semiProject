@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WorkingThrough</title>
+<link rel="icon" href="images/semi.ico">/title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
  #warp{
@@ -74,7 +75,7 @@
 </head>
 <body>
 <div id="warp">
-	<img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png" onclick="location.href='main.jsp'">
+	<img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png"  onclick="location.href='<%=request.getContextPath() %>/main.jsp'">
 		<br>
 	
 	<div class="center_div">

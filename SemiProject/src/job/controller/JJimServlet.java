@@ -34,19 +34,13 @@ public class JJimServlet extends HttpServlet {
 		int jobNo = Integer.valueOf(request.getParameter("jobno"));
 		
 		HttpSession session = request.getSession();
-		
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		
 		int userNo = Integer.valueOf(loginUser.getUserNo());
+
+		int hresult= new JobService().jobDetailJJim(jobNo,userNo);
 		
-		Heart h = new Heart();
-		h.setJobNo(jobNo);
-		h.setUserNo(userNo);
-		
-		int result = new JobService().jobJJim(h);
-		
-		if(result>0) {
-			response.sendRedirect("views/job/jobDetail.bo?jobNo="+jobNo);
+		if(hresult>0) {
+			response.sendRedirect(request.getContextPath()+"/jobDetail.bo?jobNo="+jobNo);
 		}else {
 			request.setAttribute("msg", "게시판 조회 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

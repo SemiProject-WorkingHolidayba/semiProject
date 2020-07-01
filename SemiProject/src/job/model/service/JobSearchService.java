@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import job.model.dao.JobSearchDao;
 import job.model.vo.JobSearch;
+
 public class JobSearchService {
 
    public int getListCount(int userNo) {

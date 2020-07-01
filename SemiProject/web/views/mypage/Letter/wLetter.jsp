@@ -152,9 +152,7 @@
       font-size: 15px;
       border:1px solid black !important;
     }
-    nav{
-      text-align: center;
-    }
+    
     tbody >tr>td,th{
      text-align: center;
       font-size: 15px;
@@ -178,7 +176,7 @@
 <div class="area side z2"
     style="width: 160px; height: 900px; margin: 0; padding: 0; border-right: 1px solid lightgray; ">
 
-    <nav class="side_menu" style="margin-top:80%">
+    <nav class="side_menu" style="margin-top:80%; margin-top:150%;">
 
       <ul class="depth2_menu">
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
@@ -191,7 +189,7 @@
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.c?currentPage=1" target="_self">내가 쓴 글</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.c" target="_self">내가 쓴 글</a>
 
 
         </li>
@@ -206,11 +204,11 @@
   </div>
 
 
-  <div id="wrap" class=" area " style="position:absolute; margin-left: 5%;" ; align="center">
+  <div id="wrap" class=" area " style="position:absolute; margin-left: 5%; margin-top:80px;" ; align="center">
 
     <h1 style="font-weight: 900;">내가 쓴 글</h1>
 
-    <form style="margin-top: 100px; margin-left: 250px;  ">
+    <form style="margin-top: 100px; margin-left: 170px;  ">
 
       <table class="table table-hover table-bordered">
         <thead>
@@ -268,27 +266,18 @@
   </div>
 <script>
 $(function(){
-<<<<<<< HEAD
-   $("#communityList td").click(function(){
-
-         location.href="<%=request.getContextPath()%>/detail.ca?communityNo=" +communityNo;
+   var communityno = $("#c").text(); 
    
-      // JobDetailServlet을 만들러 가자
+   $("#communityList td").click(function(){
+      
+            location.href="<%=request.getContextPath()%>/Detail.bo?communityno="+communityno;
+   
    });
-=======
-	var communityno = $("#c").text(); 
-	
-	$("#communityList td").click(function(){
-		
-				location.href="<%=request.getContextPath()%>/Detail.bo?communityno="+communityno;
-	
-	});
->>>>>>> refs/remotes/origin/kimsung
 });
 
 </script>
 
-
+<%@include file="/views/common/bottom.jsp"%>
 
 
   <!-- Marketing messaging and featurettes

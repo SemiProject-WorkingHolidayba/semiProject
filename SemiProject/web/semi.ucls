@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.14" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <component id="1" language="java" name="src" project="SemiProject" file="/SemiProject/src" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="541" width="1112" x="42" y="53"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </component>  
+  <package id="2" language="java" name="member" project="SemiProject" file="/SemiProject/src/member" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="221" width="232" x="83" y="119"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="member.controller" project="SemiProject" 
+    file="/SemiProject/src/member/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="186" x="103" y="190"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="member.model" project="SemiProject" file="/SemiProject/src/member/model" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="189" x="102" y="261"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="common" project="SemiProject" file="/SemiProject/src/common" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="391" width="240" x="332" y="124"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="6" language="java" name="common.controller" project="SemiProject" 
+    file="/SemiProject/src/common/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="437" y="192"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="7" language="java" name="common.model" project="SemiProject" file="/SemiProject/src/common/model" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="205" x="341" y="227"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="8" language="java" name="common.JobFileRenamePolicy" project="SemiProject" 
+    file="/SemiProject/src/common/JobFileRenamePolicy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="448" y="330"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="common.MyFileRenamePolicy" project="SemiProject" 
+    file="/SemiProject/src/common/MyFileRenamePolicy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="71" width="216" x="341" y="370"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="common.JDBCTemplate" project="SemiProject" 
+    file="/SemiProject/src/common/JDBCTemplate.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="66" width="213" x="341" y="447"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <package id="11" language="java" name="community" project="SemiProject" file="/SemiProject/src/community" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="213" width="257" x="585" y="128"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="12" language="java" name="community.controller" project="SemiProject" 
+    file="/SemiProject/src/community/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="709" y="230"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="13" language="java" name="community.model" project="SemiProject" file="/SemiProject/src/community/model" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="214" x="604" y="267"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="14" language="java" name="home" project="SemiProject" file="/SemiProject/src/home" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="256" x="852" y="134"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="15" language="java" name="home.controller" project="SemiProject" file="/SemiProject/src/home/controller" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="233" x="863" y="199"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="16" language="java" name="home.model" project="SemiProject" file="/SemiProject/src/home/model" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="227" x="866" y="269"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="17" language="java" name="job" project="SemiProject" file="/SemiProject/src/job" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="222" width="259" x="583" y="352"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="18" language="java" name="job.controller" project="SemiProject" file="/SemiProject/src/job/controller" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="218" x="595" y="421"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="19" language="java" name="job.model" project="SemiProject" file="/SemiProject/src/job/model" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="220" x="593" y="499"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="20" language="java" name="filter" project="SemiProject" file="/SemiProject/src/filter" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="137" width="231" x="81" y="356"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="21" language="java" name="filter.CommonFilter" project="SemiProject" 
+    file="/SemiProject/src/filter/CommonFilter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="71" width="208" x="94" y="420"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <package id="22" language="java" name="safeInfo" project="SemiProject" file="/SemiProject/src/safeInfo" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="223" width="251" x="856" y="353"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="23" language="java" name="safeInfo.controller" project="SemiProject" 
+    file="/SemiProject/src/safeInfo/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="216" x="871" y="427"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="24" language="java" name="safeInfo.model" project="SemiProject" file="/SemiProject/src/safeInfo/model" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="62" width="213" x="870" y="500"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="25" language="java" name="sql" project="SemiProject" file="/SemiProject/src/sql" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="58" width="477" x="87" y="518"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

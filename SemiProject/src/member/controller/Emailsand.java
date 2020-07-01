@@ -16,7 +16,7 @@ public class Emailsand {
 	public static String EmailSandMethod(String email) {
 		String host = "smtp.naver.com";
 		String user = "cooyong@naver.com"; // 자신의 네이버 계정
-		String password = "c023607300";// 자신의 네이버 패스워드
+		String password = "cc023607300";// 자신의 네이버 패스워드
 		
 		//이메일 받을 주소
 		String to_email = email;

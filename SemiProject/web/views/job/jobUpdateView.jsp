@@ -13,7 +13,8 @@
 	String address=j.getAddress();
 	String pay=j.getPay();
 	String dueDate=j.getDueDate();
-	String worktime=j.getWorktime();
+	String worktime1=j.getWorktime1();
+	String worktime2=j.getWorktime2();
 	String workday=j.getWorkday();
 	String title=j.getTitle();
 	String content=j.getContent();
@@ -119,8 +120,8 @@
 <title>Insert title here</title>
 <style>
 	  #registFrame{
-          margin-left:25%;
-          margin-right: 25%;
+          margin-left:20%;
+          margin-right: 20%;
       }
 
       h3{
@@ -209,10 +210,10 @@
 </head>
 <body>
 	<%@include file="../../views/common/menubar.jsp" %>
-
+<br><br><br><br>
     <div id='registFrame'>
         <h3>· 구직 등록</h3>
-        <form action='<%=request.getContextPath() %>/jobUpdate.bo' method='post' encType='multipart/form-data'>
+        <form action='<%=request.getContextPath() %>/jobUpdate.bo?jobNo=<%=j.getJobNo() %>' method='post' encType='multipart/form-data'>
         <table>
             <tr>
                 <td style='width:10%;'>제목</td>
@@ -316,9 +317,9 @@
             <tr>
                 <td>근무시간</td>
                 <td>
-                    <input type='time' name='worktime' value='<%=worktime %>'>
+                    <input type='time' name='worktime1' value='<%=worktime1 %>'>
                     ~
-                    <input type='time' name='worktime'>
+                    <input type='time' name='worktime2' value='<%=worktime2 %>'>
                 </td>
             </tr>
             <tr>
@@ -346,7 +347,17 @@
         </div>
         </form>
     </div>  
-
+<script>
+         $(document).ready(function() {
+            $("#registBtn").attr("disabled",true);
+            $('input[type=file]').change(function(e){
+               $(this).parent().find("#file_name").val(e.target.files[0].name);
+               $('#registBtn').attr("disabled",false);
+           });
+         });
+         
+         
+   </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="assets/js/docs.min.js"></script>

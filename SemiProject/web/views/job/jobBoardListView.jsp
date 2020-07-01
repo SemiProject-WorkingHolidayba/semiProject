@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="job.model.vo.*, java.util.ArrayList"%>
 <%
-	JobPagination pn = (JobPagination)request.getAttribute("pn");
-	ArrayList<Job> list=(ArrayList<Job>)request.getAttribute("list");
-	
- 	int listCount = pn.getListCount();
-	int currentPage = pn.getCurrentPage();
-	int maxPage = pn.getMaxPage();
-	int startPage = pn.getStartPage();
-	int endPage = pn.getEndPage();
+   JobPagination pn = (JobPagination)request.getAttribute("pn");
+   ArrayList<Job> list=(ArrayList<Job>)request.getAttribute("list");
+   ArrayList<Heart> hlist=(ArrayList<Heart>)request.getAttribute("hlist");
+   int grade=(int)request.getAttribute("grade");
+   
+    int listCount = pn.getListCount();
+   int currentPage = pn.getCurrentPage();
+   int maxPage = pn.getMaxPage();
+   int startPage = pn.getStartPage();
+   int endPage = pn.getEndPage();
 
+   int[] hArr=new int[hlist.size()];
+   for(int i=0; i<hlist.size();i++){
+      hArr[i]= hlist.get(i).getJobNo();
+   }
+   
 %>
     
 <!DOCTYPE html>
@@ -150,7 +157,7 @@
      #registBtn{
       margin-top: 3%;
       margin-bottom: 3%;
-      width:8%;
+      width:10%;
       line-height: 2.5em;
       background: rgb(113, 177, 197);
       border:none;
@@ -161,32 +168,125 @@
     }
     
     table{
-    	margin-right:0;
+       margin-right:0;
     }
   </style>
 
 
 </head>
 <body>
-	<%@ include file="../../views/common/menubar.jsp" %>
-	
-	<div id='category'>
-    <form method="GET">
+   <%@ include file="../../views/common/menubar.jsp" %>
+   <br><br><br><br>
+<script>
+   function selectCategory() {
+      var form = document.searchJob;
+      
+      var nation=null;
+      var jobCategory=null;
+      var term=null;
+      var week=null;
+      
+      var searchVal;   // 선택된 라디오버튼의 값(value)를 담을 변수
+      var find = false; //* 채크되어있는 라디오버튼을 찾았는지 구분하는 변수
+      
+      nation=form.nation;
+      jobCategory=form.jobCategory;
+       term=form.term;
+       week=form.week;
+    
+       var url="<%=request.getContextPath()%>/searchJob.bo?";
+    
+      var nSize = nation.length; // 라디오버튼 수
+      
+       for (var i=0; i<nSize; i++) {
+          if (nation[i].checked == true) { // 만약 체크되어있는 라디오 버튼을 찾았을 경우
+             searchVal = nation[i].value;
+            find = true; // *구분을 찾았다는걸로(true)로 변환
+            console.log(searchVal);      
+            url+="nation="+searchVal;
+            }
+        
+          if(find==true){
+             url+="&";
+             }
+           find=false;
+           }
+    
+      var jSize = jobCategory.length;
+      for (var i=0; i<jSize; i++) {
+         if (jobCategory[i].checked == true) {
+            searchVal = jobCategory[i].value;
+            find = true;
+            console.log(searchVal);      
+            url+="jobCategory="+searchVal;
+            }
+           
+           if(find==true){
+             url+="&";
+              }
+           find=false;
+           }
+    
+    var tSize = term.length;
+    for (var i=0; i<tSize; i++) {
+          if (term[i].checked == true) {
+            searchVal = term[i].value;
+            find = true;
+            console.log(searchVal);      
+            url+="term="+searchVal;
+           }
+           
+           if(find==true){
+              url+="&";
+           }
+           find=false;
+           
+      }
+    
+    var wSize = week.length;
+    for (var i=0; i<wSize; i++) {
+          if (week[i].checked == true) {
+            searchVal = week[i].value;
+            find = true;
+            console.log(searchVal);      
+            url+="week="+searchVal;
+           }
+           
+          if(find==true){
+              url+="&";
+           }
+           find=false;
+           
+      }
+   
+   url=url.slice(0,-1);
+   console.log("url = "+url);
+
+   if(url=="<%=request.getContextPath()%>/searchJob.bo?"){
+      alert("검색할 카테고리를 선택해주세요.");
+      }else{
+         location.href=url;
+      }
+   }
+</script>
+   
+   <div id='category'>
+    <form action="" method="post" name='searchJob'>
       <fieldset>
         <table>
           <tr>
             <td style='width: 10%;'><div style='margin-bottom: 25%;'>나라</div></td>
             <td>
               <div style='margin-bottom: 3%;'>
-              <input type="checkbox" id='aus' class='nation' name='nation' value='호주'>
+              <input type="checkbox" id='aus' class='nation' name='nation' value='N1'>
               <label for='aus' style='margin-left:1%;'>호주</label>
-              <input type="checkbox" id='nz' class='nation' name='nation' value='뉴질랜드'>
+              <input type="checkbox" id='nz' class='nation' name='nation' value='N4'>
               <label for='nz'>뉴질랜드</label>
-              <input type="checkbox" id='cnd' class='nation' name='nation' value='캐나다'>
+              <input type="checkbox" id='cnd' class='nation' name='nation' value='N3'>
               <label for='cnd'>캐나다</label>
-              <input type="checkbox" id='gm' class='nation' name='nation' value='독일'>
+              <input type="checkbox" id='gm' class='nation' name='nation' value='N5'>
               <label for='gm'>독일</label>
-              <input type="checkbox" id='jp' class='nation' name='nation' value='일본'>
+              <input type="checkbox" id='jp' class='nation' name='nation' value='N2'>
               <label for='jp'>일본</label>
             </div>
             </td>
@@ -195,34 +295,34 @@
             <td style='margin-right: 5%; vertical-align:top;'><div style='margin-top:20%'>직종</div></td>
             <td>
             <div style='margin-top: 3%;'>
-              <input type='checkbox' id='jobCategori1' class='jobCategori' name='jobCategori' value='외식·음료'>
-              <label for='jobCategori1' style='margin-left:1%;'>외식·음료</label>
-              <input type='checkbox' id='jobCategori2' class='jobCategori' name='jobCategori' value='유통·판매'>
-              <label for='jobCategori2'>유통·판매</label>
-              <input type='checkbox' id='jobCategori3' class='jobCategori' name='jobCategori' value='문화·여가 생활'>
-              <label for='jobCategori3'>문화·여가 생활</label>
-              <input type='checkbox' id='jobCategori4' class='jobCategori' name='jobCategori' value='서비스'>
-              <label for='jobCategori4'>서비스</label>
-              <input type='checkbox' id='jobCategori5' class='jobCategori' name='jobCategori' value='사무직'>
-              <label for='jobCategori5'>사무직</label>
-              <input type='checkbox' id='jobCategori6' class='jobCategori' name='jobCategori' value='고객상담·리서치·영업'>
-              <label for='jobCategori6'>고객상담·리서치·영업</label>
-              <input type='checkbox' id='jobCategori7' class='jobCategori' name='jobCategori' value='생산·건설·노무'>
-              <label for='jobCategori7'>생산·건설·노무</label>
-              <input type='checkbox' id='jobCategori8' class='jobCategori' name='jobCategori' value='IT·컴퓨터'>
-              <label for='jobCategori8'>IT·컴퓨터</label>
-              <input type='checkbox' id='jobCategori9' class='jobCategori' name='jobCategori' value='교육·강사'>
-              <label for='jobCategori9'>교육·강사</label>
-              <input type='checkbox' id='jobCategori10' class='jobCategori' name='jobCategori' value='디자인'>
-              <label for='jobCategori10'>디자인</label>
-              <input type='checkbox' id='jobCategori11' class='jobCategori' name='jobCategori' value='미디어'>
-              <label for='jobCategori11'>미디어</label>
-              <input type='checkbox' id='jobCategori12' class='jobCategori' name='jobCategori' value='운전·배달'>
-              <label for='jobCategori12'>운전·배달</label>
-              <input type='checkbox' id='jobCategori13' class='jobCategori' name='jobCategori' value='병원·간호·연구'>
-              <label for='jobCategori13'>병원·간호·연구</label>
-              <input type='checkbox' id='jobCategori14' class='jobCategori' name='jobCategori' value='기타'>
-              <label for='jobCategori14'>기타</label>
+              <input type='checkbox' id='jobCategory1' class='jobCategory' name='jobCategory' value='외식·음료'>
+              <label for='jobCategory1' style='margin-left:1%;'>외식·음료</label>
+              <input type='checkbox' id='jobCategory2' class='jobCategory' name='jobCategory' value='유통·판매'>
+              <label for='jobCategory2'>유통·판매</label>
+              <input type='checkbox' id='jobCategory3' class='jobCategory' name='jobCategory' value='문화·여가 생활'>
+              <label for='jobCategory3'>문화·여가 생활</label>
+              <input type='checkbox' id='jobCategory4' class='jobCategory' name='jobCategory' value='서비스'>
+              <label for='jobCategory4'>서비스</label>
+              <input type='checkbox' id='jobCategory5' class='jobCategory' name='jobCategory' value='사무직'>
+              <label for='jobCategory5'>사무직</label>
+              <input type='checkbox' id='jobCategory6' class='jobCategory' name='jobCategory' value='고객상담·리서치·영업'>
+              <label for='jobCategory6'>고객상담·리서치·영업</label>
+              <input type='checkbox' id='jobCategory7' class='jobCategory' name='jobCategory' value='생산·건설·노무'>
+              <label for='jobCategory7'>생산·건설·노무</label>
+              <input type='checkbox' id='jobCategory8' class='jobCategory' name='jobCategory' value='IT·컴퓨터'>
+              <label for='jobCategory8'>IT·컴퓨터</label>
+              <input type='checkbox' id='jobCategory9' class='jobCategory' name='jobCategory' value='교육·강사'>
+              <label for='jobCategory9'>교육·강사</label>
+              <input type='checkbox' id='jobCategory10' class='jobCategory' name='jobCategory' value='디자인'>
+              <label for='jobCategory10'>디자인</label>
+              <input type='checkbox' id='jobCategory11' class='jobCategory' name='jobCategory' value='미디어'>
+              <label for='jobCategory11'>미디어</label>
+              <input type='checkbox' id='jobCategory12' class='jobCategory' name='jobCategory' value='운전·배달'>
+              <label for='jobCategory12'>운전·배달</label>
+              <input type='checkbox' id='jobCategory13' class='jobCategory' name='jobCategory' value='병원·간호·연구'>
+              <label for='jobCategory13'>병원·간호·연구</label>
+              <input type='checkbox' id='jobCategory14' class='jobCategory' name='jobCategory' value='기타'>
+              <label for='jobCategory14'>기타</label>
             </div>
             </td>
           </tr>
@@ -249,73 +349,100 @@
             </td>
           </tr>
         </table>
-        <button id='searchJob' type="submit" align='center' onclick="selectCategory();">검색</button>
+        <button id='searchJob' type="button" align='center' onclick="selectCategory();">검색</button>
       </fieldset>
     </form>
   </div>
   <div style='clear: both;'></div>
+ 
 
   <!-- 직업 게시판-->
   <div id='postFrame'>
     <table id='#listArea'>
-    	
-     	  <%if(list.isEmpty()){%>
-    		<tr>조회된 게시글이 없습니다.</tr>
-    	<%}else{ %>
-    		<%for(int i=0;i<list.size();i++){ %>
-    		<%Job j=list.get(i); %>
-      			<tr class="jpost">
-        			<div class='jobPost'>
-          				<td>
-          					<input type="hidden" id='jobNo' value="<%=((Job)list.get(i)).getJobNo() %>">
-            				<img src="<%=request.getContextPath() %>/job_uploadFiles/<%=j.getChangeName() %>" id='jobLogo'>
-            				<p><%=((Job)list.get(i)).getCoName() %><br>
-             			 		<%=((Job)list.get(i)).getTitle() %><br>
-           						<img class='like' src='<%=request.getContextPath() %>/images/jobImg/heart-icon_white.png' align='right'>
-         					</p>
-          				</td>
-        			</div>
-      			</tr>
-      		<%} %>
-      	<%} %>  
-	
+       
+          <%if(list.isEmpty()){%>
+          <tr>조회된 게시글이 없습니다.</tr>
+       <%}else{int f =0; %>
+          <%for(int i=0;i<list.size();i++){ %>
+          <%Job j=list.get(i); %>
+               <tr class="jpost">
+                 <div class='jobPost'>
+                      <td>
+                         <input type="hidden" id='jobNo' value="<%=((Job)list.get(i)).getJobNo() %>">
+                        <img src="<%=request.getContextPath() %>/job_uploadFiles/<%=j.getChangeName() %>" id='jobLogo'>
+                        <p><%=((Job)list.get(i)).getCoName() %><br>
+                             <%=((Job)list.get(i)).getTitle() %><br>
+                             <%
+                             for(int h=f; h<hlist.size();h++){
+                                int hAr = hlist.get(h).getJobNo();
+                                
+                             
+                             %>
+                             
+                                <%if(((Job)list.get(i)).getJobNo()==hAr) {%>
+                                   <img class='like' src='<%=request.getContextPath() %>/images/jobImg/heart-icon_red.png' align='right'>
+                                <%   f++; break;
+                                }else if(((Job)list.get(i)).getJobNo()!=hAr) {%>
+                                   <img class='like' align='right'>
+                                <%   break;
+                                } %>
+                                <!-- jobNo가 다르면 white 한개만 해줘야되는데 여러개나옴 -->
+                                
+                             <%} %>
+                             
+                        </p>
+                      </td>
+                 </div>
+               </tr>
+            <%} %>
+         <%} %>  
+   
     </table>
     
     <div align='right'>
-      <button id='registBtn' onclick="location.href='views/job/jobRegistView.jsp'">작성하기</button>
+      <button id='registBtn'>작성하기</button>
     </div>
     
   </div>
 
-	<script>
-	$(function(){
-		$(".jpost td").click(function(){
-			var jno = $(this).children($('input')).val();
-			location.href="<%=request.getContextPath()%>/jobDetail.bo?jobNo="+jno;
-		});
-	})
-	</script>
-	
+   <script>
+   $(function(){
+      $(".jpost td").click(function(){
+         var jno = $(this).children($('input')).val();
+         location.href="<%=request.getContextPath()%>/jobDetail.bo?jobNo="+jno;
+      });
+   })
+   
+   $('#registBtn').click(function(){
+      if(<%=grade %>!=3){
+         alert("워홀러는 구인 게시물을 작성할 수 없습니다.");
+      }else{
+         location.href='views/job/jobRegistView.jsp'
+      }
+   })
+   
+   </script>
+   
 
   <!-- 페이지 -->
     <div id='pageBtn' align='center'>
-			<!-- 맨 처음으로(<<) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=1'"> << </button>
-			<!-- 이전 페이지로(<) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=<%=currentPage-1 %>'"> < </button>
-			<!-- 10개의 페이지 목록 -->
-			<% for(int p = startPage ; p <= endPage ; p ++) {%>
-				<%if(p == currentPage) {%>
-					<button disabled><%=p %></button>
-				<%}else{ %>
-					<button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=<%=p %>'"><%=p %></button>
-				<%} %>
-			<% } %>
-			
-			<!-- 다음 페이지로(>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=<%=currentPage+1 %>'"> > </button>
-			<!-- 맨 끝으로(>>) -->
-			<button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=<%=maxPage %>'"> >> </button>
+         <!-- 맨 처음으로(<<) -->
+         <button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=1'"> << </button>
+         <!-- 이전 페이지로(<) -->
+         <button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=<%=currentPage-1 %>'"> < </button>
+         <!-- 10개의 페이지 목록 -->
+         <% for(int p = startPage ; p <= endPage ; p ++) {%>
+            <%if(p == currentPage) {%>
+               <button disabled><%=p %></button>
+            <%}else{ %>
+               <button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=<%=p %>'"><%=p %></button>
+            <%} %>
+         <% } %>
+         
+         <!-- 다음 페이지로(>) -->
+         <button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=<%=currentPage+1 %>'"> > </button>
+         <!-- 맨 끝으로(>>) -->
+         <button onclick="location.href='<%=request.getContextPath() %>/jobList.bo?currentPage=<%=maxPage %>'"> >> </button>
   </div> 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

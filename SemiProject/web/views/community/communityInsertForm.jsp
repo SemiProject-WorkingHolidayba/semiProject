@@ -107,38 +107,40 @@
   <%@include file = "../common/menubar.jsp" %>
  
     <div id="wrap" style="width:70%;">
-      <div style=" float: left; border-right: 2px solid rgb(113, 177, 197); height: 500px; padding:0 80px;">
-          <p style="margin-top: 20%; font-size: 30px; font-weight: 800;color:#ADD4D9";>회원관리</p>
+         <div style=" float: left; border-right: 2px solid rgb(113, 177, 197); height: 500px; padding:0 80px;">
+        <p style="margin-top: 50%; font-size: 30px; font-weight: 800;color:#ADD4D9">카테고리</p>
           <br>
           <br>
           <br>
           <div style="line-height: 250%; font-weight:bold; font-size: 20px;">
-             <p style="font-size: 18px; float: left; "><a onclick ="goNotice();">공지사항</a></p><br>
-            <p  style="font-size: 18px; float: left;"><a onclick ="goFree();">자유게시판</a></p><br>
-            <p  style="font-size: 18px; float: left;"><a onclick ="goQuestion();">질문게시판</a></p><br>
-            <p style="font-size: 18px; float: left;"><a onclick ="goMarket();">벼룩시장</a></p><br>
+        <p style="font-size: 18px; float: left; "><a onclick ="goNotice('공지사항');">공지사항</a></p><br>
+            <p  style="font-size: 18px; float: left;"><a onclick ="goFree('자유게시판');">자유게시판</a></p><br>
+            <p  style="font-size: 18px; float: left;"><a onclick ="goQuestion('질문게시판');">질문게시판</a></p><br>
+            <p style="font-size: 18px; float: left;"><a onclick ="goMarket('벼룩시장');">벼룩시장</a></p><br>   
         </div>
     </div>
    <script>
-   function goFree(){
-	   
-   location.href="<%=request.getContextPath() %>/free.bo";
-   }
-   function goNotice(){
-	   
-	   location.href="<%=request.getContextPath() %>/list.bo";
-	   }
-  function goQuestion(){
-	   
-	   location.href="<%=request.getContextPath() %>/question.bo";
-	   }
-  function goMarket(){
-	   
-	   location.href="<%=request.getContextPath() %>/market.bo";
-	   }
+   function goFree(category){
+      
+      location.href="<%=request.getContextPath() %>/free.bo?categoryName="+category;
+      }
+      function goNotice(category){
+       
+         location.href="<%=request.getContextPath() %>/list.bo?categoryName="+category;
+         }
+     function goQuestion(category){
+         
+         location.href="<%=request.getContextPath() %>/question.bo?categoryName="+category;
+         }
+     function goMarket(category){
+         
+         location.href="<%=request.getContextPath() %>/market.bo?categoryName="+category;
+         }
    </script>
           </div>
       </div>
+     <br>
+     <br>
      
         <h1 Style="color:#ADD4D9; font-weight:600; font-size:50px;">게시글 작성 </b> </h1>
     
@@ -153,11 +155,11 @@
  
         <select name="countryNo"style="margin-right:45%;" id ="countryNo" size ="1" >
           <option value="N0"selected>=== 선택 ===</option>
-          <option value="N1" >뉴질랜드</option>
-          <option value="N2">독일</option>
-          <option value="N3">일본</option>
-          <option value="N4">호주</option>
-          <option value="N5">캐나다</option>
+          <option value="N1" >호주</option>
+          <option value="N2">일본</option>
+          <option value="N3">캐나다</option>
+          <option value="N4">뉴질랜드</option>
+          <option value="N5">독일</option>
         </select>
        
         
@@ -188,7 +190,7 @@
 
 </table>
 
-		<input type ="file" id = "img" name = "img">
+      <input type ="file" id = "img" name = "img">
  
 
 
@@ -202,5 +204,36 @@
 </div>
 
 </form> 
+<br>
+<br>
+<Br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<Br>
+<br>
+<Br>
+
+<br>
+<Br>
+<br>
+<Br>
+
+<br>
+<Br>
+<br>
+<Br>
+
+<br>
+<Br>
+<br>
+<Br>
+
+
+ <%@ include file="../common/bottom.jsp" %>
 </body>
 </html>

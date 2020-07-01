@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="community.model.vo.*"
-	import="java.util.ArrayList"%>
+   pageEncoding="UTF-8" import="community.model.vo.*"
+   import="java.util.ArrayList"%>
 
 <% Community c = (Community)request.getAttribute("community");
-    	CommunityImg ci  =(CommunityImg)request.getAttribute("communityimg");
+       CommunityImg ci  =(CommunityImg)request.getAttribute("communityimg");
     int cNo = c.getCommunityNo();
  %>
 <!DOCTYPE html>
@@ -134,45 +134,46 @@ height: 25px;}
 <body>
 <%@include file="../common/menubar.jsp"%>
 <div id="wrap" style="width: 70%;">
-		<div
-			style="float: left; border-right: 2px solid rgb(113, 177, 197); height: 500px; padding: 0 80px;">
-			<p
-				style="margin-top: 20%; font-size: 30px; font-weight: 800; color: #ADD4D9">카테고리</p>
-			<br> <br> <br>
-			<div style="line-height: 250%; font-weight: bold; font-size: 20px;">
-				<p style="font-size: 18px; float: left;">
-					<a onclick="goNotice();">공지사항</a>
-				</p>
-				<br>
-				<p style="font-size: 18px; float: left;">
-					<a onclick="goFree();">자유게시판</a>
-				</p>
-				<br>
-				<p style="font-size: 18px; float: left;">
-					<a onclick="goQuestion();">질문게시판</a>
-				</p>
-				<br>
-				<p style="font-size: 18px; float: left;">
-					<a onclick="goMarket();">벼룩시장</a>
-				</p>
-				<br>
-			</div>
-		</div>
-		</div>
+        <div style=" float: left; border-right: 2px solid rgb(113, 177, 197); height: 500px; padding:0 80px;">
+        <p style="margin-top: 50%; font-size: 30px; font-weight: 800;color:#ADD4D9">카테고리</p>
+         <br> <br> <br>
+         <div style="line-height: 250%; font-weight: bold; font-size: 20px;">
+            <p style="font-size: 18px; float: left;">
+               <a onclick="goNotice();">공지사항</a>
+            </p>
+            <br>
+            <p style="font-size: 18px; float: left;">
+               <a onclick="goFree();">자유게시판</a>
+            </p>
+            <br>
+            <p style="font-size: 18px; float: left;">
+               <a onclick="goQuestion();">질문게시판</a>
+            </p>
+            <br>
+            <p style="font-size: 18px; float: left;">
+               <a onclick="goMarket();">벼룩시장</a>
+            </p>
+            <br>
+         </div>
+      </div>
+      </div>
 <form action ="<%=request.getContextPath()%>/update.bo"  encType="multipart/form-data" method="post">
 <input type = "hidden" name = "cno" value = "<%=c.getCommunityNo() %>">
    <table>
       <tr>
+      <br>
+      <br>
+      
          <th><h1 id="boardWrite">게시글 수정</h1></th>
       </tr>
       <tr>
          <td><label for="category">국가</label>
          <select id="category"  name="country">
-            <option value="N1">뉴질랜드</option>
-            <option value="N2">독일</option>
-            <option value="N3">일본</option>
-            <option value="N4">호주</option>
-            <option value="N5">캐나다</option>
+            <option value="N1">호주</option>
+            <option value="N2">일본</option>
+            <option value="N3">캐나다</option>
+            <option value="N4">뉴질랜드</option>
+            <option value="N5">독일</option>
          </select>
          
          <label for="cate">카테고리</label>
@@ -191,10 +192,10 @@ height: 25px;}
          <td><label for="content">내용</label><br><input type ="text" name = "content" style="width:800px; height:500px; class="form-control" value = <%=c.getContent() %>></td>   
       </tr>
       <tr>
-      	
+         
          <td class="filetd"><input type="file" id="img" name="img" ></td>
       </tr>
-      	
+         
       <tr align="center">
          <td class="btnGroup">
          <input type="submit" id="modifyBtn" class="btn btn-info" value="수정하기">
@@ -207,25 +208,25 @@ height: 25px;}
 </form>
 <script>
    function goFree(){
-	   
+      
    location.href="<%=request.getContextPath() %>/free.bo";
    }
    function goNotice(){
-	   
-	   location.href="<%=request.getContextPath() %>/list.bo";
-	   }
+      
+      location.href="<%=request.getContextPath() %>/list.bo";
+      }
   function goQuestion(){
-	   
-	   location.href="<%=request.getContextPath() %>/question.bo";
-	   }
+      
+      location.href="<%=request.getContextPath() %>/question.bo";
+      }
   function goMarket(){
-	   
-	   location.href="<%=request.getContextPath() %>/market.bo";
-	   }
+      
+      location.href="<%=request.getContextPath() %>/market.bo";
+      }
    </script>
    <script>
-   		
+         
    </script>
-
+ <%@ include file="../common/bottom.jsp" %>
 </body>
 </html>

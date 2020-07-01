@@ -179,7 +179,7 @@
   <div class="area" id="wrap" align="left"
     style="width:160px; height: 900px; margin: 0; padding: 0; border-right: 1px solid lightgray; ">
 
-    <nav class="side_menu" style="text-align:left !important; " >
+    <nav class="side_menu" style="text-align:left !important; margin-top:150%"  >
 
       <ul class="depth2_menu" style="margin-top: 80%;">
         <li class="depth2_list"><a class="depth2_anchor"
@@ -207,19 +207,19 @@
   </div>
 
 
-  <div id="wrap" class=" area " style="position:absolute; margin-left: 5%;" ; align="center">
+  <div id="wrap" class=" area " style="position:absolute; margin-left: 5%; margin-top:80px;" align="center">
 
     <h1 style="font-weight: 900; " >집 예약자 내역</h1>
 
-    <form style="margin-top: 100px; " >
+    <form style="margin-top: 100px; margin-right:30px;" >
 
       <table class="table table-hover table-bordered">
         <thead>
           <tr class="mainChoice" style="background: lightgray;">
-            <th scope="col" style="width: 50px;">예약번호</th>
-            <th scope="col" style="width: 300px;">글 제목</th>
+            <th scope="col" style="width: 150px;">예약번호</th>
+            <th scope="col" style="width: 500px;">글 제목</th>
             <th scope="col" style="width: 200px;">집 종류</th>
-            <th scope="col" style="width: 100px;">예약자 명</th>
+            <th scope="col" style="width: 150px;">예약자 명</th>
             <th scope="col" style="width: 300px;">입주 기간</th>
             <th scope="col" style="width: 200px;">예약자 이메일</th>
 
@@ -259,8 +259,7 @@
 
   </div>
 
-
-
+<%@ include file="/views/common/bottom.jsp"%>
 
 
   <!-- Marketing messaging and featurettes

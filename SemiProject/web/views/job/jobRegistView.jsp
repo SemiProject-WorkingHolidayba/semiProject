@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 <style>
 	  #registFrame{
-          margin-left:25%;
-          margin-right: 25%;
+          margin-left:20%;
+          margin-right: 20%;
+          
       }
 
       h3{
@@ -26,6 +27,7 @@
         margin-top:2% !important;
       }
 
+	
 
       #category, #nation{
         margin-bottom: 1%;
@@ -94,13 +96,16 @@
             width:100%;
             height: auto;
         }
+        #nation{
+		border:0;
+	}
 </style>
 
 </head>
 <body>
 	<%@include file="../../views/common/menubar.jsp" %>
-
-    <div id='registFrame'>
+<br><br><br><br>
+      <div id='registFrame'>
         <h3>· 구직 등록</h3>
         <form action='<%=request.getContextPath() %>/jobRegist.bo' method='post' encType='multipart/form-data'>
         <table>
@@ -111,7 +116,7 @@
             <tr>
                 <td>나라</td>
                 <td>
-                    <div id='nation' class='select'>
+                    <div id='nation2' class='select'>
                         <input type='radio' id='aus' name='nation' value='N1'><label for='aus'>호주</label>
                         <input type='radio' id='nz' name='nation' value='N4'><label for='nz'>뉴질랜드</label>
                         <input type='radio' id='cnd' name='nation' value='N3'><label for='cnd'>캐나다</label>
@@ -121,10 +126,10 @@
                 </td>
             </tr>
             <tr>
-            	<td style='vertical-align: top;'><div style='margin-top:20%;'>기업명</div></td>
-            	<td>
-            		<input id='coname' type='text' name='coname' placeholder="내용을 입력해주세요.">
-            	</td>
+               <td style='vertical-align: top;'><div style='margin-top:20%;'>기업명</div></td>
+               <td>
+                  <input id='coname' type='text' name='coname' placeholder="내용을 입력해주세요.">
+               </td>
             </tr>
             <tr>
                 <td style='vertical-align: top;'><div style='margin-top:20%;'>직종</div></td>
@@ -201,9 +206,9 @@
             <tr>
                 <td>근무시간</td>
                 <td>
-                    <input type='time' name='worktime'>
+                    <input type='time' name='worktime1'>
                     ~
-                    <input type='time' name='worktime'>
+                    <input type='time' name='worktime2'>
                 </td>
             </tr>
             <tr>
@@ -220,8 +225,8 @@
                 </td>
             </tr>
         </table>
-        	<div style="display:none;">
-            	<button type='submit' id='registBtn'></button>
+           <div style="display:none;">
+               <button type='submit' id='registBtn'></button>
             </div>
         </form>
         <div align='center'>
@@ -229,17 +234,17 @@
         </div>
     </div>  
 
-	<script>
-		$('#fileCheck').click(function(){
-			var fileCheck = document.getElementById("file").value;
-		    if(!fileCheck){
-		    	alert("이력서 파일을 첨부해주세요.")
-		    }else{
-		    		$("#registBtn").trigger("click");
-		    }
-		})
-	</script>
-
+   <script>
+      $('#fileCheck').click(function(){
+         var fileCheck = document.getElementById("file").value;
+          if(!fileCheck){
+             alert("이력서 파일을 첨부해주세요.")
+          }else{
+                $("#registBtn").trigger("click");
+          }
+      })
+   </script>
+   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="assets/js/docs.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

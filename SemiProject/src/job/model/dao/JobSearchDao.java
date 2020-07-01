@@ -58,12 +58,14 @@ public class JobSearchDao {
          pstmt.setInt(2, endRow);
          pstmt.setInt(3, userNo);
          rs = pstmt.executeQuery();
-         
+         System.out.println(" 나  startrow:" + startRow);
+         System.out.println(" 나  endrow:" + endRow);
          while(rs.next()){
             JobSearch j = new JobSearch(rs.getInt("JOBNO"),
                   rs.getString("PERIOD"),
                   rs.getDate("DUEDATE"),
-                  rs.getString("WORKTIME"),
+                  rs.getString("workTime1"),
+                  rs.getString("workTime2"),
                   rs.getString("TITLE"),
                   rs.getInt("USERNO"),
                   rs.getString("COUNTRY"),
@@ -115,7 +117,8 @@ public class JobSearchDao {
                                     rs.getString("address"),
                                     rs.getString("pay"),
                                     rs.getDate("dueDate"),
-                                    rs.getString("workTime"),
+                                    rs.getString("workTime1"),
+                                    rs.getString("workTime2"),
                                     rs.getString("workDay"),
                                     rs.getString("title"),
                                     rs.getString("content"),
@@ -229,7 +232,8 @@ public class JobSearchDao {
                   rs.getString("address"),
                   rs.getString("pay"),
                   rs.getDate("dueDate"),
-                  rs.getString("workTime"),
+                  rs.getString("workTime1"),
+                  rs.getString("workTime2"),
                   rs.getString("workDay"),
                   rs.getString("title"),
                   rs.getString("content"),
@@ -239,7 +243,6 @@ public class JobSearchDao {
                   rs.getInt("userNo"),
                   rs.getString("changename"),
                   rs.getString("country"),
-                  
                   rs.getInt("jobApplyNo"),
                   rs.getDate("jobApplyDate"),
                   rs.getString("typeNo"),
@@ -286,7 +289,8 @@ public class JobSearchDao {
                                  rs.getString("address"),
                                  rs.getString("pay"),
                                  rs.getDate("dueDate"),
-                                 rs.getString("workTime"),
+                                 rs.getString("workTime1"),
+                                 rs.getString("workTime2"),
                                  rs.getString("workDay"),
                                  rs.getString("title"),
                                  rs.getString("content"),

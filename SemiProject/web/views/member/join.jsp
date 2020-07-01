@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WorkingThrough</title>
+<link rel="icon" href="images/semi.ico">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
     body{
@@ -186,7 +187,7 @@
 <body>
  <div id="warp">
 
-	<img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png" onclick="location.href='<%=request.getContextPath()%>/main.jsp'">
+	<img id="logoimg" src="<%=request.getContextPath()%>/images/logo2.png"  onclick="location.href='<%=request.getContextPath() %>/main.jsp'">
 		<br><br>
  	 <form method="POST" action="<%=request.getContextPath()%>/insert.me" >
  	 	<div class="center_div">
@@ -368,7 +369,7 @@
  	 				type:"post",
  	 				data:{email:email.val()},
  	 				success:function(data){
- 	 					alert("테스트를 쉽게 하기 위한 인증번호 보여주기(join.jsp:361)\n"+data);
+ 	 					
  	 					emailsend = data;
  	 				},
  	 				error:function(request,status,error){
@@ -405,7 +406,7 @@
   	 	$("#userName").change(function(){
   	 		var NregExp=/^[가-힣]{2,6}$/;
   	 		
-  	 		if(!NregExp.test($(this.val()))){
+  	 		if(!NregExp.test($(this).val())){
   	 			alert("이름을 정확히 입력해 주세요");
   	 		}
   	 		

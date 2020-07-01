@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
  <% 
-	Member member = (Member)session.getAttribute("loginUser");
+   Member member = (Member)session.getAttribute("loginUser");
     String userName = member.getUserName();
-  	String userPw = member.getUserPw();
-	
+     String userPw = member.getUserPw();
+   
     String email = member.getEmail() ;
  %>    
 <!DOCTYPE html>
@@ -130,9 +130,10 @@
     .col-md-6 {
       display: inline-block !important;
       border: 1px solid black;
-      width: 30%;
+      width: 500px !important;
       height: 300px;
-      margin: 25px;
+      margin:20px;
+    
       background: lightblue;
       -webkit-border-radius: 15px;
     }
@@ -141,8 +142,8 @@
 
 
     .btn1 {
-      background: #1AAB8A;
-      color: #fff;
+      background:white !important;
+      color: black !important;
       border: none;
       position: relative;
       height: 60px;
@@ -153,7 +154,7 @@
       outline: none;
     }
 
- /*    .btn1:hover {
+     .btn1:hover {
       background: #fff;
       color: #1AAB8A;
     }
@@ -182,7 +183,7 @@
       width: 100%;
       transition: 800ms ease all;
     }
- */
+ 
     .password {
       display: inline-block;
 
@@ -250,7 +251,12 @@
            unset은 보이게함
          */
     }
-    
+    .modal{
+    border-bottom-left-radius: 0.5em !important;
+      border-bottom-right-radius: 0.5em !important;
+      border-top-left-radius: 0.5em !important;
+      border-top-right-radius: 0.5em !important
+    }
   </style>
 
 </head>
@@ -265,9 +271,9 @@
 
 
  <div class="area side z2"
-    style="width: 160px; height: 900px; margin: 0; padding: 0; border-right: 1px solid lightgray; ">
+    style="width: 149px; height: 850px; margin: 0; padding: 0; border-right: 1px solid lightgray; ">
 
-    <nav class="side_menu" style="margin-top:80%">
+    <nav class="side_menu" style="margin-top:150%">
 
       <ul class="depth2_menu">
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
@@ -280,7 +286,7 @@
 
 
         </li>
-        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.common" target="_self">내가 쓴 글</a>
+        <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/list.c" target="_self">내가 쓴 글</a>
 
 
         </li>
@@ -295,23 +301,20 @@
   </div>
 
 
- 
-
-
-  <div style="position: absolute;  margin-left: 5%;" id="wrap" class="area z2">
+  <div style="position: absolute; margin-top:80px; margin-left:20px;" id="wrap" class="area z2">
     <h1 style="font-weight: 900;">개인정보수정</h1>
     <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        style="margin-left: 5px;">
+         style="margin-left: 5px;">
         <div class="col p-4 d-flex flex-column position-static">
           <h2 class="mb-0">이름</h2><br>
-          <div class="mb-1 text-muted" style="font-size:20px;">사용자가 홈페이지에서 이용하게 될 이름입니다.<br> 개명을 하셨거나 이름을 바꾸길 원하시는 경우
+          <div class="mb-1 text-muted" style="font-size:17px;">사용자가 홈페이지에서 이용하게 될 이름입니다.<br> 개명을 하셨거나 이름을 바꾸길 원하시는 경우
             수정바랍니다.</div><br>
           <label>사용자의 현재 이름 : &nbsp;</label>
           <label style="text-align: center; background: lightgray; border: none; font-weight: 700;" id="label_userName"><%=userName %></label>
         </div><br>
         <button class="btn1 btn-primary btn-lg" data-toggle="modal" data-target="#myModalName" type="button"
-          style="width:200px; height: 50px; margin-left: 180px;" id="nameChange" >이름 수정하기</button>
+          style="width:200px; height: 50px; margin-left: 140px; margin-top:10px;" id="nameChange" >이름 수정하기</button>
       </div>
     </div>
 
@@ -320,40 +323,40 @@
         style="margin-left: 5px;">
         <div class="col p-4 d-flex flex-column position-static">
           <h2 class="mb-0">비밀번호</h2><br>
-          <div class="mb-1 text-muted" style="font-size:20px;">로그인시 사용할 비밀번호 입니다.<br>보안상의 안전을 위하여 주기적인 패스워드 변경이 필요합니다.
+          <div class="mb-1 text-muted" style="font-size:17px;">로그인시 사용할 비밀번호 입니다.<br>보안상의 안전을 위하여 주기적인 패스워드 변경이 필요합니다.
           </div><br>
         </div><br>
         <button class="btn1 btn-primary btn-lg" data-toggle="modal" data-target="#myModalPwd"
-          style="width:200px; height: 50px; margin-left: 180px;" id="passwordChange">비밀번호 변경하기</button>
+          style="width:200px; height: 50px; margin-left: 140px; margin-top:40px" id="passwordChange">비밀번호 변경하기</button>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        style="margin-left: 5px;">
+       style="margin-left: 5px;" >
         <div class="col p-4 d-flex flex-column position-static">
           <h2 class="mb-0">이메일</h2><br>
-          <div class="mb-1 text-muted" style="font-size:20px;">사용자가 페이지를 이용하면서 mail을 받게 될 e-mail입니다.</div><br>
+          <div class="mb-1 text-muted" style="font-size:17px;">사용자가 페이지를 이용하면서 mail을 받게 될 e-mail입니다.</div><br>
           <label>사용자의 현재 e-mail : &nbsp;</label><label style="text-align: center; background: lightgray; border: none; font-weight: 700;">
           <%=email %>
           </label>
             
         </div><br>
         <button  class="btn1 btn-primary btn-lg" data-toggle="modal" data-target="#myModalE"
-          style="width:200px; height: 50px; margin-left: 180px;" id="emailChange">이메일 변경하기</button>
+          style="width:200px; height: 50px; margin-left: 140px; margin-top:30px;" id="emailChange">이메일 변경하기</button>
       </div>
     </div>
     <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        style="margin-left: 5px;">
+         style="margin-left: 5px;">
         <div class="col p-4 d-flex flex-column position-static">
           <h2 class="mb-0">회원탈퇴</h2><br>
-          <div class="mb-1 text-muted" style="font-size:20px;">사용자의 계정을 더 이상 이용하실 수 없습니다.</div>
-          <div  class="mb-1 text-muted" style="font-size:20px;">그 동안 사용하였던 데이터와 정보가 모두 사라집니다.<br>
+          <div class="mb-1 text-muted" style="font-size:17px;">사용자의 계정을 더 이상 이용하실 수 없습니다.</div>
+          <div  class="mb-1 text-muted" style="font-size:17px;">그 동안 사용하였던 데이터와 정보가 모두 사라집니다.<br>
              계정 삭제를 원하시면 아래 회원탈퇴 버튼을 눌러주세요</div>
         </div><br>
         <button  class="btn1 btn-primary btn-lg" data-toggle="modal" data-target="#myModalP"
-          style="width:200px; height: 50px; margin-left: 180px;" id="statusN">회원탈퇴</button>
+          style="width:200px; height: 50px; margin-left: 140px; margin-top:20px;" id="statusN">회원탈퇴</button>
       </div>
     </div>
 
@@ -361,17 +364,17 @@
     
   </div>
    <div class="modal fade" id="myModalName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-    style=" margin-top: 15%;">
+    style=" margin-top: 15%; margin-left:25%;">
 
     <div class="modal-dialog">
 
-      <div class="modal-content" style="height: 10%; width: 70%;">
+      <div class="modal-content" style="height: 10%; width: 60%;">
 
           <form >
-        <div class="modal-header">
+        <div class="modal-header" style="background:;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">이름 변경</h4>
+          <h4 class="modal-title" id="myModalLabel" >이름 변경</h4>
         </div>
 
         <div class="modal-body">
@@ -388,7 +391,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="UpdateName" >수정</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 30%;">취소</button>
         </div>
 
           </form>
@@ -418,10 +421,12 @@
               <tr>
                 <td><label>현재 비밀번호 : &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
                 <td><input class="password" type="password" id="currentPwd"></td>
+                
               </tr> 
               <tr>
                 <td><label>변경할 비밀번호 : </label></td> 
                 <td><input type="password" class="password"  id="userPwd"></td>
+             
               </tr>
               <tr>
                  <td><label>비밀번호 확인 : </label></td> 
@@ -443,11 +448,11 @@
   </div>
 
   <div class="modal fade" id="myModalP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-    style=" margin-top: 15%; margin-left: 15%;">
+    style=" margin-top: 15%; margin-left: 30%;">
 
     <div class="modal-dialog">
 
-      <div class="modal-content" style="height: 10%; width: 70%;">
+      <div class="modal-content" style="height: 10%; width: 50%;">
 
           <form>
         <div class="modal-header">
@@ -472,7 +477,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="deleteMan">탈퇴</button>
-          <button style="margin-right: 35%;" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button style="margin-right: 30%;" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         </div>
 
           </form>
@@ -483,7 +488,7 @@
   </div>
 
   <div class="modal fade" id="myModalE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-    style=" margin-top: 15%; margin-left: 15%;">
+    style=" margin-top: 10%; margin-left: 15%;">
 
     <div class="modal-dialog">
 
@@ -531,7 +536,6 @@
   
  <script>
   $(function(){    
-<<<<<<< HEAD
      $("#pwdChange").click(function(){ 
            
           var PregExp=/^[a-z0-9]{4,20}$/;
@@ -551,6 +555,8 @@
                 alert("비밀번호를 확인해주세요");   
           }else if(!PregExp.test(userP2.val())){
              alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
+          }else if(userP.val() != userP2.val()){
+             alert("사용하실 비밀번호가 맞는지 확인해주세요!");
           }else if(userP.val() == userP2.val()){
              
                $.ajax({
@@ -578,56 +584,6 @@
           
    })
      
-=======
-	  $("#pwdChange").click(function(){ 
-	  		
-	 		var PregExp=/^[a-z0-9]{4,20}$/;
-	 		var currentPwd = $("#currentPwd");
-	 		var userP = $("#userPwd");
-	 		var userP2 = $("#userPwd2");
-	 		if(currentPwd.val().trim().length == 0){
-	 			alert("현재비밀번호를 입력해주세요")
-	 		}else if(currentPwd.val() != "<%=loginUser.getUserPw()%>") { 	 			
-	 			alert("현재 비밀번호가 일치하지 않습니다!");
-	 		}
-	 		else if(userP.val().trim().length == 0){
-		 			alert("사용하실 비밀번호를 입력해주세요");
-		 	}else if(!PregExp.test(userP.val())){
-	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
-	 		}else if(userP2.val().trim().length == 0){
-		 			alert("비밀번호를 확인해주세요");	
-	 		}else if(!PregExp.test(userP2.val())){
-	 			alert("알파벳 소문자와 숫자로 4~20자리의 비밀번호를 입력해주세요");
-	 		}else if(userP.val() != userP2.val()){
-	 			alert("사용하실 비밀번호가 맞는지 확인해주세요!");
-	 		}else if(userP.val() == userP2.val()){
-	 			
-	 		     $.ajax({
-			            url:"<%=request.getContextPath()%>/updatePwd.me",
-			            type:"post",
-			            data:{userPw:userP2.val()},
-			            success:function(data){
-			              if(data=="Y"){
-							location.href="<%=request.getContextPath()%>/views/common/alert.jsp";
-			              
-			              }else{
-			            		alert("수정이 실패하였습니다.");
-			            	}
-			               
-			               
-			            },
-			            error:function(request,status,error){
-			                      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			                  }
-			         }); 
-	 		}
-	 		
-	 	
-	  })
-	       
-	})
-  	
->>>>>>> refs/remotes/origin/kimsung
 </script> 
 
 <script>
@@ -677,19 +633,16 @@
 
 
  $(function(){
-<<<<<<< HEAD
     $("#deleteMan").click(function(){
-   
-      var pwd = $("#deletePwd");
-      
-         $("#deletePwd").change(function(){
+         
             
             var pwd = $("#deletePwd").val();
+            var userPwd = "<%=loginUser.getUserPw()%>";
             
-            if(pwd != "<%=loginUser.getUserPw()%>" || pwd == null){
+           if(pwd != "<%=loginUser.getUserPw()%>" ){
             alert("사용중인 비밀번호가 아닙니다! 다시 입력해주세요");
-            
-            }else{
+             
+           } else {
              $.ajax({
                   url:"<%=request.getContextPath()%>/delete.me",
                   type:"post",
@@ -708,52 +661,14 @@
                   error:function(request,status,error){
                             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                         }
-               }); 
-             }
+               });
+             
          
          
          
-         })
+         }
          
          
-=======
-	 $("#deleteMan").click(function(){
-	      
-	         
-	    	  var pwd = $("#deletePwd").val();
-	    	  var userPwd = "<%=loginUser.getUserPw()%>";
-	    	  
-		     if(pwd != "<%=loginUser.getUserPw()%>" ){
-	    	  alert("사용중인 비밀번호가 아닙니다! 다시 입력해주세요");
-	    		
-		     } else {
-				 $.ajax({
-				      url:"<%=request.getContextPath()%>/delete.me",
-				      type:"post",
-				      data:{},
-				      success:function(data){
-				        if(data=="Y"){
-				      	  alert("탈퇴되었습니다.");
-				         document.location.href="<%= request.getContextPath()%>/sessionclear.me";
-				      
-				      	}else{
-				      		alert("탈퇴하지 못하였습니다 ㅠㅠ");
-				      	}
-				         
-				         
-				      },
-				      error:function(request,status,error){
-				                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				            }
-				   });
-				 
-	      
-	      
-	      
-	      }
-	      
-	      
->>>>>>> refs/remotes/origin/kimsung
 
     })
  })      
@@ -788,7 +703,7 @@
                  type:"post",
                  data:{email:email.val()},
                  success:function(data){
-                    alert(data);
+                  
                     emailsend = data;
                  },
                  error:function(request,status,error){
@@ -841,10 +756,9 @@
     })
   </script> 
 
-
+<%@include file="/views/common/bottom.jsp"%>
   <!-- Marketing messaging and featurettes ================================================= -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
-
 
 
 

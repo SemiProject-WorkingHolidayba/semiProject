@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="job.model.vo.Job, java.util.ArrayList, java.util.Date, java.util.Calendar, java.text.SimpleDateFormat"%>
+    pageEncoding="UTF-8" import="job.model.vo.Job, job.model.vo.Heart, java.util.ArrayList, java.util.Date, java.util.Calendar, java.text.SimpleDateFormat"%>
 <% 
 Job j = (Job)request.getAttribute("job"); 
+Heart h = (Heart)request.getAttribute("h");
 
 // 디데이 계산
 Calendar cal = Calendar.getInstance();
@@ -23,7 +24,6 @@ long calDate = FirstDate.getTime() - SecondDate.getTime();
 long calDateDays = calDate / ( 24*60*60*1000); 
 
 calDateDays = Math.abs(calDateDays);
-
 %>
 
 
@@ -47,8 +47,17 @@ calDateDays = Math.abs(calDateDays);
           /* border:1px solid black; */
       }
 
-      #likeBtn{
+       #likeBtn{
           background:white;
+          border:0.5px solid gray;
+          border-top-left-radius: 0.5em;
+          border-top-right-radius: 0.5em;
+          border-bottom-left-radius: 0.5em;
+          border-bottom-right-radius: 0.5em;
+      }
+      
+      #cancelLikeBtn{
+          background:rgb(113, 177, 197);
           border:0.5px solid gray;
           border-top-left-radius: 0.5em;
           border-top-right-radius: 0.5em;
@@ -175,20 +184,37 @@ calDateDays = Math.abs(calDateDays);
 </head>
 <body>
 	<%@ include file="../../views/common/menubar.jsp" %>
-
+<br><br><br><br>
     <div id='infoFrame'>
         <div align=right style='margin-top:2%;'>
+        <%if(h != null){ %>
+           <button id='cancelLikeBtn' onclick="location.href='<%=request.getContextPath() %>/jdDelete.bo?jobno=<%=j.getJobNo()%>'">♡찜하기</button>
+            <%}else{ %>
             <button id='likeBtn' onclick="location.href='<%=request.getContextPath() %>/JJim.bo?jobno=<%=j.getJobNo()%>'">♡찜하기</button>
-            <button id='reportBtn'>신고하기</button>
+            
+            <%} %>
+            <button id='reportBtn' onclick="location.href='<%=request.getContextPath() %>/jobReprot.bo?jobno=<%=j.getJobNo()%>&userId=<%=j.getUserId() %>'">신고하기</button>
         </div>
 		
-		<script>
-			function likeBtn(){
-				$('#likeBtn').click(function(){
-					$(this).css("background","rgb(113, 177, 197)");
-				})
-			}
-		</script>
+	<script>
+         // 찜하기
+         $('#likeBtn').click(function(){
+            $(this).css("background","rgb(113, 177, 197)");
+            
+            
+         });
+         
+         $('#cancelLikeBtn').click(function(){
+            $(this).css("background","white");
+         }); 
+         
+         $('#reportBtn').click(function(){
+              var bool = confirm("신고하시겠습니까?");
+              if(bool){
+            	  alert("신고가 완료되었습니다.");
+              }
+          }); 
+      </script>
 
         <hr>
         <div id='jobTitle'>
@@ -212,7 +238,7 @@ calDateDays = Math.abs(calDateDays);
             </div>
             <div class='simpleInfo'>
               <img src='<%=request.getContextPath() %>/images/jobImg/time.PNG' style='max-width: 80%; margin:5% 3%; margin-left: 10%;'>
-              <p align='center'><%=j.getWorktime() %></p>
+              <p align='center'><%=j.getWorktime1() %> ~ <%=j.getWorktime2() %></p>
           </div>
             <div class='simpleInfo'>
               <img src='<%=request.getContextPath() %>/images/jobImg/calender.PNG' style='max-width: 90%; margin:6% 0%; margin-left: 5%;'>
@@ -298,7 +324,7 @@ calDateDays = Math.abs(calDateDays);
                 </tr>
                 <tr>
                     <td>근무시간</td>
-                    <td><%=j.getWorktime() %></td>
+                    <td><%=j.getWorktime1() %> ~ <%=j.getWorktime2() %></td>
                 </tr>
                 <tr>
                     <td>업직종</td>
@@ -328,69 +354,95 @@ calDateDays = Math.abs(calDateDays);
         </div>
 
         <hr>
-        <% if(!loginUser.getUserId().equals(j.getUserId())){ %>
-        <form action='<%=request.getContextPath() %>/jobApply.bo' method='post' encType='multipart/form-data'>
-        	<div align='center'>
-        		<button type='button' id='backBtn' onclick="location.href='<%=request.getContextPath() %>/jobList.bo'">메뉴로 돌아가기</button>
-            	<button id='applyBtn' type='submit' onclick='applyJob();' disabled>지원하기</button>
-        	</div>
-        	<div id='resumeFile'>
-	            <h5>이력서 첨부</h5>
-            	<input type='file' id='resume' name='resumeFile'>
-            	<h6 style="color:red;">이력서를 파일로 첨부하여야 지원이 진행됩니다.</h6>
-        	</div>
-        </form>        	
+       <% if(!loginUser.getUserId().equals(j.getUserId())){ %>
+        <form action='<%=request.getContextPath() %>/jobApply.bo?jobno=<%=j.getJobNo()%>' method='post' encType='multipart/form-data'>
+           <div align='center'>
+              <button type='button' id='backBtn' onclick="location.href='<%=request.getContextPath() %>/jobList.bo'">메뉴로 돌아가기</button>
+               <button id='applyBtn' type='submit'>지원하기</button>
+           </div>
+           <div id='resumeFile'>
+               <h5>이력서 첨부</h5>
+               <input type='file' id='resume' name='resumeFile'>
+               <h6 style="color:red;">이력서를 파일로 첨부하여야 지원이 진행됩니다.</h6>
+               <input type='text' id="file_name" style="display:none;">
+           </div>
+        </form>           
         <%}else if(loginUser.getUserId().equals(j.getUserId())){ %>
-        	<div align='center'>
-            	<button id='updateBtn' onclick="location.href='<%=request.getContextPath() %>/jobData.bo?jobno=<%=j.getJobNo()%>'">수정하기</button>
-            	<button id='deleteBtn' onclick="location.href='<%=request.getContextPath() %>/deleteJob.bo?jobno=<%=j.getJobNo()%>'">삭제하기</button>
-        	</div>
-        	<div style='display:none;'>
-        		<input type='file'>
-        	</div>
+           <div align='center'>
+               <button id='updateBtn' onclick="location.href='<%=request.getContextPath() %>/jobData.bo?jobno=<%=j.getJobNo()%>'">수정하기</button>
+               <button id='deleteBtn' onclick="location.href='<%=request.getContextPath() %>/deleteJob.bo?jobno=<%=j.getJobNo()%>'">삭제하기</button>
+           </div>
+           <div style='display:none;'>
+              <input type='file'>
+           </div>
         <%} %>
+    <hr>
     </div>
-	
-
-
-    <script>
     
-    if ($('#resume').get(0).files.length === 1) {
-        $('#applyBtn').attr('able',true);
+    <div class="replyArea">
+      <div class="replyWriterArea">
+         <table align="center">
+            <tr>
+               <td style="margin-left:auto;margin-right:auto;">리뷰 작성</td>
+               <td><textArea rows="2" cols="80" id="replyContent"></textArea></td>
+               <td>
+                  <button id="addReply">댓글등록</button>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+   
+   <hr>
+   <div>
+      <table>
+      <%--    <%for(int i=0;i<rlist.length;i++){ %>
+            
+         <%} %> --%>
+         <tr>
+         
+         </tr>
+         
+      </table>
+   </div>
+   
+   
 
-    }
-    
-    /*   function applyJob(){
-        if ($('#resume').get(0).files.length === 0) {
-            alert("No files selected.");
- 
-        }
+   <script type="text/javascript">
+         $(document).ready(function() {
+            $("#applyBtn").attr("disabled",true);
+            $('input[type=file]').change(function(e){
+               $(this).parent().find("#file_name").val(e.target.files[0].name);
+               $('#applyBtn').attr("disabled",false);
+           });
+         });
+         
 
-    	  if(fileCheck==null){
-          $('#applyBtn').click(function(){
-            alert('이력서 파일을 첨부해주세요.');
-            $(this).attr('disabled',true);
-        	  
-          })
-        }) 
- 
-
-      }
+        $(function(){
+           $("#addReply").click(function(){
+              var writer = <%=loginUser.getUserNo()%>;
+              var jobNo = <%=j.getJobNo() %>;
+              var content=$("#replyContent").val();
+              
+              $.ajax({
+                 url:"<%=request.getContextPath()%>/insertReview.bo",
+                 type:"post",
+                 data:{writer:writer, content:content, jobNo:jobNo},
+                 success:function(data){
+                    alert("리뷰가 등록되었습니다.")
+                 },
+                 error:function(request,status,error){
+                     alert("리뷰등록에 실패하였습니다.");
+                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                 }
+              })
+              
+              // InsertReplyServlet 만들러 가자
+           })
+        })
         
-      if(!fileCheck){
-          alert("파일을 첨부해 주세요");
-          return false;
-      } */
-    	    
-<%--         }else{
-          $('#applyBtn').on('click',function(){
-            alert('구직 신청이 완료 되었습니다.');
-            location.href='<%=request.getContextPath() %>/jobList.bo';
-          })
-        }
-        
-      }) --%>
-    </script>
+         
+   </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="assets/js/docs.min.js"></script>

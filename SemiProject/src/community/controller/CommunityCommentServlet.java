@@ -19,38 +19,38 @@ import community.model.vo.Comment;
  */
 @WebServlet("/comment.bo")
 public class CommunityCommentServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-	public CommunityCommentServlet() {
-		
+   public CommunityCommentServlet() {
+      
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int userno = Integer.valueOf(request.getParameter("userno"));
-		int communityno = Integer.valueOf(request.getParameter("communityno"));
-		String content = request.getParameter("content");
-		Comment c = new Comment(content, communityno, userno);
-		
-		ArrayList<Comment> colist = new CommunityService().insertComment(c);
-		System.out.println(colist);
-		response.setContentType("application/json");
-		new Gson().toJson(colist,response.getWriter());
-		
-	}
+   /**
+    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      int userno = Integer.valueOf(request.getParameter("userno"));
+      int communityno = Integer.valueOf(request.getParameter("communityno"));
+      String content = request.getParameter("content");
+      Comment c = new Comment(content, communityno, userno);
+      
+      ArrayList<Comment> colist = new CommunityService().insertComment(c);
+      System.out.println(colist);
+      response.setContentType("application/json");
+      new Gson().toJson(colist,response.getWriter());
+      
+   }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+   /**
+    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      // TODO Auto-generated method stub
+      doGet(request, response);
+   }
 
 }

@@ -51,20 +51,18 @@
     <script src="http://googledrive.com/host/0B-QKv6rUoIcGeHd6VV9JczlHUjg"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
     
-        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
 	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
 	<link rel="stylesheet" href="path/to/swiper.min.css">
 	
 	<script src="https://unpkg.com/swiper/js/swiper.js"></script>
 	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-    
-    
 
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- Custom styles for this template -->
     <style>
-    	#content{
+    	#contents{
 	        width: 100%;
 	        font-family: 'Noto Sans KR', sans-serif;
       	}
@@ -74,9 +72,9 @@
 	        width: 100%;
 	        grid-template-columns: 35% 20% 20%;
 	        grid-template-rows: 38% 38%;
-	        margin-top: 3em;
 	        margin-left: 12em;
 	    }
+	    
 	     #photo img{
 	        width: 100%;
 	        height: 100%;
@@ -288,14 +286,22 @@
 	    .gallery-thumbs .swiper-slide-thumb-active {
 	      opacity: 1;
 	    }
+	    
+	     #map {
+
+        height: 400px;  /* The height is 400 pixels */
+
+        width: 100%;  /* The width is the width of the web page */
+
+       }
 
     </style>
   </head>
   <body>
    <%@ include file = "../common/menubar.jsp" %>
-   
 
     <div id ="contents">
+    	<br><br><br><br>
 		<div id = "photo">
 	      <% if(flist.isEmpty()){ System.out.println("아무것도없음");%>
 							
@@ -330,7 +336,49 @@
           <h3><b><%=home.getTitle()%></b></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <div class = "detail">
             <p><%=home.getContent()%></p>
-            <p><%=home.getAddress()%>
+            <p><%=home.getAddress()%></p>
+            
+		    <div id="map"></div>
+		    
+		    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+			<script type="text/javascript">
+			
+			function codeAddress() {
+
+				   var geocoder = new google.maps.Geocoder();
+				   
+				    var address = <%=home.getAddress()%>;
+
+
+				    geocoder.geocode( { 'address': address}, function(results, status) {
+
+				      if (status == google.maps.GeocoderStatus.OK) {
+
+				        //alert(results[0].geometry.location.lat());
+
+				        //alert(results[0].geometry.location.lng());
+
+				        document.getElementById("lat").value = results[0].geometry.location.lat();
+
+				        document.getElementById("lng").value = results[0].geometry.location.lng();
+
+				      } else {
+
+				        alert("Geocode was not successful for the following reason: " + status);
+
+				      }
+
+				    });
+
+			</script>
+					
+		    <script>
+				function initMap() {
+				  var uluru = {lat: -25.344, lng: 131.036};
+				  var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: uluru});
+				  var marker = new google.maps.Marker({position: uluru, map: map});
+				}
+			</script>
           </div>
         </div>
         <div id = "middle">
@@ -481,10 +529,9 @@
       </div>
     </div>
 
-    <div id = "footer">
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
-    </div>
+    <div id = "footer" style="margin-bottom: 0;">
+      <%@include file="/views/common/bottom.jsp"%>
+   </div>
     
     <script>
         $(function(){
@@ -544,7 +591,6 @@
     	  $("#myImg").each(function(index){
     		var modal = document.getElementById('myModal');
 
-   	    	// Get the image and insert it inside the modal - use its "alt" text as a caption
    	    	var img = document.getElementById('myImg');
    	    	var modalImg = document.getElementById("img01");
    	    	var captionText = document.getElementById("caption");
@@ -555,7 +601,6 @@
    	    	    modalImg.alt = this.alt;
    	    	    captionText.innerHTML = this.alt;
    	    	}
-			// Get the <span> element that closes the modal
    	    	var span = document.getElementsByClassName("close")[0];
    	  	});  
     	   	
@@ -629,7 +674,6 @@
 					$replyTable = $("#review");
 					$replyTable.html("");	
 					
-					// 새로 받아온 갱신 된 댓글리스트들을 for문을 통해 다시 table에 추가
 					for(var key in data){
 						var $span = $("<span>");
 						var $writerTd = $("<span>").text(data[key].userName).css("font-weight","bold").css("padding-right","3%");
@@ -678,6 +722,9 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assetsjs/ie10-viewport-bug-workaround.js"></script>
     <!-- <script src="vendor/holder.js"></script> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgzp_Q42ooVecdqVZ34_3OBrwky_bSbik&callback=initMap">
+
+    </script>
 
   </body>
 </html>

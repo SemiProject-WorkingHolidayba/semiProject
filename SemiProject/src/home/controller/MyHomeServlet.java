@@ -37,8 +37,7 @@ public class MyHomeServlet extends HttpServlet {
 		
 		Home home = new HomeService().selectHome(hNo);
 		ArrayList<Img> flist = new HomeService().selectImgList(hNo);
-		System.out.println("마이페이지 뿌려주기 직전 내 정보 : " + home);
-		
+
 		RequestDispatcher view = null;
 		
 		if(home != null) {

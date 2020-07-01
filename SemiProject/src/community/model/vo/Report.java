@@ -18,6 +18,13 @@ public Report(int reportNo, int boardNo, String process, String categoryNo, int 
 	this.userNo = userNo;
 }
 
+
+
+public Report(int boardNo, String categoryNo, int userNo) {
+	this.boardNo = boardNo;
+	this.categoryNo = categoryNo;
+	this.userNo = userNo;
+}
 public Report(int boardNo, int userNo) {
 	super();
 	this.boardNo = boardNo;

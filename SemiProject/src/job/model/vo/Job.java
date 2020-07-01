@@ -19,7 +19,8 @@ public class Job implements Serializable {
 	private String address;				// 주소
 	private String pay;					// 급여
 	private String dueDate;				// 마감일
-	private String worktime;			// 근무시간
+	private String worktime1;			// 근무시간
+	private String worktime2;			// 근무시간
 	private String workday;				// 근무요일
 	private String title;				// 제목
 	private String content;				// 상세내용
@@ -30,6 +31,8 @@ public class Job implements Serializable {
 	private String changeName;			// 로고사진 파일이름변경
 	private String filePath;			// 파일 저장위치
 	private String coName;				// 회사명
+	private String status;
+	private String typeNo;
 	
 	private int userNo;					// 찜목록 유저no
 	
@@ -38,7 +41,7 @@ public class Job implements Serializable {
 	}
 
 	public Job(int jobNo, String jobCategory, String period, String logoImg, int recruitment, String gender, String age,
-			String address, String pay, String dueDate, String worktime, String workday, String title, String content,
+			String address, String pay, String dueDate, String worktime1, String worktime2, String workday, String title, String content,
 			int jobReport, Date wirteDate, String country, String userId, String changeName, String filePath,
 			String coName, int userNo) {
 		super();
@@ -52,7 +55,8 @@ public class Job implements Serializable {
 		this.address = address;
 		this.pay = pay;
 		this.dueDate = dueDate;
-		this.worktime = worktime;
+		this.worktime1 = worktime1;
+		this.worktime2 = worktime2;
 		this.workday = workday;
 		this.title = title;
 		this.content = content;
@@ -66,8 +70,56 @@ public class Job implements Serializable {
 		this.userNo = userNo;
 	}
 
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getTypeNo() {
+		return typeNo;
+	}
+
+	public void setTypeNo(String typeNo) {
+		this.typeNo = typeNo;
+	}
+
 	public Job(int jobNo, String jobCategory, String period, String logoImg, int recruitment, String gender, String age,
-			String address, String pay, String dueDate, String worktime, String workday, String title, String content,
+			String address, String pay, String dueDate, String worktime1, String worktime2, String workday,
+			String title, String content, int jobReport, Date wirteDate, String country, String userId,
+			String changeName, String filePath, String coName, String status, String typeNo, int userNo) {
+		this.jobNo = jobNo;
+		this.jobCategory = jobCategory;
+		this.period = period;
+		this.logoImg = logoImg;
+		this.recruitment = recruitment;
+		this.gender = gender;
+		this.age = age;
+		this.address = address;
+		this.pay = pay;
+		this.dueDate = dueDate;
+		this.worktime1 = worktime1;
+		this.worktime2 = worktime2;
+		this.workday = workday;
+		this.title = title;
+		this.content = content;
+		this.jobReport = jobReport;
+		this.wirteDate = wirteDate;
+		this.country = country;
+		this.userId = userId;
+		this.changeName = changeName;
+		this.filePath = filePath;
+		this.coName = coName;
+		this.status = status;
+		this.typeNo = typeNo;
+		this.userNo = userNo;
+	}
+
+	public Job(int jobNo, String jobCategory, String period, String logoImg, int recruitment, String gender, String age,
+			String address, String pay, String dueDate, String worktime1, String worktime2, String workday, String title, String content,
 			int jobReport, Date wirteDate, String country, String userId, String changeName, String filePath,
 			String coName) {
 		super();
@@ -81,7 +133,8 @@ public class Job implements Serializable {
 		this.address = address;
 		this.pay = pay;
 		this.dueDate = dueDate;
-		this.worktime = worktime;
+		this.worktime1 = worktime1;
+		this.worktime2 = worktime2;
 		this.workday = workday;
 		this.title = title;
 		this.content = content;
@@ -95,7 +148,7 @@ public class Job implements Serializable {
 	}
 	
 	
-	public Job(int jobNo, String jobCategory, String period, String logoImg, String dueDate, String worktime,
+	public Job(int jobNo, String jobCategory, String period, String logoImg, String dueDate, String worktime1, String worktime2,
 			String workday, String title, String content, int jobReport, Date wirteDate, String country, String userId,
 			String changeName, String filePath, String coName) {
 		super();
@@ -104,7 +157,8 @@ public class Job implements Serializable {
 		this.period = period;
 		this.logoImg = logoImg;
 		this.dueDate = dueDate;
-		this.worktime = worktime;
+		this.worktime1 = worktime1;
+		this.worktime2 = worktime2;
 		this.workday = workday;
 		this.title = title;
 		this.content = content;
@@ -115,6 +169,43 @@ public class Job implements Serializable {
 		this.changeName = changeName;
 		this.filePath = filePath;
 		this.coName = coName;
+	}
+	
+	
+
+	public Job(int jobNo, String jobCategory, String period, String logoImg, int recruitment, String gender, String age,
+			String address, String pay, String dueDate, String worktime1, String worktime2, String workday,
+			String title, String content, int jobReport, Date wirteDate, String country, String userId,
+			String changeName, String filePath, String coName, String status, String typeNo) {
+		this.jobNo = jobNo;
+		this.jobCategory = jobCategory;
+		this.period = period;
+		this.logoImg = logoImg;
+		this.recruitment = recruitment;
+		this.gender = gender;
+		this.age = age;
+		this.address = address;
+		this.pay = pay;
+		this.dueDate = dueDate;
+		this.worktime1 = worktime1;
+		this.worktime2 = worktime2;
+		this.workday = workday;
+		this.title = title;
+		this.content = content;
+		this.jobReport = jobReport;
+		this.wirteDate = wirteDate;
+		this.country = country;
+		this.userId = userId;
+		this.changeName = changeName;
+		this.filePath = filePath;
+		this.coName = coName;
+		this.status = status;
+		this.typeNo = typeNo;
+	}
+
+	public Job(int userNo) {
+		super();
+		this.userNo = userNo;
 	}
 
 	public int getJobNo() {
@@ -197,12 +288,20 @@ public class Job implements Serializable {
 		this.dueDate = dueDate;
 	}
 
-	public String getWorktime() {
-		return worktime;
+	public String getWorktime1() {
+		return worktime1;
 	}
 
-	public void setWorktime(String worktime) {
-		this.worktime = worktime;
+	public void setWorktime1(String worktime1) {
+		this.worktime1 = worktime1;
+	}
+	
+	public String getWorktime2() {
+		return worktime2;
+	}
+
+	public void setWorktime2(String worktime2) {
+		this.worktime2 = worktime2;
 	}
 
 	public String getWorkday() {
@@ -300,13 +399,13 @@ public class Job implements Serializable {
 	public String toString() {
 		return "Job [jobNo=" + jobNo + ", jobCategory=" + jobCategory + ", period=" + period + ", logoImg=" + logoImg
 				+ ", recruitment=" + recruitment + ", gender=" + gender + ", age=" + age + ", address=" + address
-				+ ", pay=" + pay + ", dueDate=" + dueDate + ", worktime=" + worktime + ", workday=" + workday
-				+ ", title=" + title + ", content=" + content + ", jobReport=" + jobReport + ", wirteDate=" + wirteDate
-				+ ", country=" + country + ", userId=" + userId + ", changeName=" + changeName + ", filePath="
-				+ filePath + ", coName=" + coName + ", userNo=" + userNo + "]";
+				+ ", pay=" + pay + ", dueDate=" + dueDate + ", worktime1=" + worktime1 + ", worktime2=" + worktime2
+				+ ", workday=" + workday + ", title=" + title + ", content=" + content + ", jobReport=" + jobReport
+				+ ", wirteDate=" + wirteDate + ", country=" + country + ", userId=" + userId + ", changeName="
+				+ changeName + ", filePath=" + filePath + ", coName=" + coName + ", status=" + status + ", typeNo="
+				+ typeNo + ", userNo=" + userNo + "]";
 	}
 
-
-
+	
 
 }

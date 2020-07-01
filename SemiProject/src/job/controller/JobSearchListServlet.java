@@ -89,6 +89,11 @@ public class JobSearchListServlet extends HttpServlet {
       }
       
       Pagination pn = new Pagination(currentPage, listCount, limit, maxPage, startPage, endPage);
+      System.out.println("나는 startPage: " + startPage);
+      System.out.println("나는 endPage: " + endPage);
+      System.out.println("나는 currentPage: " + currentPage);
+      System.out.println("나는 maxPage: " + maxPage);
+      System.out.println("나는 listCount: " + listCount);
       
       // 1_2. 화면에 뿌려줄 찜테이블 리스트 조회하기
       ArrayList list = jService.selectList(currentPage, limit,userNo);   

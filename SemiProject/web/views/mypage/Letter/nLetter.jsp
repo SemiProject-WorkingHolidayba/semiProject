@@ -178,7 +178,7 @@
    <div class="area" id="wrap" align="left"
     style="width:160px; height: 900px; margin: 0; padding: 0; border-right: 1px solid lightgray; ">
 
-    <nav class="side_menu" style="text-align:left !important; " >
+    <nav class="side_menu" style="text-align:left !important; margin-top:150%; " >
 
       <ul class="depth2_menu" style="margin-top: 80%;">
         <li class="depth2_list"><a class="depth2_anchor"
@@ -206,18 +206,18 @@
   </div>
 
 
-  <div id="wrap" class=" area " style="position:absolute; margin-left: 5%;" ; align="center">
+  <div id="wrap" class=" area " style="position:absolute; margin-left: 5%; margin-top:80px;"  align="center">
 
     <h1 style="font-weight: 900;">내가 쓴 글</h1>
 
-    <form style="margin-top: 100px; margin-left: 250px;" >
+    <form style="margin-top: 100px; margin-left: 10px;" >
 
       <table class="table table-hover table-bordered">
         <thead>
           <tr class="mainChoice" style="background: lightgray;">
             <th scope="col" style="width: 100px;">글 번호</th>
             <th scope="col" style="width: 150px;">글 종류</th>
-            <th scope="col" style="width: 300px;">글 제목</th>
+            <th scope="col" style="width: 500px;">글 제목</th>
             <th scope="col" style="width: 200px;">작성 날짜</th>
             
 
@@ -230,10 +230,6 @@
               </tr>
      		<%}else{ %>
           			<%for(int i=0; i<list.size(); i++){ %>
-<<<<<<< HEAD
-                    
-=======
->>>>>>> refs/remotes/origin/kimsung
                     <tr id="tr">
                         <td id="no"><%=((NletterList)list.get(i)).getJobNo()%></td>
                         <td id="name"><%=((NletterList)list.get(i)).getTypeName() %></td>
@@ -307,7 +303,7 @@
 
 </script>
 
-
+<%@include file="/views/common/bottom.jsp"%>
 
   <!-- Marketing messaging and featurettes
     ================================================== -->

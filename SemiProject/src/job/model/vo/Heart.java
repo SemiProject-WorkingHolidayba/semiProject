@@ -12,6 +12,7 @@ public class Heart implements Serializable{
 	private int userNo;
 	
 	
+	
 	public Heart() {
 		super();
 	}

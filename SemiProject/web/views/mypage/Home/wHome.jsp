@@ -52,9 +52,7 @@ String email =home.getEmail(); */
 
   <style>
   
-nav{
-      text-align: center;
-    }
+
     #nation {
       border: 0.5px solid rgb(176, 171, 171);
       border-top-left-radius: 0.5em;
@@ -183,7 +181,7 @@ nav{
  <div class="area side z2"
     style="width: 160px; height: 900px; margin: 0; padding: 0; border-right: 1px solid lightgray; ">
 
-    <nav class="side_menu" style="margin-top:80%">
+    <nav class="side_menu" style="margin-top:80%; margin-top:150%;">
 
       <ul class="depth2_menu">
         <li class="depth2_list"><a class="depth2_anchor" href="<%=request.getContextPath() %>/views/mypage/PIU/personalIU.jsp" target="_self">개인정보수정</a>
@@ -211,17 +209,17 @@ nav{
   </div>
     
 
-    <div id="wrap" class="area" style="position:absolute; margin-left: 5%;"; align="center">
+    <div id="wrap" class="area" style="position:absolute; margin-left: 5%; margin-top:80px"; align="center">
    
         <h1 style="font-weight: 900;">집 예약 내역</h1>
    
-      <form style="margin-top: 100px; margin-left: 280px; " >
+      <form style="margin-top: 100px; margin-left: 160px; " >
 
         <%if(hrlist.isEmpty()){ %> 
-        <table align="center" id="home">
+        <table align="center" id="home" style="width:700px;">
          <tr>
             <td class="mainChoice">글 제목</td>
-            <td class="content1" rowspan="10" >&nbsp;&nbsp;X 예약 내역이 없습니다.<br>&nbsp; 좋은 집들이 많으니 어서 예약하세요!!</td>
+            <td class="content1" rowspan="10" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X 예약 내역이 없습니다.<br>&nbsp;&nbsp;&nbsp;&nbsp; 좋은 집들이 많으니 어서 예약하세요!!</td>
           </tr>
           <tr>
             <td class="mainChoice">집 종류</td>
@@ -254,7 +252,7 @@ nav{
           <br><br>
           
            <%}else{ %> 
-           	<label id="jan" style="visibility:hidden;"><%=((myHome)hrlist.get(0)).getHouseNo() %></label>
+              <label id="jan" style="visibility:hidden;"><%=((myHome)hrlist.get(0)).getHouseNo() %></label>
            <table align="center" id="home">
           <tr>
             <td class="mainChoice">글 제목</td>
@@ -297,24 +295,24 @@ nav{
             <%if(((myHome)hrlist.get(0)).getWifi().charAt(0)=='Y'){ %>
             &nbsp;wifi 
             <%}else{ %>
-                " "
+                
             <%} %>
 
             <%if(((myHome)hrlist.get(0)).getTelevision().charAt(0)=='Y'){ %>
             &nbsp;TV 
             <%}else{ %>
-                " "
+                
             <%} %>
             <%if(((myHome)hrlist.get(0)).getHeater().charAt(0)=='Y'){ %>
             &nbsp;난방 
             <%}else{ %>
-             " "
+             
             <%} %>
             
              <%if(((myHome)hrlist.get(0)).getAirConditional().charAt(0)=='Y'){ %>
             &nbsp;공기청정기 
             <%}else{ %>
-               " "
+               
             <%} %>
             </td>
           </tr>
@@ -324,13 +322,13 @@ nav{
              <%if(((myHome)hrlist.get(0)).getLivingroom().charAt(0)=='Y'){ %>
             &nbsp;&nbsp;   거실 
             <%}else{ %>
-                " "
+                
             <%} %>
             
              <%if(((myHome)hrlist.get(0)).getBathroom().charAt(0)=='Y'){ %>
                화장실 
             <%}else{ %>
-                " "
+                
             <%} %>
             
             </td>
@@ -341,7 +339,7 @@ nav{
              <%if(((myHome)hrlist.get(0)).getPet().charAt(0)=='Y'){ %>
            &nbsp;&nbsp;    O
             <%}else{ %>
-            &nbsp;&nbsp;   "--"
+            &nbsp;&nbsp;   --
             <%} %>
             </td>
           </tr>
@@ -364,19 +362,14 @@ nav{
       })
       var hNo =  $("#jan").text();
       $("#home .content").click(function(){
-<<<<<<< HEAD
- 
-=======
->>>>>>> refs/remotes/origin/kimsung
-			location.href="<%=request.getContextPath()%>/detail.ho?hNo="+hNo;
-	});
+         location.href="<%=request.getContextPath()%>/detail.ho?hNo="+hNo;
+   });
     })
 
 
 
     </script>
-
-
+<%@include file="/views/common/bottom.jsp"%>
 
   <!-- Marketing messaging and featurettes
     ================================================== -->

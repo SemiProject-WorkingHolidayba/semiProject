@@ -9,9 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import job.model.service.JobService;
+import job.model.vo.Heart;
 import job.model.vo.Job;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class jobDetailServlet
@@ -37,17 +40,21 @@ public class jobDetailServlet extends HttpServlet {
 		int jno2 = Integer.valueOf(jno);
 		System.out.println("jno2 : " +jno2);
 		
-		Job j = new JobService().selectJobList(jno2);
-			
-		if(j != null) {
-			request.setAttribute("job", j);
-			request.getRequestDispatcher("views/job/jobDetailView.jsp").forward(request, response);
-		}else {
-			request.setAttribute("msg", "게시글 상세 조회 실패!");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}
-		 
+		HttpSession session=request.getSession();
+		Member loginUser=(Member)session.getAttribute("loginUser");
+		int userNo=loginUser.getUserNo();
 		
+		Job j = new JobService().selectJobList(jno2);
+		Heart h= new JobService().selectHeart(jno2, userNo);
+		
+			if(j != null) {
+				request.setAttribute("h", h);
+				request.setAttribute("job", j);
+				request.getRequestDispatcher("views/job/jobDetailView.jsp").forward(request, response);
+			}else {
+				request.setAttribute("msg", "게시글 상세 조회 실패!");
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			}		
 	}
 
 

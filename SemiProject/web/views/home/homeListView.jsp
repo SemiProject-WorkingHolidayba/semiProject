@@ -22,7 +22,6 @@
                 margin: 0 auto;
                 border: 1px solid rgb(113, 177, 197);
                 border-radius: 5px;
-                margin-top: 4em;
                 margin-bottom: 2em;
             }
 
@@ -30,11 +29,11 @@
                 padding: 1.2em 2.5em;
             }
 
-            .country_option input[type="checkbox"]{
+            .country_option input[type="radio"]{
                 display:none;
             }
 
-            .country_option input[type="checkbox"] + span{
+            .country_option input[type="radio"] + span{
                 display:inline-block;
                 background:none;
                 border:1px solid #dfdfdf;    
@@ -49,17 +48,17 @@
                 font-size: 0.9em;
             }
 
-            .country_option input[type="checkbox"]:checked + span{
+            .country_option input[type="radio"]:checked + span{
                 border:1px solid #23a3a7;
                 background:#23a3a7;
                 color:#fff;
             }
 
-            .home_option input[type="checkbox"]{
+            .home_option input[type="radio"]{
                 display:none;
             }
 
-            .home_option input[type="checkbox"] + span{
+            .home_option input[type="radio"] + span{
                 display:inline-block;
                 background:none;
                 border:1px solid #dfdfdf;    
@@ -75,17 +74,17 @@
                 left: 50%;
             }
 
-            .home_option input[type="checkbox"]:checked + span{
+            .home_option input[type="radio"]:checked + span{
                 border:1px solid #23a3a7;
                 background:#23a3a7;
                 color:#fff;
             }
 
-            .term_option input[type="checkbox"]{
+            .term_option input[type="radio"]{
                 display:none;
             }
 
-            .term_option input[type="checkbox"] + span{
+            .term_option input[type="radio"] + span{
                 display:inline-block;
                 background:none;
                 border:1px solid #dfdfdf;    
@@ -100,14 +99,14 @@
                 margin-right: 0.8em;
             }
 
-            .term_option input[type="checkbox"]:checked + span{
+            .term_option input[type="radio"]:checked + span{
                 border:1px solid #23a3a7;
                 background:#23a3a7;
                 color:#fff;
             }
 
             .search{
-                margin-left: -5%;
+               	margin-left:43%;
                 background-color: white;
                 border: none;
                 color: #3d3d3d;
@@ -212,13 +211,15 @@
                 border: none;
                 color: white;
                 font-size: 1em;
-                margin-right:-73%;
+                margin-left:80%;
+
                 margin-top:1%;
             }
 
             #page_btn{
                 border: none;
                 padding: 0.5%;
+                margin-left:43%;
             }
 			
 			
@@ -227,37 +228,38 @@
 
     <body>
     	<%@ include file = "../common/menubar.jsp" %>
+    	<br><br><br><br>
         <div id = "content">
             <form action = "<%=request.getContextPath()%>/list.ho" class = "category">
                 <table class = "home_reservation_category">
                     <tr>
                         <td><b>나라</b></td>
                         <td>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="N1"><span>호주</span></label>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="N2"><span>일본</span></label>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="N3"><span>캐나다</span></label>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="N4"><span>뉴질랜드</span></label>
-                            <label class="country_option"><input type="checkbox"" name = "country" value="N5"><span>독일</span></label>
+                            <label class="country_option"><input type="radio" name = "country" value="N1"><span>호주</span></label>
+                            <label class="country_option"><input type="radio" name = "country" value="N2"><span>일본</span></label>
+                            <label class="country_option"><input type="radio" name = "country" value="N3"><span>캐나다</span></label>
+                            <label class="country_option"><input type="radio" name = "country" value="N4"><span>뉴질랜드</span></label>
+                            <label class="country_option"><input type="radio" name = "country" value="N5"><span>독일</span></label>
                         </td>
                     </tr>
                     <tr> 
                         <td><b>집 종류</b></td>
                         <td>
-                            <label class="home_option"><input type="checkbox"" name = "home" value="sharehouse"><span>쉐어하우스</span></label>
-                            <label class="home_option"><input type="checkbox"" name = "home" value="dormitory"><span>기숙사</span></label>
-                            <label class="home_option"><input type="checkbox"" name = "home" value="homestay"><span>홈스테이</span></label>
-                            <label class="home_option"><input type="checkbox"" name = "home" value="oneroom"><span>원룸</span></label>
-                            <label class="home_option"><input type="checkbox"" name = "home" value="apartment"><span>아파트</span></label>
+                            <label class="home_option"><input type="radio" name = "home" value="sharehouse"><span>쉐어하우스</span></label>
+                            <label class="home_option"><input type="radio" name = "home" value="dormitory"><span>기숙사</span></label>
+                            <label class="home_option"><input type="radio" name = "home" value="homestay"><span>홈스테이</span></label>
+                            <label class="home_option"><input type="radio" name = "home" value="oneroom"><span>원룸</span></label>
+                            <label class="home_option"><input type="radio" name = "home" value="apartment"><span>아파트</span></label>
                         </td>
                     </tr>
                     <tr id = "term">
                         <td><b>기간</b></td>
                         <td>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="3monthless"><span>3개월 미만</span></label>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="3months"><span>3개월 이상</span></label>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="6months"><span>6개월 이상</span></label>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="9months"><span>9개월 이상</span></label>
-                            <label class="term_option"><input type="checkbox"" name = "period" value="1year"><span>1년 이상</span></label>
+                            <label class="term_option"><input type="radio" name = "period" value="3개월미만"><span>3개월 미만</span></label>
+                            <label class="term_option"><input type="radio" name = "period" value="3개월이상"><span>3개월 이상</span></label>
+                            <label class="term_option"><input type="radio" name = "period" value="6개월이상"><span>6개월 이상</span></label>
+                            <label class="term_option"><input type="radio" name = "period" value="9개월이상"><span>9개월 이상</span></label>
+                            <label class="term_option"><input type="radio" name = "period" value="1년이상"><span>1년 이상</span></label>
                         </td>
                     </tr>
                     <tr>
@@ -280,7 +282,7 @@
 										<%for(int j = 0; j < flist.size(); j++) {
 											Img a = flist.get(j);%>
 				                            	<%if(h.gethNo() == a.getHouseNo()) { %> <!-- 한 게시글의 대표 이미지  -->
-													<img src = "<%=request.getContextPath() %>/home_uploadFiles/<%=a.getImg()%>" width = "200px" height = "150px" alt = "Image Alt Text" >
+													<img src = "<%=request.getContextPath() %>/home_uploadFiles/<%=a.getImg()%>" width = "200px" height = "150px">
 												<%} %>
 										<%} %>
 		                            </div>
@@ -318,10 +320,9 @@
             </div>
         </div>        
             
-        <div id = "footer">
-            <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
-        </div>
+        <div id = "footer" style="margin-bottom: 0;">
+	      <%@include file="/views/common/bottom.jsp"%>
+	   </div>
         <!-- FOOTER -->
        
         <script>

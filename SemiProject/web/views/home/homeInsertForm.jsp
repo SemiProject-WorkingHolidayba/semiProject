@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-    <title>WorkignThrough</title>
+    <title>WorkingThrough</title>
 
     <!-- Bootstrap CSS -->
     <link rel="icon" href="images/semi.ico">
@@ -31,14 +31,11 @@
        #contents ul{
            position: relative;
            left: 20%;
-           margin-top: 4%;
-           margin-bottom:2%
        }
 
        #contents form{
            position: relative;
            left: 25%;
-           bottom: 10%;
        }
 
         #contents td{
@@ -136,17 +133,18 @@
       #submit{
           width: 12%;
           line-height: 2.5em;
-          background: rgb(182, 182, 182);
+          background: rgb(113, 177, 197);
           border: none;
           text-align: center;
           margin: 4% 0;
-          color: white;
+          color: black;
       }
 
     </style>
   </head>
   <body>
   	<%@ include file = "../common/menubar.jsp" %>
+  	<br><br><br><br>
     <div id = "contents">
         <ul><li><h3><b>집 등록</b></h3></li></ul>
         <form id = "registerForm" action = "<%=request.getContextPath()%>/insert.ho" enctype="multipart/form-data" method = "post">
@@ -253,17 +251,16 @@
                 </tr>
                 <tr>
                   <td colspan="3">
-                    <button id = "submit" type="submit" disabled = "true">등록하기</button>
+                    <button id = "submit" type="submit">등록하기</button>
                   </td>
               </tr>
             </table>
         </form>
     </div>
 
-    <div id = "footer">
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
-    </div>
+    <div id = "footer" style="margin-bottom: 0;">
+      <%@include file="/views/common/bottom.jsp"%>
+   </div>
     
      <!-- 유효성 검사 -->
     <script>
@@ -271,9 +268,9 @@
         $("#registerForm").on('input',function(){
           if($("#title").val() == '' || $("#fee").val() == '' || $("#address").val() == '' || $('input:radio[name=country]').is(':checked') == false
             || $('input:radio[name=home]').is(':checked') == false || $('input:radio[name=period]').is(':checked') == false || $("#photo").val() == ''){
-            $("#submit").attr("disabled",true);
+            $("#submit").attr("disabled",false);
           } else{
-            $("#submit").attr("disabled",false).attr("cursor","pointer").css("background","rgb(113, 177, 197)"),css("color","black");
+            $("#submit").attr("disabled",true).attr("cursor","pointer").css("background","rgb(113, 177, 197)"),css("color","black");
           }
         });
       });

@@ -68,17 +68,17 @@ public class NletterListDao {
 				" SELECT ROWNUM RNUM,JOBNO,L.TYPENAME,TITLE,WRITEDATE\r\n" + 
 				" FROM JOBSEARCH J \r\n" + 
 				" JOIN LETTERTYPE L ON L.TYPENO=J.TYPENO\r\n" + 
-				" WHERE USERNO=?\r\n" + 
+				" WHERE USERNO=? AND STATUS ='N'" + 
 				" UNION\r\n" + 
 				" SELECT ROWNUM RNUM, HOUSENO,L.TYPENAME,TITLE,WRITEDATE\r\n" + 
 				" FROM HOME H\r\n" + 
 				" JOIN LETTERTYPE L ON L.TYPENO=H.TYPENO\r\n" + 
-				" WHERE USERNO=?\r\n" + 
+				" WHERE USERNO=? AND STATUS ='N'" +  
 				" UNION\r\n" + 
 				" SELECT ROWNUM RNUM,COMMUNITYNO,L.TYPENAME,TITLE,WRITEDATE \r\n" + 
 				" FROM COMMUNITY C\r\n" + 
 				"JOIN LETTERTYPE L ON L.TYPENO=C.TYPENO\r\n" + 
-				"WHERE USERNO=?\r\n" + 
+				" WHERE USERNO=? AND STATUS ='N'" + 
 				" ORDER BY WRITEDATE desc) ) ff)\r\n" + 
 				" WHERE rr BETWEEN ? AND ?";
 		

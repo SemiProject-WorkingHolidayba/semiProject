@@ -7,7 +7,7 @@
 	String country = home.getCountry();
 	
 	String[] checkedCountry = new String[5];
-	
+
 	switch(country){
 		case "호주": checkedCountry[0] = "checked"; break;
 		case "일본": checkedCountry[1] = "checked"; break;
@@ -123,7 +123,6 @@
        #contents ul{
            position: relative;
            left: 20%;
-           margin-top: 4%;
            margin-bottom:2%
        }
 
@@ -239,8 +238,9 @@
   </head>
   <body>
   	<%@ include file = "../common/menubar.jsp" %>
+  	<br><br><br><br>
     <div id = "contents">
-        <ul><li><h3><b>집 등록</b></h3></li></ul>
+        <ul><li><h3><b>집 수정</b></h3></li></ul>
         <form id = "registerForm" action = "<%=request.getContextPath()%>/update.ho" enctype="multipart/form-data" method = "post">
             <input type = "hidden" name = "hno" value = "<%=home.gethNo()%>">
             <table>
@@ -355,10 +355,9 @@
         </form>
     </div>
 
-    <div id = "footer">
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 Delivery Management System &middot; <a href="#">Privacy</a></p>
-    </div>
+    <div id = "footer" style="margin-bottom: 0;">
+      <%@include file="/views/common/bottom.jsp"%>
+   </div>
     
      <!-- 유효성 검사 -->
 

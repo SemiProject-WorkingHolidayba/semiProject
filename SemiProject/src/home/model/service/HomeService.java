@@ -376,7 +376,15 @@ public class HomeService {
 
 	}
 
-
+	   public int selectHouseNo(int boardno) {
+		      Connection conn = getConnection();
+		      
+		      int HouseNo = new HomeDao().selectHouseNo(conn, boardno);
+		      
+		      
+		      close(conn);
+		      return HouseNo;
+		   }
 
 
 }

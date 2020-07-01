@@ -181,7 +181,10 @@ public class HomeDao {
 		int startRow = (currentPage-1) * limit + 1;
 		int endRow = currentPage * limit;
 		
-		String query = "SELECT RNUM , HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE STATUS = 'N' ORDER BY HOUSENO DESC) WHERE RNUM BETWEEN ? AND ?";
+		String query = "SELECT R, Q.*\r\n" + 
+				"FROM(SELECT ROWNUM R, HOUSENO, TYPE, PERIOD, FEE, TITLE, CONTENT, REPORT, ADDRESS, WRITEDATE, COUNTRYNO, USERNO \r\n" + 
+				"FROM (SELECT ROWNUM RNUM, H.* FROM HOME H WHERE STATUS = 'N' ORDER BY HOUSENO DESC) B)Q\r\n" + 
+				"WHERE R BETWEEN ? AND ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -834,7 +837,7 @@ public class HomeDao {
 		
 		ArrayList<Review> rlist = new ArrayList<Review>();
 		
-		String query = "SELECT * FROM (SELECT ROWNUM RNUM1, R.* FROM RLIST R WHERE HOUSENO = ?) WHERE RNUM1 BETWEEN ? AND ?";;
+		String query = "SELECT * FROM (SELECT ROWNUM RNUM1, R.* FROM RLIST R WHERE HOUSENO = ?) WHERE RNUM1 BETWEEN ? AND ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -1056,17 +1059,11 @@ public class HomeDao {
 				house = rs.getInt(1);
 			}
 			
-			report = new Report(rs.getInt("houseno"),
-								"7",
-								rs.getInt("userno"));
-			
+			report = new Report(rs.getInt("houseno"),"7",rs.getInt("userno"));
 			
 			if(rs.getInt(1) == hNo) {
 				insertReport(conn, report);
 			}
-			
-			
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1126,17 +1123,13 @@ public class HomeDao {
 			
 			
 			while(rs.next()) {
-				report = new Report(rs.getInt("reviewno"),
-						"8",
-						rs.getInt("userno"));
+				report = new Report(rs.getInt("reviewno"),"8",rs.getInt("userno"));
 				
 				if(rs.getInt(1) == reviewNo) {
 					insertReport(conn, report);
 				}
 			}
-			
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -1427,5 +1420,31 @@ public class HomeDao {
 		return homelist;
 
 	}
+	
+	public int selectHouseNo(Connection conn, int boardno) {
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      int houseNo = 0;
+	      String query="SELECT HOUSENO FROM HOMEREVIEW WHERE REVIEWNO = ?";
+	      
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, boardno);
+	         rs=pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            houseNo = rs.getInt("HOUSENO");
+	         }
+	         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	         close(rs);
+	      }
+	      
+	      return houseNo;
+	   }
 
 }
